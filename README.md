@@ -6,3 +6,4 @@ project-moovit created by GitHub Classroom
 - Technical lead: Fredi
 - Testing and backend: Samiur
 - Design and frontend: Tanjim
+- Business manager: Viktor
