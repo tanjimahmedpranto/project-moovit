@@ -99,6 +99,16 @@ PUT event/:id uses the same properties as POST.
 `DELETE /event/:id`
 
 🔒 Requires authentication and authorization.
+### Emails
+E-mail service will log outgoing e-mails.
+
+`POST /email`
+| Parameters   | Description                            |
+|--------------|----------------------------------------|
+| receiver     | E-mail address of receiver             |
+| subject      | Subject of e-mail                      |
+| messageBody  | The message body of the e-mail         |
+---
 
 ## GDPR compliance
 For now we will assume it is not
@@ -124,7 +134,7 @@ Each module exposes a set of functions (facade). Only facade functions should be
 ### MongoDB schemas
 #### User profile
 #### Event
-| Name      | Description           | Type                |
+| Name      | Description           | Type                  |
 |-----------|-----------------------|-----------------------|
 | eventName |                       | string
 | startTime |                       | string (ISODate/ISO6801)
@@ -148,8 +158,8 @@ Samiur, wanna add something? Unit tests? Can you do some CI/CD magic?
 | Blurhash  | Thumbnails         | https://blurha.sh
 | Express   | HTTP router        | N/A
 | GeoJSON   | Format             | https://geojson.org/
+| Jest      | Testing framework  | https://jestjs.io/
 | MongoDB   | Document DB        | N/A
 | NodeJS    | Server             | N/A
 | React     | Frontend           | https://react.dev/ 
 | ???       | CSS framework      | N/A
-| Jest      | Testing framework  | https://jestjs.io/
