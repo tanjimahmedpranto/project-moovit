@@ -152,4 +152,4 @@ Samiur, wanna add something? Unit tests? Can you do some CI/CD magic?
 | NodeJS    | Server             | N/A
 | React     | Frontend           | https://react.dev/ 
 | ???       | CSS framework      | N/A
-| ???       | Testing framework  | N/A
+| Jest      | Testing framework  | https://jestjs.io/
