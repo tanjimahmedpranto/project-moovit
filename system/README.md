@@ -162,4 +162,4 @@ Samiur, wanna add something? Unit tests? Can you do some CI/CD magic?
 | MongoDB   | Document DB        | N/A
 | NodeJS    | Server             | N/A
 | React     | Frontend           | https://react.dev/ 
-| ???       | CSS framework      | N/A
+| Bootstrap | CSS framework      | N/A
