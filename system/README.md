@@ -148,7 +148,7 @@ Each module exposes a set of functions (facade). Only facade functions should be
 We'll worry about it later.
 
 ### Testing
-Samiur, wanna add something? Unit tests? Can you do some CI/CD magic? 
+We will be using Jest for unit testing and JMeter for executing performance testing as part of our testing procedures.
 
 ### Technologies
 | Name      | Function               |   Link |
