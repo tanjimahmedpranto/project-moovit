@@ -86,6 +86,7 @@ Gets information about specific event
 | location     | GeoJSON point with coordinates         |
 | host         | Host full name                         |
 | creator      | UserID of creaor of the event          |
+| maxParticipants | Max number of participants          |
 | image        | Event iamge, an image                  |
 
 🔒 Requires authentication and authorization.
