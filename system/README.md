@@ -117,7 +117,11 @@ For now we will assume it is not
 ## Development
 run with `nodemon run dev`
 ### ENV
-MongoDB requires key, Fredi will provide this key. Create a .env file in the system root (the directory this README is in) and add `DB_KEY=<key goes here>`.
+The ENV variables needed are put in a `.env` file in the system root. The following variables are needed:
+- DB_URI=\<value\>
+- JWT_SECRET=\<value\>
+  
+The values can be found in the code folder in the project OneDrive. 
 
 ### Architecture
 The application is monolithic multi-layered. It consists of a router that handles HTTP requests and a set of modules that handle business logic.
