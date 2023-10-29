@@ -10,7 +10,7 @@ router.post('/register', async (req, res) => {
     const statusObject = await usersService.registerUser(username, password);
    
     // Send back the status and message.
-    res.status(statusObject.httpStatus).send(statusObject.message);
+    res.status(statusObject.httpStatus).send({message: statusObject.message});
 });
 
 router.post('/login', async (req, res) => {   
@@ -20,7 +20,7 @@ router.post('/login', async (req, res) => {
     const statusObject = await usersService.login(username, password);
 
     // Send back the status and message.
-    res.status(statusObject.httpStatus).send(statusObject.message);
+    res.status(statusObject.httpStatus).send({message: statusObject.message});
     
 });
 
