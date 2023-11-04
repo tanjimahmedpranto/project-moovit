@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 
 const usersRoute = require('./users/router.js');
+const typesRoute = require('./types/routes/typeRoute.js');
 const eventsModule = require('./events');
 
 require('dotenv').config()
@@ -27,6 +28,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', usersRoute);
+app.use('/types', typesRoute);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
