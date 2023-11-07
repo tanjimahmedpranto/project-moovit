@@ -1,0 +1,20 @@
+{
+    "tests":[
+        {"uri": "http://localhost:8080/users/register",
+        "method": "POST" ,
+        "body": {
+            "username": "testtest",
+            "password": "test!"
+        },
+         "expectedStatus": 400
+        },
+        {"uri": "http://localhost:8080/users/login",
+        "method": "POST" ,
+        "body": {
+            "username": "testtest",
+            "password": "test!"
+        },
+         "expectedStatus": 200
+        }
+    ]
+}
