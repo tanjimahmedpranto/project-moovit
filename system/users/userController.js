@@ -1,6 +1,6 @@
-const registerLogic = require('./register.js');
-const loginLogic = require('./login.js');
-const userInfoLogic = require('./userInfo.js');
+const registerLogic = require('./services/register.js');
+const loginLogic = require('./services/login.js');
+const userInfoLogic = require('./services/userInfo.js');
 
 function registerUser(username, password){
     return registerLogic.registerUser(username, password);
