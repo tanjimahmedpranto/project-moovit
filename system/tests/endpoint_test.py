@@ -26,6 +26,7 @@ for test in tests:
     expected_status = test["expectedStatus"]
 
     # Send the request
+    print("Sending request", current_test)
     if method == "POST":
         res = requests.post(uri, data=req_body)
     if method == "GET":

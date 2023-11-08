@@ -1,3 +1,5 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NDQ0MDEwLCJleHAiOjE2OTk1MzA0MTB9.QNDwqT_2lyG68ylcSG-hRLJABcyepPNc80m6ptfy6sk
+
 POST http://localhost:8080/users/register HTTP/1.1
 content-type: application/json
 
@@ -12,4 +14,17 @@ content-type: application/json
 {
     "username": "testtest",
     "password": "test!"
+}
+###
+POST http://localhost:8080/events/create HTTP/1.1
+content-type: application/json
+
+{
+    "eventName": "test",
+    "date": "",
+    "location": "",
+    "host": "Test Testicles",
+    "creator": "",
+    "maxParticipants": "",
+    "image": ""
 }
