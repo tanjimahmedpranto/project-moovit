@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userControlller = require("./userController");
-const {SUCCESS, FAIL} = require('./status/statusConstants');
+const {SUCCESS, FAIL} = require('../status');
 
 router.post('/register', async (req, res) => {   
     // Handle request.

@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Login = require('../models/loginSchema');
-const {SUCCESS, FAIL, USER_EXISTS, USER_NOT_EXISTS, PASSWORD_INCORRECT} = require('../status/statusConstants') 
-const Status = require('../status/Status') 
+const {SUCCESS, FAIL, USER_EXISTS, USER_NOT_EXISTS, PASSWORD_INCORRECT} = require('../../status/') 
+const {Status} = require('../../status/')
 
 async function loginUser(username, password){
     const salt = await bcrypt.genSalt(10);
