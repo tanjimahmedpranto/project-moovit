@@ -1,15 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const eventController = require("./eventController");
-const {SUCCESS, FAIL} = require('../status');
 
-router.post('/create', async (req, res) => {   
-    // Handle request.
-    // Send back the status and message.
-    // const statusObject = await eventController.createEvent();
-   
-    // Send back the status and message.
-    // res.status(statusObject.httpStatus).send({message: statusObject.message});
+router.get('/', async (req, res) => {
+    eventController.getEvents();   
+    res.status(200).send("Yo");
+});
+
+router.get('/:id', async (req, res) => {
+    eventController.getSingleEvent();   
+    res.status(200).send("Yo");
+});
+
+router.put('/update/:id', async (req, res) => {
+    eventController.updateEvent();   
     res.status(200).send("Yo");
 });
 
