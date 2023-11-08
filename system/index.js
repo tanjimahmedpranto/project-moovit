@@ -5,7 +5,7 @@ const cors = require('cors')
 
 const usersRoute = require('./users/router.js');
 const typesRoute = require('./types/routes/typeRoute.js');
-const eventsModule = require('./events');
+const eventsRoute = require('./events/router.js');
 
 require('dotenv').config()
 const dbURI = process.env.DB_URI
@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', usersRoute);
+app.use('/events', eventsRoute);
 app.use('/types', typesRoute);
 
 app.listen(port, () => {

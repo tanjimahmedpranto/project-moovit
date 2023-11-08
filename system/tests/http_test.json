@@ -15,6 +15,34 @@
             "password": "test!"
         },
          "expectedStatus": 200
+        },
+        {"uri": "http://localhost:8080/events/create",
+        "method": "POST" ,
+        "headers": [["Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NDQ0MDEwLCJleHAiOjE2OTk1MzA0MTB9.QNDwqT_2lyG68ylcSG-hRLJABcyepPNc80m6ptfy6sk"]],
+        "body": {
+            "eventName": "test",
+            "date": "",
+            "location": "",
+            "host": "Test Testicles",
+            "creator": "",
+            "maxParticipants": "",
+            "image": ""
+        },
+         "expectedStatus": 400
+        },
+        {"uri": "http://localhost:8080/events/create",
+        "method": "POST" ,
+        "headers": [["Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NDQ0MDEwLCJleHAiOjE2OTk1MzA0MTB9.QNDwqT_2lyG68ylcSG-hRLJABcyepPNc80m6ptfy6sk"]],
+        "body": {
+            "eventName": "test",
+            "date": "",
+            "location": "",
+            "host": "Test Testicles",
+            "creator": "a",
+            "maxParticipants": "",
+            "image": "",
+        },
+         "expectedStatus": 400
         }
     ]
 }
