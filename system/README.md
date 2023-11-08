@@ -78,7 +78,7 @@ Gets information about specific event
 ---
 ### Event creation
 
-`POST /event`
+`POST /events/create`
 | Parameters   | Description                            |
 |--------------|----------------------------------------|
 | eventName    | Full event name                        |
@@ -88,16 +88,17 @@ Gets information about specific event
 | creator      | UserID of creaor of the event          |
 | maxParticipants | Max number of participants          |
 | image        | Event iamge, an image                  |
+| blurhash     | The blurhash of the image              |
 
 🔒 Requires authentication and authorization.
 
-`PUT /event/:id`
+`PUT /events/edit/:id`
 
 PUT event/:id uses the same properties as POST. 
 
 🔒 Requires authentication and authorization.
 
-`DELETE /event/:id`
+`DELETE /events/delete/:id`
 
 🔒 Requires authentication and authorization.
 ### Emails
