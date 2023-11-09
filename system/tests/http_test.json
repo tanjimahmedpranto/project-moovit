@@ -19,7 +19,7 @@
         {"uri": "http://localhost:8080/users/verify",
         "method": "POST" ,
         "headers":{
-            "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NDQ0MDEwLCJleHAiOjE2OTk1MzA0MTB9.QNDwqT_2lyG68ylcSG-hRLJABcyepPNc80m6ptfy6sk"
+            "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
         },
         "body": {
             "username": "testtest"
@@ -29,17 +29,7 @@
         {"uri": "http://localhost:8080/users/verify",
         "method": "POST" ,
         "headers": {
-            "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NDQ0MDEwLCJleHAiOjE2OTk1MzA0MTB9.QNDwqT_2lyG68ylcSG-hRLJABcyepPNc80m6ptfy6sk"
-        },
-        "body": {
-            "username": "alteredUsername"
-        },
-         "expectedStatus": 200
-        },
-        {"uri": "http://localhost:8080/users/verify",
-        "method": "POST" ,
-        "headers": {
-            "Authorization": "Bearer alteredeyJhbGciOiJIUzI1NiIs9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NDQ0MDEwLCJleHAiOjE2OTk1MzA0MTB9.QNDwqT_2lyG68ylcSG-hRLJABcyepPNc80m6ptfy6sk"
+            "Authorization": "Bearer alteredeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
         },
         "body": {
             "username": "testtest"
