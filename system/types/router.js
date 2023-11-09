@@ -13,6 +13,16 @@ router.post('/create', authorize, async (req, res) => {
     
     res.status(statusObject.httpStatus).send({message: statusObject.message}); 
 });
+router.put('/update', authorize, async (req, res) => { 
+    // console.log(res.locals.user);
+    const modifier = res.locals.user;
+    const newName = req.body.newName;  
+    const id = req.body.id;
+
+    const statusObject = await typeController.update(id, newName, modifier);
+    
+    res.status(statusObject.httpStatus).send({message: statusObject.message}); 
+});
 // router.post("/bulk_create", type.bulk_create);
 // router.get("/get/:id", type.find);
 // router.get("/getAll", type.findAll);

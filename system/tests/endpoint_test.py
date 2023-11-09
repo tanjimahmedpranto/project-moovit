@@ -41,6 +41,10 @@ for test in tests:
         res = requests.post(uri, data=req_body, headers=headers)
     if method == "GET":
         res = requests.get(uri, data=req_body, headers=headers)
+    if method == "PUT":
+            res = requests.put(uri, data=req_body, headers=headers)
+    if method == "DELETE":
+            res = requests.delete(uri, data=req_body, headers=headers)
 
     if res.status_code == expected_status:
         succesful_tests += 1

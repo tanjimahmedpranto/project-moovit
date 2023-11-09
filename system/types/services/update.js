@@ -19,3 +19,5 @@ async function updateType(id, newName, modifier){
     return(new Status(200, SUCCESS, "type edited"));
 
 }
+
+module.exports = {updateType};
