@@ -155,6 +155,8 @@ We'll worry about it later.
 
 ### Testing
 We will be using Jest for unit testing and JMeter for executing performance testing as part of our testing procedures.
+#### Endpoint testing
+Endpoints can be tested by running `python endpoint_test.py` from the tests directory. This script will run various tests against the system and check if the results equals the expected result. Bearer tokens do not expire. Make sure all tests succeed before mergin with master.
 
 ### Technologies
 | Name      | Function               |   Link |
