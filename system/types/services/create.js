@@ -1,11 +1,11 @@
-const TypeCreation = require('../models/typeCreateSchema');
+const Type = require('../models/typeSchema');
 const {Status, SUCCESS, FAIL} = require('../../status');
 
 async function createType(typeName, creator){
-    const newType = new TypeCreation({typeName, creator});
+    const newType = new Type({typeName, creator});
     try {
 
-        const typeExists = await TypeCreation.findOne({typeName})
+        const typeExists = await Type.findOne({typeName})
         if(typeExists){
             return(new Status(400, FAIL, "Type exists"));
         }
@@ -13,7 +13,9 @@ async function createType(typeName, creator){
         
         if (typeCreationResult.acknowledged) {
             console.log(typeCreationResult)
+            return(new Status(500, FAIL, "Something happened"));
         } 
+
     } catch(e){
         console.error(e);
     }
