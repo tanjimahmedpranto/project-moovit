@@ -12,17 +12,11 @@ const authorize = (req, res, next) => {
         // Verify the user.
         const authUser = jwt.verify(token, process.env.JWT_SECRET)
 
-        req.authUser = authUser
-
-        res.locals.user = authUser.email
-
-        console.log(`Authorized ${authUser.email}`)
-
         next()
 
 
     } catch (error) {
-        return res.json({message: error.message})   
+        return res.status(401).json({message: error.message})   
     }
 }
 
