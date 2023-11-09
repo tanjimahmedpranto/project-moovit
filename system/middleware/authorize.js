@@ -11,7 +11,7 @@ const authorize = (req, res, next) => {
 
         // Verify the user.
         const authUser = jwt.verify(token, process.env.JWT_SECRET)
-
+        res.locals.user = authUser.subject;
         next()
 
 

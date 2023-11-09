@@ -1,4 +1,4 @@
-var Type = require("../models/typeSchema");
+var Type = require("../models/typeCreateSchema");
 
 const TypeService = {
   FindAll: (req) => {

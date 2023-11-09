@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 
 const usersRoute = require('./users/router.js');
-const typesRoute = require('./types/routes/typeRoute.js');
+const typesRoute = require('./types/router.js');
 const eventsRoute = require('./events/router.js');
 
 require('dotenv').config()
