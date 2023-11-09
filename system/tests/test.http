@@ -28,3 +28,8 @@ content-type: application/json
     "maxParticipants": "",
     "image": ""
 }
+###
+POST http://localhost:8080/users/verify HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NDQ0MDEwLCJleHAiOjE2OTk1MzA0MTB9.QNDwqT_2lyG68ylcSG-hRLJABcyepPNc80m6ptfy6sk
+###

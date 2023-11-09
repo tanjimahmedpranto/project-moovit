@@ -13,24 +13,34 @@ with open('http_test.json', 'r') as file:
 tests = data["tests"]
 succesful_tests = 0
 failed_tests = []
-total_test = 0
+total_test = len(tests)
 iterator = 0
 # Process each HTTP request
 for test in tests:
     iterator += 1
-    current_test = total_test = iterator
+    current_test = iterator
     res = {}
-    method = test["method"]
-    uri = test["uri"]
-    req_body = test["body"]
-    expected_status = test["expectedStatus"]
+
+    # Get general request info
+    method = test.get("method")
+    uri = test.get("uri")
+    req_body = test.get("body")
+    expected_status = test.get("expectedStatus")
+
+    # Get headers 
+    headers = test.get("headers") or {}
+
+    # if len(headers) > 0:
+    #     headers = [{x[0]: x[1]} for x in test["headers"]]
+    #     print("Headers:", headers)
 
     # Send the request
-    print("Sending request", current_test)
+    print("Sending request", f'{current_test}/{total_test}', end='\r')
+    
     if method == "POST":
-        res = requests.post(uri, data=req_body)
+        res = requests.post(uri, data=req_body, headers=headers)
     if method == "GET":
-        res = requests.get(uri, data=req_body)
+        res = requests.get(uri, data=req_body, headers=headers)
 
     if res.status_code == expected_status:
         succesful_tests += 1
@@ -43,6 +53,7 @@ for test in tests:
             'status': res.status_code, 
             'expected_status': expected_status
         })
+print("")
 
 # Choose color for printing success.
 result_color = ANSI_COLOR_RED
@@ -52,6 +63,7 @@ elif succesful_tests > 0:
     result_color = ANSI_COLOR_YELLOW
 
 # Print successes and fails
+
 print(f'{result_color}{succesful_tests}/{total_test}{ANSI_COLOR_RESET}')
 if not len(failed_tests) == 0:
     print(ANSI_COLOR_RED, end='')
