@@ -171,3 +171,4 @@ Endpoints can be tested by running `python endpoint_test.py` from the tests dire
 | NodeJS    | Server             | N/A
 | React     | Frontend           | https://react.dev/ 
 | Bootstrap | CSS framework      | N/A
+| IntroJS   | Onboarding library | https://introjs.com/
