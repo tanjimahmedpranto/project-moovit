@@ -31,6 +31,8 @@ async function loginUser(username, password){
         process.env.JWT_SECRET, 
         { expiresIn: '1d' }
     )
+
+    // If no error, return success status.
     return(new Status(200, SUCCESS, accessToken));
 
 }
