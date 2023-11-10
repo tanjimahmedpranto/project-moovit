@@ -1,24 +1,25 @@
 import requests
 import json
 
-# ANSI color codes
-ANSI_COLOR_GREEN = '\033[92m'  # '\033[92m' is the ANSI code for green
+# ANSI color codes.
+ANSI_COLOR_GREEN = '\033[92m'  
 ANSI_COLOR_YELLOW ='\033[93m'
 ANSI_COLOR_RED ='\033[91m'
-ANSI_COLOR_RESET = '\033[0m'  # '\033[0m' resets the color to default
+ANSI_COLOR_RESET = '\033[0m'  
 
+# Get the tests.
 with open('http_test.json', 'r') as file:
     data = json.load(file)
 
 tests = data["tests"]
+total_test = len(tests)
 succesful_tests = 0
 failed_tests = []
-total_test = len(tests)
-iterator = 0
-# Process each HTTP request
+current_test = 0
+
+# Process each HTTP request.
 for test in tests:
-    iterator += 1
-    current_test = iterator
+    current_test += 1
     res = {}
 
     # Get general request info
@@ -29,10 +30,6 @@ for test in tests:
 
     # Get headers 
     headers = test.get("headers") or {}
-
-    # if len(headers) > 0:
-    #     headers = [{x[0]: x[1]} for x in test["headers"]]
-    #     print("Headers:", headers)
 
     # Send the request
     print("Sending request", f'{current_test}/{total_test}', end='\r')
