@@ -13,8 +13,8 @@ function getEvents(){
     return
 }
 
-function createEvent(eventName, description, date, location, locationName, host, creator, maxParticipants, duration){
-    return(createLogic.createEvent(eventName, description, date, location, locationName, host, creator, maxParticipants, duration));
+function createEvent(eventData){
+    return(createLogic.createEvent(eventData));
 }
 
 function deleteEvent(){

@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const createSchema = new mongoose.Schema({ 
     eventName: {
         type: String,
-        required: true
+        required: true,
+        unique:false
     },
     description: {
         type: String,

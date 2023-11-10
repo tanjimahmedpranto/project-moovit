@@ -15,11 +15,12 @@ router.get('/:id', async (req, res) => {
 
 // Create event.
 router.post('/create', authorize, async (req, res) => {
-    const {eventName, description,date, maxParticipants,location, locationName,host, duration} = req.body;
+    const {eventName, description, date, maxParticipants, location, locationName,host, duration} = req.body;
     const creator = res.locals.user;
+    const eventData = {eventName, description, date, maxParticipants, location, locationName,host, duration, creator} 
 
-    const createResult = await eventController.createEvent(eventName, description, date, location, locationName, host, creator, maxParticipants, duration);   
-    res.status(createResult.httpStatus).send("Yo");
+    const createResult = await eventController.createEvent(eventData);   
+    res.status(createResult.httpStatus).send(createResult.message);
 });
 
 router.put('/update/:id', async (req, res) => {

@@ -35,13 +35,13 @@ for test in tests:
     print("Sending request", f'{current_test}/{total_test}', end='\r')
     
     if method == "POST":
-        res = requests.post(uri, data=req_body, headers=headers)
+        res = requests.post(uri, json=req_body, headers=headers)
     if method == "GET":
-        res = requests.get(uri, data=req_body, headers=headers)
+        res = requests.get(uri, json=req_body, headers=headers)
     if method == "PUT":
-            res = requests.put(uri, data=req_body, headers=headers)
+            res = requests.put(uri, json=req_body, headers=headers)
     if method == "DELETE":
-            res = requests.delete(uri, data=req_body, headers=headers)
+            res = requests.delete(uri, json=req_body, headers=headers)
 
     if res.status_code == expected_status:
         succesful_tests += 1
@@ -69,7 +69,7 @@ print(f'{result_color}{succesful_tests}/{total_test}{ANSI_COLOR_RESET}')
 if not len(failed_tests) == 0:
     print(ANSI_COLOR_RED, end='')
     for fail in failed_tests:
-        print(f'{fail["method"]} request to {fail["uri"]} yielded {fail["status"]} istead of expected {fail["expected_status"]}')
+        print(f'{fail["method"]} request to {fail["uri"]} yielded {fail["status"]} instead of expected {fail["expected_status"]}')
     print(ANSI_COLOR_RESET)
 
   

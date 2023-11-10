@@ -66,6 +66,26 @@
             "newName": "football"
         },
          "expectedStatus": 200
+        },
+        {"uri": "http://localhost:8080/events/create",
+        "method": "POST" ,
+        "headers": {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
+        },
+        "body": {
+            "eventName": "Testing",
+            "description": "We warm up together and then play",
+            "date": "2023-11-10T16:30:00Z",
+            "location": {
+                "type": "Point",
+                "coordinates": [125.6, 10.1]
+            },
+            "locationName": "someplace",
+            "host": "Test Testes",
+            "maxParticipants": 20,
+            "duration": 90
+        },
+         "expectedStatus": 201
         }
     ]
 }
