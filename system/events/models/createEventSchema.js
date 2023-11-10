@@ -5,6 +5,10 @@ const createSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        required: true
+    },
     date: {
         type: Date,
         required: true
@@ -20,6 +24,9 @@ const createSchema = new mongoose.Schema({
             required: true
         }
     },
+    locationName: {
+        type: String
+    },
     host: {
         type: String,
         required: true
@@ -32,12 +39,20 @@ const createSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    enrolledPartipants: {
+        type: Number,
+        default: 0
+    },
     image: {
         type: String,
-        required: true
+        required: false
     },
     blurhash: {
         type: String,
+        required: false
+    }, 
+    duration: {
+        type: Number,
         required: true
     }
 }, { 

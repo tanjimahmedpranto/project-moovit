@@ -6,7 +6,9 @@ const PASSWORD_MIN_LENGTH = 5;
 
 const USERNAME_INVALID_MSG = "Username contains invalid characters. Only letters, numbers, underscore(_) and dots(.) are allowed";
 const PASSWORD_MISMATCH_MSG = "Passwords do not match.";
-const USERNAME_EXISTS_MSG = "The username is already taken."
+const USERNAME_EXISTS_MSG = "The username is already taken.";
+const USERNAME_TOO_LONG_MSG = "Username is too long";
+const USERNAME_TOO_SHORT_MSG = "Username is too short";
 
 const RegistrationPage = () => {
   const [username, setUsername] = useState('');
@@ -18,7 +20,6 @@ const RegistrationPage = () => {
   const [usernameValid, setUsernameValid] = useState(true);
   const [usernameExists, setUsernameExists] = useState(false);
   
-
   const handleRegistration = async (e) => {
     let errorsInFields = false;
     e.preventDefault();
@@ -96,8 +97,8 @@ const RegistrationPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <p>{usernameLong ? "Username is too long" : ""}</p>
-          <p>{usernameShort ? "Username is too short" : ""}</p>
+          <p>{usernameLong ? USERNAME_TOO_LONG_MSG : ""}</p>
+          <p>{usernameShort ? USERNAME_TOO_SHORT_MSG : ""}</p>
         </div>
         <div>
           <label>Re-type Password:</label>
@@ -108,6 +109,7 @@ const RegistrationPage = () => {
           />
         <p>{passwordMatch ? "" : PASSWORD_MISMATCH_MSG}</p>
         </div>
+        <p>HFHF</p>
         <button type="submit">Register</button>
       </form>
     </div>
