@@ -3,7 +3,7 @@ const baseSchema = require('../../base_schema/baseSchema');
 
 const tagSchema = new mongoose.Schema({ 
     tagName: {
-        tag: String,
+        type: String,
         required: true,
         unique: true
     },
