@@ -1,23 +1,23 @@
-var Type = require("../models/typeSchema");
+var Tag = require("../models/tagSchema");
 
-const TypeService = {
+const TagService = {
   FindAll: (req) => {
-    return Type.find();
+    return Tag.find();
   },
 
   Find: (id) => {
-    return Type.findOne({ _id: id });
+    return Tag.findOne({ _id: id });
   },
 
 
 
   Update: async (req) => {
     console.log(req.params.id);
-    return await Type.findOneAndUpdate(
+    return await Tag.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
-            typeName: req.body.typeName,
+            tagName: req.body.tagName,
             isActive: req.body.isActive,
             modifiedBy: "logged in user", //logged in user
         },
@@ -29,12 +29,12 @@ const TypeService = {
   },
 
   Delete: async (id) => {
-    return await Type.findOneAndDelete({ _id: id });
+    return await Tag.findOneAndDelete({ _id: id });
   },
 
   Bulk_Delete: async () => {
-    return await Type.deleteMany();
+    return await Tag.deleteMany();
   },
 };
 
-module.exports = TypeService;
+module.exports = TagService;
