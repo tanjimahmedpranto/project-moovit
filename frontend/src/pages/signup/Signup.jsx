@@ -1,7 +1,8 @@
 import React from 'react';
 import { Col, Button, Row, Container, Card, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { default as logo } from '../assets/muuvitLogo.svg';
+import { default as logo } from '../../assets/muuvitLogo.svg';
+import '../../styles/FormBase.css'
 
 export default function Signup() {
   return (
