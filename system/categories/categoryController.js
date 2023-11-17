@@ -12,12 +12,12 @@ async function getCategoryById(){
   return await getLogic.getCategoryById();
 } 
 
-async function create(typeName, creator){
-  return await createLogic.createType(typeName, creator);
+async function create(categoryName, creator){
+  return await createLogic.createCategory(categoryName, creator);
 } 
 
 async function update(id, newName, modifier){
-  return await updateLogic.updateType(id, newName, modifier);
+  return await updateLogic.updateCategory(id, newName, modifier);
 } 
 
 module.exports = {
