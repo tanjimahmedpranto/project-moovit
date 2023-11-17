@@ -11,4 +11,4 @@ const categorySchema = new mongoose.Schema({
 });
 categorySchema.set('timestamps', true);
 
-module.exports = mongoose.model('Tag', categorySchema, "categorys")
+module.exports = mongoose.model('Category', categorySchema, "categories")

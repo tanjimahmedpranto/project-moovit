@@ -5,6 +5,7 @@ const cors = require('cors')
 
 const usersRoute = require('./users/router.js');
 const tagsRoute = require('./tags/router.js');
+const categoriesRoute = require('./categories/router.js');
 const eventsRoute = require('./events/router.js');
 
 require('dotenv').config()
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
 app.use('/users', usersRoute);
 app.use('/events', eventsRoute);
 app.use('/tags', tagsRoute);
+app.use('/categories', categoriesRoute);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

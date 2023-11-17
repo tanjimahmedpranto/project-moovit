@@ -1,4 +1,4 @@
-const Category = require('../models/tagSchema');
+const Category = require('../models/categorySchema');
 const {Status, FAIL, SUCCESS} = require('../../status');
 
 // Update tag.

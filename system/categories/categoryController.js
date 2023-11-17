@@ -21,7 +21,7 @@ async function update(id, newName, modifier){
 } 
 
 module.exports = {
-  getCategorys,
+  getCategories,
   getCategoryById,
   create,
   update
