@@ -7,7 +7,7 @@ function Login() {
   return (
     <div className='login template d-flex justify-content-center align-items-center vh-100 bg-light'>
      <div className='form_container p-5 rounded bg-white shadow px-10'>
-     <img src={logo} width={100} height={100} className='rounded mx-auto d-block' />
+     <img src={logo} width={100} height={100} className='rounded mx-auto d-block' alt="muuvitLogo" />
      <br />
       <form action="">
         <h3>Sign In</h3>

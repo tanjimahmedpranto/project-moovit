@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { default as logo } from '../../assets/muuvitLogo.svg';
 import '../../styles/FormBase.css'
 
+
 export default function Signup() {
   return (
     <div>
@@ -13,7 +14,14 @@ export default function Signup() {
             <Card className="shadow px-4">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
-                <img src={logo} width={100} height={100} className='rounded mx-auto d-block' />
+                  <div class="container d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">        
+                      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                    
+                    </svg> <h4 className='ps-3'  >Login</h4>
+                    
+                  </div>
+                <img src={logo} width={100} height={100} className='rounded mx-auto d-block' alt="muuvitLogo" />
      <br />
                   <div className="mb-3">
                     <Form>
@@ -56,7 +64,7 @@ export default function Signup() {
                     <div className="mt-3">
                       <p className="mb-0  text-center">
                         Already have an account??{' '}
-                        <Link to ="/" className="text-primary fw-bold">
+                        <Link to ="/login" className="text-primary fw-bold">
                           Sign In
                         </Link>
                       </p>
