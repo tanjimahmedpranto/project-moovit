@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const InputField = ({ label, onValueChange }) => {
+const InputField = ({ type, label, onValueChange }) => {
     const [value, setValue] = useState('');
 
     const handleChange = (e) => {
@@ -11,9 +11,9 @@ const InputField = ({ label, onValueChange }) => {
       
     return(
     <div>
-          <label>Event name:</label>
+          <label>{label}:</label>
           <input
-            type="text"
+            type={type}
             value={value}
             onChange={handleChange}
           />
