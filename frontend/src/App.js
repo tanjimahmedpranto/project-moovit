@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./pages/login/Login.jsx";
 import Signup from "./pages/signup/Signup.jsx";
-import CreateEventPage from './pages/events/Create';
+import CreateEventPage from "./pages/events/Create";
 
 function App() {
     return (
@@ -12,7 +12,10 @@ function App() {
             <Routes>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/signup" element={<Signup />}></Route>
-                <Route path="/events/create" element={<CreateEventPage />}></Route>
+                <Route
+                    path="/events/create"
+                    element={<CreateEventPage />}
+                ></Route>
             </Routes>
         </BrowserRouter>
     );
