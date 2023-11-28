@@ -1,7 +1,7 @@
 const Category = require('../models/categorySchema');
 const {Status, SUCCESS, FAIL} = require('../../status');
 
-// Get tags.
+// Get categories.
 async function getCategories(){
     
 }
