@@ -9,6 +9,12 @@ const USERNAME_MIN_LENGTH = 5;
 // Register user.
 async function registerUser(username, password){
     
+    // Check if both username and password value is given
+    if(!username || !password){
+        
+        return(new Status(400, FAIL, "username or password can not be null"));
+    } 
+
     // Check that username is allowed.
     if(!isAllowedUsername(username)){
         

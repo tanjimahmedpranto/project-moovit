@@ -31,6 +31,7 @@ const validationErrorHandler = (err) => {
 };
 
 const prodErrors = (res, error) => {
+  console.log(error);
   if (error.isOperational) {
     let statusObject = new Status(error.statusCode, FAIL, error.message)
     res.status(error.statusCode).send({message: statusObject.message});
