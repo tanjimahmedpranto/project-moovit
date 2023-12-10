@@ -1,91 +1,148 @@
 {
-    "tests":[
-        {"uri": "http://localhost:8080/users/register",
-        "method": "POST" ,
-        "body": {
-            "username": "testtest",
-            "password": "test!"
-        },
-         "expectedStatus": 400
-        },
-        {"uri": "http://localhost:8080/users/login",
-        "method": "POST" ,
-        "body": {
-            "username": "testtest",
-            "password": "test!"
-        },
-         "expectedStatus": 200
-        },
-        {"uri": "http://localhost:8080/users/verify",
-        "method": "POST" ,
-        "headers":{
-            "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
-        },
-        "body": {
-            "username": "testtest"
-        },
-         "expectedStatus": 200
-        },
-        {"uri": "http://localhost:8080/users/verify",
-        "method": "POST" ,
-        "headers": {
-            "Authorization": "Bearer alteredeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
-        },
-        "body": {
-            "username": "testtest"
-        },
-         "expectedStatus": 401
-        },
-        {"uri": "http://localhost:8080/types/create",
-        "method": "POST" ,
-        "headers": {
-            "Authorization": "Bearer alteredeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
-        },
-        "body": {
-            "typeName": "outdoor"
-        },
-         "expectedStatus": 401
-        },
-        {"uri": "http://localhost:8080/types/create",
-        "method": "POST" ,
-        "headers": {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
-        },
-        "body": {
-            "typeName": "outdoor"
-        },
-         "expectedStatus": 400
-        },
-        {"uri": "http://localhost:8080/types/update",
-        "method": "PUT" ,
-        "headers": {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
-        },
-        "body": {
-            "id": "654cd5975e7518d932ddc594",
-            "newName": "football"
-        },
-         "expectedStatus": 200
-        },
-        {"uri": "http://localhost:8080/events/create",
-        "method": "POST" ,
-        "headers": {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
-        },
-        "body": {
-            "eventName": "Testing",
-            "description": "We warm up together and then play",
-            "date": "2023-11-10T16:30:00Z",
-            "location": {
-                "type": "Point",
-                "coordinates": [125.6, 10.1]
+    "tests": [
+        {
+            "uri": "http://localhost:8080/users/register",
+            "method": "POST",
+            "body": {
+                "username": "testtest",
+                "password": "test!"
             },
-            "locationName": "someplace",
-            "host": "Test Testes",
-            "maxParticipants": 20,
-            "duration": 90
+            "expectedStatus": 400
         },
-         "expectedStatus": 201
+        {
+            "uri": "http://localhost:8080/users/login",
+            "method": "POST",
+            "body": {
+                "username": "testtest",
+                "password": "test!"
+            },
+            "expectedStatus": 200
+        },
+        {
+            "uri": "http://localhost:8080/users/verify",
+            "method": "POST",
+            "headers": {
+                "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
+            },
+            "body": {
+                "username": "testtest"
+            },
+            "expectedStatus": 200
+        },
+        {
+            "uri": "http://localhost:8080/users/verify",
+            "method": "POST",
+            "headers": {
+                "Authorization": "Bearer alteredeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
+            },
+            "body": {
+                "username": "testtest"
+            },
+            "expectedStatus": 401
+        },
+        {
+            "uri": "http://localhost:8080/types/create",
+            "method": "POST",
+            "headers": {
+                "Authorization": "Bearer alteredeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
+            },
+            "body": {
+                "typeName": "outdoor"
+            },
+            "expectedStatus": 401
+        },
+        {
+            "uri": "http://localhost:8080/types/create",
+            "method": "POST",
+            "headers": {
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
+            },
+            "body": {
+                "typeName": "outdoor"
+            },
+            "expectedStatus": 400
+        },
+        {
+            "uri": "http://localhost:8080/types/update",
+            "method": "PUT",
+            "headers": {
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
+            },
+            "body": {
+                "id": "654cd5975e7518d932ddc594",
+                "newName": "football"
+            },
+            "expectedStatus": 200
+        },
+        {
+            "uri": "http://localhost:8080/events/create",
+            "method": "POST",
+            "headers": {
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
+            },
+            "body": {
+                "eventName": "Testing",
+                "description": "We warm up together and then play",
+                "date": "2023-11-10T16:30:00Z",
+                "location": {
+                    "type": "Point",
+                    "coordinates": [
+                        125.6,
+                        10.1
+                    ]
+                },
+                "locationName": "someplace",
+                "host": "Test Testes",
+                "maxParticipants": 20,
+                "duration": 90
+            },
+            "expectedStatus": 201
+        },
+        {
+            "uri": "http://localhost:8080/tags/create",
+            "method": "POST",
+            "headers": {
+                "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
+            },
+            "body": {
+                "tagName": "randomTag"
+            },
+            "expectedStatus": 201
+        },
+        {
+            "uri": "http://localhost:8080/tags/update",
+            "method": "PUT",
+            "headers": {
+                "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
+            },
+            "body": {
+                "id": "657517c7b5be1a65f0900f25",
+                "newName": "update test 2"
+            },
+            "expectedStatus": 204
+        },
+        {
+            "uri": "http://localhost:8080/categories/create",
+            "method": "PUT",
+            "headers": {
+                "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
+            },
+            "body": {
+                "categoryName": "testCategory"
+            },
+            "expectedStatus": 200
+        },
+        {
+            "uri": "http://localhost:8080/categories/update",
+            "method": "PUT",
+            "headers": {
+                "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU"
+            },
+            "body": {
+                "id": "65751ea0481bf48e18ec10db",
+                "newName": "updateTest"
+            },
+            "expectedStatus": 200
         }
     ]
 }

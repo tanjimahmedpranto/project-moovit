@@ -1,11 +1,15 @@
 const Category = require("../models/categorySchema");
 const { Status, SUCCESS, FAIL } = require("../../status");
+const { isNullOrUndefined } = require("../../utilities/validationUtils");
 
 // Create category.
 async function createCategory(categoryName, creator) {
+  if (isNullOrUndefined(categoryName)) {
+    return new Status(400, FAIL, "Category name can not be null");
+  }
   const newCategory = new Category({
     categoryName: categoryName,
-    creator: creator,
+    createdBy: creator,
   });
   // Check whether category already exists.
   const categoryExists = await Category.findOne({ categoryName });

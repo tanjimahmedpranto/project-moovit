@@ -13,11 +13,11 @@ async function getTagById(){
 } 
 
 async function create(typeName, creator){
-  return await createLogic.createType(typeName, creator);
+  return await createLogic.createTag(typeName, creator);
 } 
 
 async function update(id, newName, modifier){
-  return await updateLogic.updateType(id, newName, modifier);
+  return await updateLogic.updateTag(id, newName, modifier);
 } 
 
 module.exports = {
