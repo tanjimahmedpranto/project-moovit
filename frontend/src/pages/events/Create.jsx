@@ -30,7 +30,7 @@ const createEvent = async (e, data) => {
     const requestOptions = {
         method: "POST",
         headers: {
-            "Authorization": "Bearer " + jwt,
+            Authorization: "Bearer " + jwt,
         },
         body: formData,
     };
@@ -52,22 +52,31 @@ const createEvent = async (e, data) => {
 
 const CreateEventPage = () => {
     const [eventData, setEventData] = useState({});
-    const [location, setLocation] = useState({})
+    const [location, setLocation] = useState({});
 
     const updateEventData = (prop, value) => {
-
-        const newData = Object.assign({}, eventData, { [prop]: value }, location);
+        const newData = Object.assign(
+            {},
+            eventData,
+            { [prop]: value },
+            location,
+        );
         setEventData(newData);
     };
 
     return (
         <div>
             <h2>Create Event</h2>
-            <form onSubmit={(e) => createEvent(e, eventData)} encType="multipart/form-data">
+            <form
+                onSubmit={(e) => createEvent(e, eventData)}
+                encType="multipart/form-data"
+            >
                 <InputField
                     type="text"
                     label="Event name"
-                    onValueChange={(value) => updateEventData("eventName", value)}
+                    onValueChange={(value) =>
+                        updateEventData("eventName", value)
+                    }
                 />
                 <div>
                     <label>Description:</label>
@@ -104,10 +113,21 @@ const CreateEventPage = () => {
                 />
                 <div>
                     <label>Event banner:</label>
-                    <input type="file" onChange={(e) =>
-                        updateEventData("file", e.target.files[0])
-                    } />
-                    <img style={{display: 'block', width: '200px'}} src={URL.createObjectURL(new Blob([eventData.file], { type: eventData.file?.type }))} alt="Uploaded File" />
+                    <input
+                        type="file"
+                        onChange={(e) =>
+                            updateEventData("file", e.target.files[0])
+                        }
+                    />
+                    <img
+                        style={{ display: "block", width: "200px" }}
+                        src={URL.createObjectURL(
+                            new Blob([eventData.file], {
+                                type: eventData.file?.type,
+                            }),
+                        )}
+                        alt="Uploaded File"
+                    />
                 </div>
                 <InputField
                     type="text"
