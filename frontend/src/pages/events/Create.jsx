@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { EVENTSSERVICE } from "../../constants";
+import createBlurhash from "./createBlurhash";
 
 import InputField from "./InputField";
 
@@ -13,19 +14,28 @@ const createEvent = async (e, data) => {
     if (errorsInFields) {
         return;
     }
-    // Send the registration request
+
+    // Make blurhash
+    const blurhash = await createBlurhash(data.file);
+    data.blurhash = blurhash;
+
+    // Setup form data
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+        formData.append(key, value);
+    });
+    console.log(formData);
+
+    // Send the create request
     const requestOptions = {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + jwt,
+            "Authorization": "Bearer " + jwt,
         },
-        body: JSON.stringify({}),
+        body: formData,
     };
 
-    console.log(data);
-
-    if (Math.random < 1) return;
+    console.log(requestOptions);
 
     const fetchURL = EVENTSSERVICE + "/create";
     const response = await fetch(fetchURL, requestOptions);
@@ -42,20 +52,22 @@ const createEvent = async (e, data) => {
 
 const CreateEventPage = () => {
     const [eventData, setEventData] = useState({});
+    const [location, setLocation] = useState({})
 
     const updateEventData = (prop, value) => {
-        const newData = Object.assign({}, eventData, { [prop]: value });
+
+        const newData = Object.assign({}, eventData, { [prop]: value }, location);
         setEventData(newData);
     };
 
     return (
         <div>
             <h2>Create Event</h2>
-            <form onSubmit={(e) => createEvent(e, eventData)}>
+            <form onSubmit={(e) => createEvent(e, eventData)} encType="multipart/form-data">
                 <InputField
                     type="text"
                     label="Event name"
-                    onValueChange={(value) => updateEventData("name", value)}
+                    onValueChange={(value) => updateEventData("eventName", value)}
                 />
                 <div>
                     <label>Description:</label>
@@ -88,6 +100,27 @@ const CreateEventPage = () => {
                     label="Duration"
                     onValueChange={(value) =>
                         updateEventData("duration", value)
+                    }
+                />
+                <div>
+                    <label>Event banner:</label>
+                    <input type="file" onChange={(e) =>
+                        updateEventData("file", e.target.files[0])
+                    } />
+                    <img style={{display: 'block', width: '200px'}} src={URL.createObjectURL(new Blob([eventData.file], { type: eventData.file?.type }))} alt="Uploaded File" />
+                </div>
+                <InputField
+                    type="text"
+                    label="Location"
+                    onValueChange={(value) =>
+                        updateEventData("location", value)
+                    }
+                />
+                <InputField
+                    type="text"
+                    label="Max participants"
+                    onValueChange={(value) =>
+                        updateEventData("maxParticipants", value)
                     }
                 />
                 <button type="submit">Create Event</button>
