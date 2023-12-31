@@ -26,6 +26,16 @@ router.post("/login", async (req, res) => {
   res.status(statusObject.httpStatus).send({ message: statusObject.message });
 });
 
+// Logout user.
+router.post(
+  "/logout",
+  authorize,
+  asyncErrorHandler(async (req, res, next) => {
+    const statusObject = await userControlller.logout(res);
+    res.status(statusObject.httpStatus).send({ message: statusObject.message });
+  })
+);
+
 // Helper endpoint for testing.
 router.post("/verify", authorize, (req, res) => {
   res.send("verified");

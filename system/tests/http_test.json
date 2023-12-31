@@ -19,6 +19,11 @@
             "expectedStatus": 200
         },
         {
+            "uri": "http://localhost:8080/users/logout",
+            "method": "POST",
+            "expectedStatus": 200
+        },
+        {
             "uri": "http://localhost:8080/users/verify",
             "method": "POST",
             "headers": {
