@@ -41,4 +41,13 @@ router.post("/verify", authorize, (req, res) => {
   res.send("verified");
 });
 
+router.put(
+  "/editUser",
+  authorize,
+  asyncErrorHandler(async (req, res, next) => {
+    const statusObject = await userControlller.editUserInfo(req.body);
+    res.status(statusObject.httpStatus).send({ message: statusObject.message });
+  })
+);
+
 module.exports = router;
