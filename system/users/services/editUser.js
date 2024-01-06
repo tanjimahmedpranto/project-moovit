@@ -39,6 +39,7 @@ async function editUser(userData) {
     {
       username: userData.username,
       password: hashedPassword,
+      email: userData.username,
     },
     {
       new: true,
