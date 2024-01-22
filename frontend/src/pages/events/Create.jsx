@@ -5,8 +5,11 @@ import createBlurhash from "./createBlurhash";
 import InputField from "./InputField";
 
 const validateField = (data) => {
-    const invalidFields = structuredClone(data);
-    Object.entries(invalidFields).forEach(([key, value]) => invalidFields[key] = false);
+    const invalidFields = {}
+    [
+        "eventName", "description", "host", "date", "time", "duration", "file", "location", "maxParticipants"
+    ].forEach((value, index) => invalidFields.append(value, false));
+    
     console.log(invalidFields);  
     
     // const COORDINATE_PATTERN = /^-?\d{1,3}\.[0-9]*,\s-?\d{1,3}\.[0-9]+$/;
