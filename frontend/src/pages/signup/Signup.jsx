@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { default as logo } from "../../assets/muuvitLogo.svg";
 import "../../styles/FormBase.css";
 import { USERSSERVICE } from "../../constants";
+import BackButton from "../components/BackButton";
 
 const PASSWORD_MAX_LENGTH = 20;
 const PASSWORD_MIN_LENGTH = 5;
@@ -86,169 +87,150 @@ export default function Signup() {
     // Fredi's register code before return ()
 
     return (
-        <div>
+        <div
+            style={{
+                marginTop: "30px",
+                marginBottom: "20px",
+                marginLeft: "10px",
+                marginRight: "10px",
+            }}
+        >
             <Container>
-                <Row className="vh-100 d-flex justify-content-center align-items-center">
-                    <Col md={8} lg={6} xs={12}>
-                        <Card className="shadow px-4">
-                            <Card.Body>
-                                <div className="mb-3 mt-md-4">
-                                    <div class="container d-flex align-items-center">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="16"
-                                            height="16"
-                                            fill="currentColor"
-                                            class="bi bi-arrow-left"
-                                            viewBox="0 0 16 16"
+                <Card>
+                    <Card.Body>
+                        <div className="mb-3 mt-md-4">
+                            <div>
+                                <BackButton navigateTo="/login" /> <br />
+                            </div>
+                            <img
+                                src={logo}
+                                width={100}
+                                height={100}
+                                className="rounded mx-auto d-block"
+                                alt="muuvitLogo"
+                            />
+                            <br />
+                            <div className="mb-3">
+                                <Form onSubmit={handleRegistration}>
+                                    {/* Username logic begin */}
+                                    <Form.Group
+                                        className="mb-3"
+                                        controlId="Name"
+                                    >
+                                        <Form.Label className="text-center">
+                                            Name
+                                        </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Enter Name"
+                                            value={username}
+                                            onChange={(e) =>
+                                                setUsername(e.target.value)
+                                            }
+                                        />
+                                        <p>
+                                            {usernameValid
+                                                ? ""
+                                                : USERNAME_INVALID_MSG}
+                                        </p>
+                                        <p>
+                                            {usernameExists
+                                                ? USERNAME_EXISTS_MSG
+                                                : ""}
+                                        </p>
+                                    </Form.Group>
+
+                                    {/* Email address logic begin */}
+                                    <Form.Group
+                                        className="mb-3"
+                                        controlId="formBasicEmail"
+                                    >
+                                        <Form.Label className="text-center">
+                                            Email address
+                                        </Form.Label>
+                                        <Form.Control
+                                            type="email"
+                                            placeholder="Enter email"
+                                        />
+                                    </Form.Group>
+
+                                    {/* Password logic begin */}
+                                    <Form.Group
+                                        className="mb-3"
+                                        controlId="formBasicPassword"
+                                    >
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control
+                                            type="password"
+                                            placeholder="Password"
+                                            value={password}
+                                            onChange={(e) =>
+                                                setPassword(e.target.value)
+                                            }
+                                        />
+                                        <p>
+                                            {usernameLong
+                                                ? USERNAME_TOO_LONG_MSG
+                                                : ""}
+                                        </p>
+                                        <p>
+                                            {usernameShort
+                                                ? USERNAME_TOO_SHORT_MSG
+                                                : ""}
+                                        </p>
+                                    </Form.Group>
+
+                                    <Form.Group
+                                        className="mb-3"
+                                        controlId="formBasicPassword"
+                                    >
+                                        <Form.Label>
+                                            Confirm Password
+                                        </Form.Label>
+                                        <Form.Control
+                                            type="password"
+                                            placeholder="Password"
+                                            value={passwordReType}
+                                            onChange={(e) =>
+                                                setPasswordReType(
+                                                    e.target.value
+                                                )
+                                            }
+                                        />
+                                        <p>
+                                            {passwordMatch
+                                                ? ""
+                                                : PASSWORD_MISMATCH_MSG}
+                                        </p>
+                                    </Form.Group>
+
+                                    <Form.Group
+                                        className="mb-3"
+                                        controlId="formBasicCheckbox"
+                                    ></Form.Group>
+
+                                    <div className="d-grid">
+                                        <Button variant="primary" type="submit">
+                                            Create Account
+                                        </Button>
+                                    </div>
+                                </Form>
+
+                                <div className="mt-3">
+                                    <p className="mb-0  text-center">
+                                        Already have an account??{" "}
+                                        <Link
+                                            to="/login"
+                                            className="text-primary fw-bold"
                                         >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
-                                            />
-                                        </svg>{" "}
-                                        <h4 className="ps-3">Login</h4>
-                                    </div>
-                                    <img
-                                        src={logo}
-                                        width={100}
-                                        height={100}
-                                        className="rounded mx-auto d-block"
-                                        alt="muuvitLogo"
-                                    />
-                                    <br />
-                                    <div className="mb-3">
-                                        <Form onSubmit={handleRegistration}>
-                                            {/* Username logic begin */}
-                                            <Form.Group
-                                                className="mb-3"
-                                                controlId="Name"
-                                            >
-                                                <Form.Label className="text-center">
-                                                    Name
-                                                </Form.Label>
-                                                <Form.Control
-                                                    type="text"
-                                                    placeholder="Enter Name"
-                                                    value={username}
-                                                    onChange={(e) =>
-                                                        setUsername(
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                />
-                                                <p>
-                                                    {usernameValid
-                                                        ? ""
-                                                        : USERNAME_INVALID_MSG}
-                                                </p>
-                                                <p>
-                                                    {usernameExists
-                                                        ? USERNAME_EXISTS_MSG
-                                                        : ""}
-                                                </p>
-                                            </Form.Group>
-
-                                            {/* Email address logic begin */}
-                                            <Form.Group
-                                                className="mb-3"
-                                                controlId="formBasicEmail"
-                                            >
-                                                <Form.Label className="text-center">
-                                                    Email address
-                                                </Form.Label>
-                                                <Form.Control
-                                                    type="email"
-                                                    placeholder="Enter email"
-                                                />
-                                            </Form.Group>
-
-                                            {/* Password logic begin */}
-                                            <Form.Group
-                                                className="mb-3"
-                                                controlId="formBasicPassword"
-                                            >
-                                                <Form.Label>
-                                                    Password
-                                                </Form.Label>
-                                                <Form.Control
-                                                    type="password"
-                                                    placeholder="Password"
-                                                    value={password}
-                                                    onChange={(e) =>
-                                                        setPassword(
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                />
-                                                <p>
-                                                    {usernameLong
-                                                        ? USERNAME_TOO_LONG_MSG
-                                                        : ""}
-                                                </p>
-                                                <p>
-                                                    {usernameShort
-                                                        ? USERNAME_TOO_SHORT_MSG
-                                                        : ""}
-                                                </p>
-                                            </Form.Group>
-
-                                            <Form.Group
-                                                className="mb-3"
-                                                controlId="formBasicPassword"
-                                            >
-                                                <Form.Label>
-                                                    Confirm Password
-                                                </Form.Label>
-                                                <Form.Control
-                                                    type="password"
-                                                    placeholder="Password"
-                                                    value={passwordReType}
-                                                    onChange={(e) =>
-                                                        setPasswordReType(
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                />
-                                                <p>
-                                                    {passwordMatch
-                                                        ? ""
-                                                        : PASSWORD_MISMATCH_MSG}
-                                                </p>
-                                            </Form.Group>
-
-                                            <Form.Group
-                                                className="mb-3"
-                                                controlId="formBasicCheckbox"
-                                            ></Form.Group>
-
-                                            <div className="d-grid">
-                                                <Button
-                                                    variant="primary"
-                                                    type="submit"
-                                                >
-                                                    Create Account
-                                                </Button>
-                                            </div>
-                                        </Form>
-
-                                        <div className="mt-3">
-                                            <p className="mb-0  text-center">
-                                                Already have an account??{" "}
-                                                <Link
-                                                    to="/login"
-                                                    className="text-primary fw-bold"
-                                                >
-                                                    Sign In
-                                                </Link>
-                                            </p>
-                                        </div>
-                                    </div>
+                                            Sign In
+                                        </Link>
+                                    </p>
                                 </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
+                            </div>
+                        </div>
+                    </Card.Body>
+                </Card>
             </Container>
         </div>
     );

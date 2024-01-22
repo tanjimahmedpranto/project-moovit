@@ -3,9 +3,9 @@ import React from "react";
 const InfoCustomizableTextComponent = ({ headerText, paragraphText }) => {
     return (
         <div>
-            <h1>{headerText}</h1>
+            <h1 style={{ fontSize: "35px" }}>{headerText}</h1>
             <br></br>
-            <p>{paragraphText}</p>
+            <p style={{ fontSize: "30px" }}>{paragraphText}</p>
         </div>
     );
 };
