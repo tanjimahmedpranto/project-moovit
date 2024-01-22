@@ -27,10 +27,10 @@ export default async function createBlurhash(imageFile) {
             reject(error);
         };
 
-        image.src = URL.createObjectURL(
-            new Blob([imageFile], { type: imageFile.type }),
-        );
+        if(imageFile){
+            image.src = URL.createObjectURL(
+                new Blob([imageFile], { type: imageFile.type }),
+            );
+        }
     });
-
-    image.onload = () => {};
 }

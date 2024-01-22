@@ -4,11 +4,22 @@ import createBlurhash from "./createBlurhash";
 
 import InputField from "./InputField";
 
+const validateField = (data) => {
+    const invalidFields = structuredClone(data);
+    Object.entries(invalidFields).forEach(([key, value]) => invalidFields[key] = false);
+    console.log(invalidFields);  
+    
+    // const COORDINATE_PATTERN = /^-?\d{1,3}\.[0-9]*,\s-?\d{1,3}\.[0-9]+$/;
+};
+
+
 const createEvent = async (e, data) => {
     let errorsInFields = false;
     const jwt =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU";
     e.preventDefault();
+
+    validateField(data);
 
     // Terminate if any errors.
     if (errorsInFields) {
