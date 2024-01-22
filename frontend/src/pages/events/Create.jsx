@@ -5,10 +5,10 @@ import createBlurhash from "./createBlurhash";
 import InputField from "./InputField";
 
 const validateField = (data) => {
-    const invalidFields = {}
+    const invalidFields = {};
     [
         "eventName", "description", "host", "date", "time", "duration", "file", "location", "maxParticipants"
-    ].forEach((value, index) => invalidFields.append(value, false));
+    ].forEach((value, index) => invalidFields.value = false);
     
     console.log(invalidFields);  
     
@@ -17,6 +17,11 @@ const validateField = (data) => {
 
 
 const createEvent = async (e, data) => {
+    const submitButton = document.getElementById("submit-button");
+
+    // TODO: Add some loading animation. Anything really.
+
+    submitButton.disabled = true;
     let errorsInFields = false;
     const jwt =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNjUzZDg2OTNlMjU0ZTk5MWE0OTdlYTg2IiwiaWF0IjoxNjk5NTMxNzAxfQ.8kC3sw3tRefxoNsHrJCPTnR7pk9-pfc4wba_wPNz1vU";
@@ -26,6 +31,7 @@ const createEvent = async (e, data) => {
 
     // Terminate if any errors.
     if (errorsInFields) {
+        submitButton.disabled = false;
         return;
     }
 
@@ -57,11 +63,14 @@ const createEvent = async (e, data) => {
     // Handle response.
     if (response.status === 400) {
     }
-    if (response.status === 200) {
-        console.log("success");
+    if (response.status === 201) {
+        // Navigate home if successful.
+        window.location.href = '/';
     } else {
         console.log("error code: " + response.status);
     }
+
+    
 };
 
 const CreateEventPage = () => {
@@ -157,7 +166,7 @@ const CreateEventPage = () => {
                         updateEventData("maxParticipants", value)
                     }
                 />
-                <button type="submit">Create Event</button>
+                <button type="submit" id="submit-button">Create Event</button>
             </form>
         </div>
     );
