@@ -8,11 +8,13 @@ import CreateEventPage from "./pages/events/Create";
 import About from "./pages/infoPages/about";
 import Tac from "./pages/infoPages/tac.jsx";
 import Privacypolicy from "./pages/infoPages/privacypolicy";
+import HomeScreen from "./pages/HomeScreen/HomeScreen.js";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<HomeScreen />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/signup" element={<Signup />}></Route>
                 <Route

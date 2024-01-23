@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+import { Button, Container, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { default as logo } from "../../assets/muuvitLogo.svg";
 import "../../styles/FormBase.css";
@@ -39,7 +39,7 @@ export default function Signup() {
         setUsernameLong(false);
 
         // Check for illegal characters in username.
-        if (!/^[\._A-Za-z0-9]+$/.test(username)) {
+        if (!/^[._A-Za-z0-9]+$/.test(username)) {
             setUsernameValid(false);
             errorsInFields = true;
         }
@@ -193,7 +193,7 @@ export default function Signup() {
                                             value={passwordReType}
                                             onChange={(e) =>
                                                 setPasswordReType(
-                                                    e.target.value
+                                                    e.target.value,
                                                 )
                                             }
                                         />
