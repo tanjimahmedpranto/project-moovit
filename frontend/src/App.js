@@ -9,6 +9,7 @@ import About from "./pages/infoPages/about";
 import Tac from "./pages/infoPages/tac.jsx";
 import Privacypolicy from "./pages/infoPages/privacypolicy";
 import HomeScreen from "./pages/HomeScreen/HomeScreen.js";
+import EventScreen from "./pages/viewEvents/EventScreen.js";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     path="/events/create"
                     element={<CreateEventPage />}
                 ></Route>
+                <Route path="/event/:id" element={<EventScreen />} />
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/tac" element={<Tac />}></Route>
                 <Route path="/pp" element={<Privacypolicy />}></Route>

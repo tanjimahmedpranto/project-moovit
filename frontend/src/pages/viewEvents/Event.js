@@ -1,18 +1,18 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Event({ event }) {
     return (
         <div
-            style={{
+        /* style={{
                 marginTop: "30px",
                 marginBottom: "20px",
                 marginLeft: "10px",
                 marginRight: "10px",
-            }}
+            }} */
         >
-            <Card className="my-3 p-3 rounded">
+            {/* <Card className="my-3 p-3 rounded">
                 <Link to={`/event/${event._id}`}>
                     <Card.Img src={event.image} />
                 </Link>
@@ -30,6 +30,44 @@ function Event({ event }) {
                         <div>Something we will put here</div>
                     </Card.Text>
                 </Card.Body>
+            </Card> */}
+
+            <Card className="my-1 p-3 rounded" style={{ width: "18rem" }}>
+                {" "}
+                {/* Adjust width as needed */}
+                <Row noGutters>
+                    <Col xs={5}>
+                        {/* Image link */}
+                        <Link to={`/event/${event._id}`}>
+                            <Card.Img
+                                variant="left"
+                                src={event.image}
+                                style={{
+                                    maxWidth: "100%",
+                                    height: "80%",
+                                }}
+                            />
+                        </Link>
+                    </Col>
+                    <Col xs={7}>
+                        {/* Text content link */}
+                        <Card.Body>
+                            <Link
+                                to={`/event/${event._id}`}
+                                style={{ textDecoration: "none" }}
+                            >
+                                <Card.Text className="text-muted">
+                                    Date here
+                                    {/* {event.date} */}
+                                    {/* Assuming event object has a date field */}
+                                </Card.Text>
+                                <Card.Title as="div">
+                                    <strong>{event.name}</strong>
+                                </Card.Title>
+                            </Link>
+                        </Card.Body>
+                    </Col>
+                </Row>
             </Card>
         </div>
     );

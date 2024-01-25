@@ -1,8 +1,7 @@
-import Carousel from "react-bootstrap/Carousel";
 import React from "react";
 import Event from "../viewEvents/Event";
 import events from "../events";
-import { Container, Card } from "react-bootstrap";
+import { Container, Card, Row, Col } from "react-bootstrap";
 import BackButton from "../components/BackButton";
 import { default as logo } from "../../assets/muuvitLogo.svg";
 
@@ -24,39 +23,38 @@ export default function HomeScreen() {
                         border: "none",
                     }}
                 >
+                    <div>
+                        <BackButton navigateTo="/login" /> <br />
+                    </div>
+                    <img
+                        src={logo}
+                        width={100}
+                        height={100}
+                        className="rounded mx-auto d-block"
+                        alt="muuvitLogo"
+                    />
                     <Card.Body>
-                        <div>
-                            <BackButton navigateTo="/login" /> <br />
-                        </div>
-                        <img
-                            src={logo}
-                            width={100}
-                            height={100}
-                            className="rounded mx-auto d-block"
-                            alt="muuvitLogo"
-                        />
-
-                        <div>
+                        <Container fluid>
                             <div
-                                className="eventCarouselList"
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                }}
+                                className="eventList d-flex flex-column align-items-center"
+                                style={{ width: "100%" }}
                             >
-                                <Carousel
-                                    fade
-                                    interval={null}
-                                    style={{ width: "500px", height: "500px" }}
-                                >
-                                    {events.map((event) => (
-                                        <Carousel.Item key={event._id}>
+                                {events.map((event) => (
+                                    <Row
+                                        key={event._id}
+                                        className="w-100 d-flex justify-content-center"
+                                    >
+                                        <Col
+                                            xs={12}
+                                            className="d-flex justify-content-center"
+                                        >
                                             <Event event={event} />
-                                        </Carousel.Item>
-                                    ))}
-                                </Carousel>
+                                        </Col>
+                                    </Row>
+                                ))}
                             </div>
-                        </div>
+                            {/* You can place additional divs here for other components that might align left or right */}
+                        </Container>
                     </Card.Body>
                 </Card>
             </Container>
