@@ -34,7 +34,7 @@ function Event({ event }) {
 
             <Card
                 className="my-1 p-3"
-                style={{ width: "18rem", borderRadius: "20px" }}
+                style={{ width: "18rem", borderRadius: "20px", border: "none" }}
             >
                 {" "}
                 {/* Adjust width as needed */}

@@ -27,13 +27,41 @@ export default function HomeScreen() {
                     <div>
                         <BackButton navigateTo="/login" /> <br />
                     </div>
-                    <img
-                        src={logo}
-                        width={100}
-                        height={100}
-                        className="rounded mx-auto d-block"
-                        alt="muuvitLogo"
-                    />
+                    <div
+                        className="logoAndSignIn"
+                        style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                        }}
+                    >
+                        <img
+                            src={logo}
+                            width={100}
+                            height={100}
+                            className=""
+                            alt="muuvitLogo"
+                        />
+                        <Link to="/login">
+                            <Button
+                                variant="primary"
+                                style={{
+                                    color: "white",
+                                    backgroundColor: "#30306d",
+                                    borderRadius: "10px",
+                                    marginTop: "5px",
+                                    marginBottom: "5px",
+                                    marginLeft: "5px",
+                                    marginRight: "5px",
+                                    width: "100px",
+                                    border: "none",
+                                }}
+                            >
+                                Sign In
+                            </Button>
+                        </Link>
+                    </div>
+
                     <Card.Body>
                         <Container fluid>
                             <div
@@ -61,6 +89,7 @@ export default function HomeScreen() {
                                     marginBottom: "20px",
                                     flexDirection: "column",
                                     alignItems: "center",
+                                    border: "none",
                                 }}
                             >
                                 <Link to="/about">
@@ -73,6 +102,7 @@ export default function HomeScreen() {
                                             marginTop: "5px",
                                             marginBottom: "5px",
                                             width: "200px",
+                                            border: "none",
                                         }}
                                     >
                                         About Muuvit
@@ -88,6 +118,7 @@ export default function HomeScreen() {
                                             marginTop: "5px",
                                             marginBottom: "5px",
                                             width: "200px",
+                                            border: "none",
                                         }}
                                     >
                                         Privacy Policy
@@ -103,6 +134,7 @@ export default function HomeScreen() {
                                             marginTop: "5px",
                                             marginBottom: "5px",
                                             width: "200px",
+                                            border: "none",
                                         }}
                                     >
                                         Help Center
@@ -118,6 +150,7 @@ export default function HomeScreen() {
                                             marginTop: "5px",
                                             marginBottom: "5px",
                                             width: "200px",
+                                            border: "none",
                                         }}
                                     >
                                         Terms & Conditions
