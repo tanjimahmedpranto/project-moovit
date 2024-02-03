@@ -1,9 +1,10 @@
 import React from "react";
 import Event from "../viewEvents/Event";
 import events from "../events";
-import { Container, Card, Row, Col } from "react-bootstrap";
+import { Container, Card, Row, Col, Button } from "react-bootstrap";
 import BackButton from "../components/BackButton";
 import { default as logo } from "../../assets/muuvitLogo.svg";
+import { Link } from "react-router-dom";
 
 export default function HomeScreen() {
     return (
@@ -52,6 +53,76 @@ export default function HomeScreen() {
                                         </Col>
                                     </Row>
                                 ))}
+                            </div>
+                            <div
+                                className="d-flex buttons justify-content-center"
+                                style={{
+                                    marginTop: "20px",
+                                    marginBottom: "20px",
+                                    flexDirection: "column",
+                                    alignItems: "center",
+                                }}
+                            >
+                                <Link to="/about">
+                                    <Button
+                                        variant="primary"
+                                        style={{
+                                            color: "white",
+                                            backgroundColor: "#30306d",
+                                            borderRadius: "10px",
+                                            marginTop: "5px",
+                                            marginBottom: "5px",
+                                            width: "200px",
+                                        }}
+                                    >
+                                        About Muuvit
+                                    </Button>
+                                </Link>
+                                <Link to="/pp">
+                                    <Button
+                                        variant="primary"
+                                        style={{
+                                            color: "white",
+                                            backgroundColor: "#30306d",
+                                            borderRadius: "10px",
+                                            marginTop: "5px",
+                                            marginBottom: "5px",
+                                            width: "200px",
+                                        }}
+                                    >
+                                        Privacy Policy
+                                    </Button>
+                                </Link>
+                                <Link to="#">
+                                    <Button
+                                        variant="primary"
+                                        style={{
+                                            color: "white",
+                                            backgroundColor: "#30306d",
+                                            borderRadius: "10px",
+                                            marginTop: "5px",
+                                            marginBottom: "5px",
+                                            width: "200px",
+                                        }}
+                                    >
+                                        Help Center
+                                    </Button>
+                                </Link>
+                                <Link to="/tac">
+                                    <Button
+                                        variant="primary"
+                                        style={{
+                                            color: "white",
+                                            backgroundColor: "#30306d",
+                                            borderRadius: "10px",
+                                            marginTop: "5px",
+                                            marginBottom: "5px",
+                                            width: "200px",
+                                        }}
+                                    >
+                                        Terms & Conditions
+                                    </Button>
+                                </Link>
                             </div>
                             {/* You can place additional divs here for other components that might align left or right */}
                         </Container>

@@ -32,7 +32,10 @@ function Event({ event }) {
                 </Card.Body>
             </Card> */}
 
-            <Card className="my-1 p-3 rounded" style={{ width: "18rem" }}>
+            <Card
+                className="my-1 p-3"
+                style={{ width: "18rem", borderRadius: "20px" }}
+            >
                 {" "}
                 {/* Adjust width as needed */}
                 <Row noGutters>
@@ -45,6 +48,7 @@ function Event({ event }) {
                                 style={{
                                     maxWidth: "100%",
                                     height: "80%",
+                                    borderRadius: "20px",
                                 }}
                             />
                         </Link>
@@ -54,9 +58,12 @@ function Event({ event }) {
                         <Card.Body>
                             <Link
                                 to={`/event/${event._id}`}
-                                style={{ textDecoration: "none" }}
+                                style={{
+                                    textDecoration: "none",
+                                    color: "#120d26",
+                                }}
                             >
-                                <Card.Text className="text-muted">
+                                <Card.Text>
                                     Date here
                                     {/* {event.date} */}
                                     {/* Assuming event object has a date field */}
