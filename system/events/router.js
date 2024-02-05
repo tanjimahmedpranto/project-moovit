@@ -13,8 +13,9 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    eventController.getSingleEvent();   
-    res.status(200).send("Yo");
+    const requestedId = req.params?.id;
+    const singleResult = await eventController.getSingleEvent(requestedId);
+    res.status(singleResult.httpStatus).send(singleResult.message);
 });
 
 // Create event.

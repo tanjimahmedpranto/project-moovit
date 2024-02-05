@@ -2,11 +2,10 @@ const createLogic = require('./services/createEvent.js');
 const deleteLogic = require('./services/createEvent.js');
 const updateLogic = require('./services/createEvent.js');
 const getEventsLogic = require('./services/getEvents.js');
-const getSingleLogic = require('./services/getSingleEvent.js');
 
 
-function getSingleEvent(){
-    return 
+function getSingleEvent(id){
+    return(getEventsLogic.getSingleEvent(id));
 }
 
 function getEvents(){
