@@ -65,6 +65,34 @@ export default function HomeScreen() {
                     <Card.Body>
                         <Container fluid>
                             <div
+                                className="d-flex searchEvent button"
+                                style={{
+                                    alignItems: "center",
+                                    flexDirection: "column",
+                                }}
+                            >
+                                <Link to="/about">
+                                    <Button
+                                        variant="primary"
+                                        style={{
+                                            color: "white",
+                                            backgroundColor: "#30306d",
+                                            borderRadius: "10px",
+                                            marginTop: "5px",
+                                            marginBottom: "5px",
+                                            width: "200px",
+                                            border: "none",
+                                        }}
+                                    >
+                                        <i class="bi bi-search">
+                                            {" "}
+                                            Search for events{" "}
+                                        </i>
+                                    </Button>
+                                </Link>
+                            </div>
+
+                            <div
                                 className="eventList d-flex flex-column align-items-center"
                                 style={{ width: "100%" }}
                             >
