@@ -22,8 +22,21 @@ const SingeEventPage = () => {
     getEventData();
   }, []);
 
+  // Get date information.
+  const dateRegex = /(\d{4})-(\d{2})-(\d{2})/;
+  const [, year, month, day] = dateRegex.exec(eventData?.date)
+  const date = new Date(year, month, day);
+  const displayDate = date.toLocaleString('default', { dateStyle: 'short' });
+
+
   return(
-    <h1>Event Id {eventData?.msg}</h1>
+    <div>
+      <img src={eventData?.imageURL} loading="lazy" alt={"Image for " + eventData?.eventName + " event"}></img>
+      <h1>{eventData?.eventName}</h1>
+      <p>Host: {eventData?.host}</p>
+      <p>{eventData?.enrolledPartipants}/{eventData?.maxParticipants}</p>
+      <p>{displayDate}</p>
+    </div>
   )
 }
 
