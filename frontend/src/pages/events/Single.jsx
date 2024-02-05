@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 const SingeEventPage = () => {
   const { id } = useParams();
   const [eventData, setEventData] = useState([]);
+  const [displayDate, setDisplayDate] = useState("");
 
   const getEventData = async () => {
     const fetchURL = EVENTSSERVICE + "/" + id;
@@ -23,11 +24,12 @@ const SingeEventPage = () => {
   }, []);
 
   // Get date information.
-  const dateRegex = /(\d{4})-(\d{2})-(\d{2})/;
-  const [, year, month, day] = dateRegex.exec(eventData?.date)
-  const date = new Date(year, month, day);
-  const displayDate = date.toLocaleString('default', { dateStyle: 'short' });
-
+  useEffect (() => {
+    const dateRegex = /(\d{4})-(\d{2})-(\d{2})/;
+    const [, year, month, day] = dateRegex.exec(eventData?.date ?? "2000-12-12")
+    const date = new Date(year, month, day);
+    setDisplayDate(date.toLocaleString('default', { dateStyle: 'short' }))
+  }, [eventData]);
 
   return(
     <div>
