@@ -2,12 +2,12 @@ import { useParams } from 'react-router';
 import { EVENTSSERVICE } from "../../constants";
 import { useState, useEffect } from 'react';
 
-
 const SingeEventPage = () => {
   const { id } = useParams();
   const [eventData, setEventData] = useState([]);
   const [displayDate, setDisplayDate] = useState("");
 
+  // Attempt to fetch data.
   const getEventData = async () => {
     const fetchURL = EVENTSSERVICE + "/" + id;
     try {
@@ -31,6 +31,7 @@ const SingeEventPage = () => {
     setDisplayDate(date.toLocaleString('default', { dateStyle: 'short' }))
   }, [eventData]);
 
+  // Return component.
   return(
     <div>
       <img src={eventData?.imageURL} loading="lazy" alt={"Image for " + eventData?.eventName + " event"}></img>
