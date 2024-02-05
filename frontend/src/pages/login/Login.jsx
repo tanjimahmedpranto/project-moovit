@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../styles/FormBase.css";
 import { Link } from "react-router-dom";
 import { default as logo } from "../../assets/muuvitLogo.svg";
-import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+import { Button, Container, Card, Form } from "react-bootstrap";
 import Cookies from "js-cookie";
 import BackButton from "../components/BackButton";
 

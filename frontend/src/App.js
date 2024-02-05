@@ -9,11 +9,14 @@ import SingleEventPage from "./pages/events/Single";
 import About from "./pages/infoPages/about";
 import Tac from "./pages/infoPages/tac.jsx";
 import Privacypolicy from "./pages/infoPages/privacypolicy";
+import HomeScreen from "./pages/HomeScreen/HomeScreen.js";
+import EventScreen from "./pages/viewEvents/EventScreen.js";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<HomeScreen />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/signup" element={<Signup />}></Route>
                 <Route
