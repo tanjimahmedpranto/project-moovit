@@ -1,12 +1,32 @@
 import React from "react";
 import Event from "../viewEvents/Event";
-import events from "../events";
+// import events from "../events";
 import { Container, Card, Row, Col, Button } from "react-bootstrap";
 import BackButton from "../components/BackButton";
 import { default as logo } from "../../assets/muuvitLogo.svg";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { EVENTSSERVICE } from "../../constants";
 
-export default function HomeScreen() {
+const HomeScreen = () => {
+    const [randomEventData, setRandomEventData] = useState([]);
+
+    const getRandomEventData = async () => {
+        const fetchURL = EVENTSSERVICE + "/getRandomEvents/" + 5; //it will fetch 5 random data
+        try {
+            const response = await fetch(fetchURL);
+            const responseData = await response.json();
+            console.log(responseData);
+            setRandomEventData(responseData);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    useEffect(() => {
+        getRandomEventData();
+    }, []);
+
     return (
         <div
             style={{
@@ -84,7 +104,7 @@ export default function HomeScreen() {
                                             border: "none",
                                         }}
                                     >
-                                        <i class="bi bi-search">
+                                        <i className="bi bi-search">
                                             {" "}
                                             Search for events{" "}
                                         </i>
@@ -96,19 +116,25 @@ export default function HomeScreen() {
                                 className="eventList d-flex flex-column align-items-center"
                                 style={{ width: "100%" }}
                             >
-                                {events.map((event) => (
-                                    <Row
-                                        key={event._id}
-                                        className="w-100 d-flex justify-content-center"
-                                    >
-                                        <Col
-                                            xs={12}
-                                            className="d-flex justify-content-center"
+                                {randomEventData.length > 0 ? (
+                                    randomEventData.map((event) => (
+                                        <Row
+                                            key={event._id}
+                                            className="w-100 d-flex justify-content-center"
                                         >
-                                            <Event event={event} />
-                                        </Col>
-                                    </Row>
-                                ))}
+                                            <Col
+                                                xs={12}
+                                                className="d-flex justify-content-center"
+                                            >
+                                                <Event event={event} />
+                                            </Col>
+                                        </Row>
+                                    ))
+                                ) : (
+                                    <div className="w-100 d-flex justify-content-center">
+                                        <p>Currently no event created.</p>
+                                    </div>
+                                )}
                             </div>
                             <div
                                 className="d-flex buttons justify-content-center"
@@ -192,4 +218,6 @@ export default function HomeScreen() {
             </Container>
         </div>
     );
-}
+};
+
+export default HomeScreen;

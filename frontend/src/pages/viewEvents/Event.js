@@ -44,7 +44,7 @@ function Event({ event }) {
                         <Link to={`/event/${event._id}`}>
                             <Card.Img
                                 variant="left"
-                                src={event.image}
+                                src={event.imageURL}
                                 style={{
                                     maxWidth: "100%",
                                     height: "80%",
@@ -69,7 +69,7 @@ function Event({ event }) {
                                     {/* Assuming event object has a date field */}
                                 </Card.Text>
                                 <Card.Title as="div">
-                                    <strong>{event.name}</strong>
+                                    <strong>{event.eventName}</strong>
                                 </Card.Title>
                             </Link>
                         </Card.Body>
