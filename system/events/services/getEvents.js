@@ -1,4 +1,4 @@
-const Event = require('../models/createEventSchema');
+const Event = require('../models/eventSchema');
 const {Status, SUCCESS, FAIL} = require('../../status');
 
 // Get events.
@@ -6,7 +6,7 @@ async function getEvents(){
     
 }
 
-// Get tags.
+// Get random events.
 async function getRandomEvents(eventQuantity){
     // Get the total number of documents in the collection.
     const totalEvents = await Event.countDocuments();
@@ -17,7 +17,7 @@ async function getRandomEvents(eventQuantity){
     
     // Check if events are found.
     if(randomEvents.length > 0) {
-        return(new Status(201, SUCCESS, randomEvents));
+        return(new Status(200, SUCCESS, randomEvents));
     } else {
         return(new Status(404, FAIL, []));
     }

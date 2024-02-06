@@ -23,8 +23,8 @@ router.get(
   // authorize,
   asyncErrorHandler(async (req, res, next) => {
     const numOfEvents = req.params?.numOfEvents;
-    const singleResult = await eventController.getRandomEvents(numOfEvents);
-    res.status(singleResult.httpStatus).send(singleResult.message);
+    const result = await eventController.getRandomEvents(numOfEvents);
+    res.status(result.httpStatus).send(result.message);
   })
 );
 
@@ -43,6 +43,8 @@ router.post("/create", authorize, upload.single("file"), async (req, res) => {
   } = req.body;
   const creator = res.locals.user;
   const image = req.file;
+  const tags = JSON.parse(req.body.tags);
+  const categories = JSON.parse(req.body.categories);
 
   const eventData = {
     eventName,
@@ -56,6 +58,8 @@ router.post("/create", authorize, upload.single("file"), async (req, res) => {
     creator,
     image,
     blurhash,
+    categories,
+    tags,
   };
 
   const createResult = await eventController.createEvent(eventData);

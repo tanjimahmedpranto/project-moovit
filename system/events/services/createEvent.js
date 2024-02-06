@@ -1,7 +1,7 @@
 
-const Create = require('../models/createEventSchema');
+const Create = require('../models/eventSchema');
 const {Status, SUCCESS, FAIL} = require('../../status');
-const Event = require('../models/createEventSchema');
+const Event = require('../models/eventSchema');
 const {v2: cloudinary} = require('cloudinary');
 const uploadImage = require('../uploadImage');
 const DatauriParser = require("datauri/parser");
@@ -64,7 +64,9 @@ async function createEvent(eventData){
             maxParticipants: eventData.maxParticipants,
             duration: eventData.duration,
             imageURL: imageUploadResult.url,
-            blurhash: eventData.blurhash
+            blurhash: eventData.blurhash,
+            tags: eventData.tags,
+            categories: eventData.categories
         });
 
         // Add type to database.
