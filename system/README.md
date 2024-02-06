@@ -85,12 +85,15 @@ Gets information about specific event
 | date         | ISO 6801 date with time                |
 | location     | GeoJSON point with coordinates         |
 | host         | Host full name                         |
-| creator      | UserID of creaor of the event          |
+| creator      | UserID of creator of the event         |
 | maxParticipants | Max number of participants          |
 | image        | Event iamge, an image                  |
 | blurhash     | The blurhash of the image              |
 
 🔒 Requires authentication and authorization.
+
+#### GeoJSON Point
+The input value should be string in the format <latitude>, <longitude>. For example `60.454838, 22.282152`. The Point type is added automatically.
 
 `PUT /events/edit/:id`
 
