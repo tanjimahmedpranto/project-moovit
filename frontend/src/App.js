@@ -9,6 +9,7 @@ import About from "./pages/infoPages/about";
 import Tac from "./pages/infoPages/tac.jsx";
 import Privacypolicy from "./pages/infoPages/privacypolicy";
 import HomeScreen from "./pages/HomeScreen/HomeScreen.js";
+import SearchScreen from "./pages/SearchScreen/SearchScreen.js";
 import EventScreen from "./pages/viewEvents/EventScreen.js";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<HomeScreen />}></Route>
+                <Route path="/search" element={<SearchScreen />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/signup" element={<Signup />}></Route>
                 <Route
