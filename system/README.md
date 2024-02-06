@@ -133,9 +133,7 @@ The application is monolithic multi-layered. It consists of a router that handle
 ### Service layer
 ### Data access layer
 #### Images
-Images are uploaded to system/images/. Cloudinary could be used as an alternative.
-
-An uploaded file is named "\<event_creator\>+\<event_name\>" hashed with bcrypt, the original file extension is kept. The file URI is added to the database.
+Images are uploaded to Cloudinary without using transformations to save costs. Cropping and Size limiting should be done on the backend.
 #### Blurhash
 Blurhash is calculated whenever image is changed. Blurhash is added to the database.
 ### Facade patterns
