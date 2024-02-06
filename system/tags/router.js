@@ -4,6 +4,16 @@ const tagController = require("./tagController");
 const authorize = require("../middleware/authorize");
 const asyncErrorHandler = require("../utilities/asyncErrorHandler");
 
+//get all
+router.get(
+  "/getAll",
+  authorize,
+  asyncErrorHandler(async (req, res, next) => {
+    const tags = await tagController.getTags();
+    res.status(tags.httpStatus).send(tags.message);
+  })
+);
+
 // Create tag.
 router.post(
   "/create",

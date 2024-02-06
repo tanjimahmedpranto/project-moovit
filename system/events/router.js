@@ -23,8 +23,8 @@ router.get(
   // authorize,
   asyncErrorHandler(async (req, res, next) => {
     const numOfEvents = req.params?.numOfEvents;
-    const singleResult = await eventController.getRandomEvents(numOfEvents);
-    res.status(singleResult.httpStatus).send(singleResult.message);
+    const result = await eventController.getRandomEvents(numOfEvents);
+    res.status(result.httpStatus).send(result.message);
   })
 );
 
