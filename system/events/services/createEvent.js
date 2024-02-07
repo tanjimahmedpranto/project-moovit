@@ -57,7 +57,7 @@ async function createEvent(eventData){
         const newEvent = new Event({
             eventName: escapeHtml(eventData.eventName.trim()),
             description: escapeHtml(eventData.description.trim()),
-            date: eventData.date, 
+            date: new Date(createISOdate(eventData.time, eventData.date)).toISOString(), 
             location: location,
             host: escapeHtml(eventData.host.trim()),
             creator: eventData.creator,
@@ -88,5 +88,13 @@ async function createEvent(eventData){
 
 // Escape sensitive characters using RegEx.
 const escapeHtml = input => input.replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';');
+
+// Combines date and military time.
+function createISOdate(time, date){
+    const hours = time.substring(0,2);
+    const minutes = time.substring(2,4);
+    const ISOdate =  date + "T" + hours + ":" + minutes + ":00Z";
+    return(ISOdate)
+}
 
 module.exports = {createEvent}

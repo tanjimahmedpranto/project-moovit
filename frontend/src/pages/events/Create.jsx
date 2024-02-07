@@ -70,6 +70,7 @@ const createEvent = async (e, data) => {
         console.log("error code: " + response.status);
     }
 
+    submitButton.disabled = false;
     
 };
 

@@ -19,11 +19,11 @@ router.get('/:id', async (req, res) => {
 
 // Create event.
 router.post('/create', authorize, upload.single('file'),async (req, res) => {
-    const {eventName, description, date, maxParticipants, location, locationName, host, duration, blurhash} = req.body;
+    const {eventName, description, date, maxParticipants, location, locationName, host, duration, blurhash, time} = req.body;
     const creator = res.locals.user;
     const image = req.file;
 
-    const eventData = {eventName, description, date, maxParticipants, location, locationName, host, duration, creator, image, blurhash} 
+    const eventData = {eventName, description, date, maxParticipants, location, locationName, host, duration, creator, image, blurhash, time} 
 
     const createResult = await eventController.createEvent(eventData);   
     res.status(createResult.httpStatus).send(createResult.message);
