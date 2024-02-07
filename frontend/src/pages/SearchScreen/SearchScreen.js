@@ -35,7 +35,6 @@ const SearchScreen = () => {
         try {
             const response = await fetch(fetchURL);
             const responseData = await response.json();
-            console.log(responseData);
             setRandomEventData(responseData);
         } catch (error) {
             console.error("Error fetching data:", error);
