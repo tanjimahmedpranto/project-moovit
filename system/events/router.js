@@ -59,6 +59,8 @@ router.post("/create", authorize, upload.single("file"), async (req, res) => {
     image,
     blurhash,
     time,
+    tags, 
+    categories
   };
   const createResult = await eventController.createEvent(eventData);
   res.status(createResult.httpStatus).send(createResult.message);
