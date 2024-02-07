@@ -29,6 +29,10 @@ router.get(
 );
 
 // Create event.
+router.post('/create', authorize, upload.single('file'),async (req, res) => {
+    const {eventName, description, date, maxParticipants, location, locationName, host, duration, blurhash, time} = req.body;
+    const creator = res.locals.user;
+    const image = req.file;
 router.post("/create", authorize, upload.single("file"), async (req, res) => {
   const {
     eventName,
@@ -46,6 +50,7 @@ router.post("/create", authorize, upload.single("file"), async (req, res) => {
   const tags = JSON.parse(req.body.tags);
   const categories = JSON.parse(req.body.categories);
 
+    const eventData = {eventName, description, date, maxParticipants, location, locationName, host, duration, creator, image, blurhash, time} 
   const eventData = {
     eventName,
     description,

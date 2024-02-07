@@ -84,6 +84,9 @@ const createEvent = async (e, data) => {
     } else {
         console.log("error code: " + response.status);
     }
+
+    submitButton.disabled = false;
+    
 };
 
 const CreateEventPage = () => {
