@@ -85,12 +85,15 @@ Gets information about specific event
 | date         | ISO 6801 date with time                |
 | location     | GeoJSON point with coordinates         |
 | host         | Host full name                         |
-| creator      | UserID of creaor of the event          |
+| creator      | UserID of creator of the event         |
 | maxParticipants | Max number of participants          |
 | image        | Event iamge, an image                  |
 | blurhash     | The blurhash of the image              |
 
 🔒 Requires authentication and authorization.
+
+#### GeoJSON Point
+The input value should be string in the format <latitude>, <longitude>. For example `60.454838, 22.282152`. The Point type is added automatically.
 
 `PUT /events/edit/:id`
 
@@ -130,9 +133,7 @@ The application is monolithic multi-layered. It consists of a router that handle
 ### Service layer
 ### Data access layer
 #### Images
-Images are uploaded to system/images/. Cloudinary could be used as an alternative.
-
-An uploaded file is named "\<event_creator\>+\<event_name\>" hashed with bcrypt, the original file extension is kept. The file URI is added to the database.
+Images are uploaded to Cloudinary without using transformations to save costs. Cropping and Size limiting should be done on the backend.
 #### Blurhash
 Blurhash is calculated whenever image is changed. Blurhash is added to the database.
 ### Facade patterns
