@@ -15,6 +15,10 @@ function getRandomEvents(eventQuantity) {
   return getEventsLogic.getRandomEvents(eventQuantity);
 }
 
+function getFiltedEvents(filters) {
+  return getEventsLogic.getFiltedEvents(filters);
+}
+
 function createEvent(eventData) {
   return createLogic.createEvent(eventData);
 }
@@ -34,4 +38,5 @@ module.exports = {
   updateEvent,
   deleteEvent,
   getRandomEvents,
+  getFiltedEvents
 };

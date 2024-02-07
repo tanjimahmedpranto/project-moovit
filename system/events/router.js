@@ -66,6 +66,15 @@ router.post("/create", authorize, upload.single("file"), async (req, res) => {
   res.status(createResult.httpStatus).send(createResult.message);
 });
 
+router.post(
+  "/getFiltedEvnets",
+  asyncErrorHandler(async (req, res, next) => {
+    const getFiltedEvents = await eventController.getFiltedEvents(req.body);
+
+    console.log(getFiltedEvents)
+  })
+);
+
 router.put("/update/:id", async (req, res) => {
   eventController.updateEvent();
   res.status(200).send("Yo");

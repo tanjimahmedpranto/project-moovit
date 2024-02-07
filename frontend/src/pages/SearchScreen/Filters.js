@@ -3,13 +3,13 @@ import { Form, Row, Col } from "react-bootstrap";
 import Select from "react-select";
 import { CATEGORIESSERVICE, EVENTSSERVICE, TAGSSERVICE } from "../../constants";
 import citiesData from "./cities.json";
-import TimePicker from 'react-time-picker';
-import 'react-time-picker/dist/TimePicker.css';
-import 'react-clock/dist/Clock.css';
+import TimePicker from "react-time-picker";
+import "react-time-picker/dist/TimePicker.css";
+import "react-clock/dist/Clock.css";
 
-const Filters = () => {
+const Filters = ({ onFiltersChange }) => {
     const [city, setCity] = useState("");
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState([]);
     const [categoriesData, setCategoriesData] = useState([]); // State to store fetched categories
     const [tagsData, setTagsData] = useState([]); // State to store fetched tags
     const [date, setDate] = useState("");
@@ -71,6 +71,19 @@ const Filters = () => {
 
         fetchCategoriesAndTags();
     }, []);
+
+    useEffect(() => {
+        const filters = {
+            city: selectedCity ? selectedCity.value : "",
+            categories: category.map((c) => c.value), // Changed to category from categoriesData
+            date,
+            fromTime,
+            toTime,
+            tags: selectedTags.map((t) => t.value),
+        };
+        console.log(filters);
+        onFiltersChange(filters);
+    }, [selectedCity, categoriesData, date, fromTime, toTime, selectedTags, onFiltersChange]);
 
     return (
         <Form>

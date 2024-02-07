@@ -23,6 +23,39 @@ import "./filter.css";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const SearchScreen = () => {
+    const [filters, setFilters] = useState({
+        city: "",
+        categories: [],
+        date: "",
+        time: "",
+        tags: [],
+    });
+
+    const handleSearchSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(EVENTSSERVICE + "/getFiltedEvnets", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Add any additional headers if required
+                },
+                body: JSON.stringify(filters), // Send filters data in the request body
+            });
+            if (response.ok) {
+                const data = await response.json();
+                // Handle response data
+                console.log('Response Data:', data);
+            } else {
+                // Handle error response
+                console.error('Error:', response.statusText);
+            }
+        } catch (error) {
+            // Handle network error
+            console.error('Network Error:', error);
+        }
+    };
+
     const [randomEventData, setRandomEventData] = useState([]);
     const [filtersVisible, setFiltersVisible] = useState(false);
 
@@ -49,12 +82,6 @@ const SearchScreen = () => {
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
-    };
-
-    const handleSearchSubmit = (e) => {
-        e.preventDefault();
-        // Implement your search logic here
-        console.log("Searching for:", searchTerm);
     };
 
     return (
@@ -135,7 +162,9 @@ const SearchScreen = () => {
                                                         onChange={
                                                             handleSearchChange
                                                         }
-                                                        style={{height:"100%"}}
+                                                        style={{
+                                                            height: "100%",
+                                                        }}
                                                     />
                                                     <Button
                                                         variant="outline-secondary"
@@ -171,7 +200,9 @@ const SearchScreen = () => {
                                         <FontAwesomeIcon icon={faSlidersH} />
                                         <span className="ms-2">Filters</span>
                                     </Button>
-                                    {filtersVisible && <Filters />}
+                                    {filtersVisible && (
+                                        <Filters onFiltersChange={setFilters} />
+                                    )}
                                 </div>
                             </div>
 
