@@ -44,7 +44,7 @@ export default function tac() {
                 <Card>
                     <Card.Body>
                         <div>
-                            <BackButton navigateTo="/login" /> <br />
+                            <BackButton navigateTo="/" /> <br />
                             <div>
                                 <InfoCustomizableTextComponent
                                     headerText="Terms and Conditions"

@@ -44,7 +44,7 @@ export default function privacypolicy() {
                 <Card>
                     <Card.Body>
                         <div>
-                            <BackButton navigateTo="/login" /> <br />
+                            <BackButton navigateTo="/" /> <br />
                             <div>
                                 <InfoCustomizableTextComponent
                                     headerText="Privacy Policy"

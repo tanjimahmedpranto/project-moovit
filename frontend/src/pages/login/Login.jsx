@@ -68,7 +68,7 @@ export default function Login() {
                     <Card.Body>
                         <div className="mb-3 mt-md-4">
                             <div>
-                                <BackButton navigateTo="/login" /> <br />
+                                <BackButton navigateTo="/" /> <br />
                             </div>
                             <img
                                 src={logo}

@@ -43,7 +43,7 @@ export default function about() {
                 <Card>
                     <Card.Body>
                         <div>
-                            <BackButton navigateTo="/login" /> <br />
+                            <BackButton navigateTo="/" /> <br />
                             <div>
                                 <InfoCustomizableTextComponent
                                     headerText="About Muuvit"
