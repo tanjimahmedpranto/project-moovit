@@ -7,6 +7,7 @@ import { default as logo } from "../../assets/muuvitLogo.svg";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { EVENTSSERVICE } from "../../constants";
+import EventCard from "../components/EventCard"
 
 const HomeScreen = () => {
     const [randomEventData, setRandomEventData] = useState([]);
@@ -30,20 +31,15 @@ const HomeScreen = () => {
     return (
         <div
             style={{
-                marginTop: "30px",
-                marginBottom: "20px",
-                marginLeft: "10px",
-                marginRight: "10px",
+                paddingTop: "30px",
+                paddingBottom: "20px",
+                paddingLeft: "10px",
+                paddingRight: "10px",
+                background:
+                            "linear-gradient(120deg, rgba(255,205,210,1) 0%, rgba(242,72,85,1) 100%)",
             }}
         >
             <Container>
-                <Card
-                    style={{
-                        background:
-                            "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(242,72,85,1) 100%)",
-                        border: "none",
-                    }}
-                >
                     <div
                         className="logoAndSignIn"
                         style={{
@@ -79,7 +75,6 @@ const HomeScreen = () => {
                         </Link>
                     </div>
 
-                    <Card.Body>
                         <Container fluid>
                             <div
                                 className="d-flex searchEvent button"
@@ -115,17 +110,9 @@ const HomeScreen = () => {
                             >
                                 {randomEventData.length > 0 ? (
                                     randomEventData.map((event) => (
-                                        <Row
-                                            key={event._id}
-                                            className="w-100 d-flex justify-content-center"
-                                        >
-                                            <Col
-                                                xs={12}
-                                                className="d-flex justify-content-center"
-                                            >
-                                                <Event event={event} />
-                                            </Col>
-                                        </Row>
+                                        <Link to={"/event/"+event._id} style={{ textDecoration: 'none' }}>
+                                            <EventCard key={event._id} eventData={event}/>
+                                        </Link>
                                     ))
                                 ) : (
                                     <div className="w-100 d-flex justify-content-center">
@@ -210,8 +197,6 @@ const HomeScreen = () => {
                             </div>
                             {/* You can place additional divs here for other components that might align left or right */}
                         </Container>
-                    </Card.Body>
-                </Card>
             </Container>
         </div>
     );
