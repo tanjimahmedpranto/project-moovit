@@ -1,7 +1,7 @@
 
-const Create = require('../models/createEventSchema');
+const Create = require('../models/eventSchema');
 const {Status, SUCCESS, FAIL} = require('../../status');
-const Event = require('../models/createEventSchema');
+const Event = require('../models/eventSchema');
 const {v2: cloudinary} = require('cloudinary');
 const uploadImage = require('../uploadImage');
 const DatauriParser = require("datauri/parser");
@@ -57,14 +57,16 @@ async function createEvent(eventData){
         const newEvent = new Event({
             eventName: escapeHtml(eventData.eventName.trim()),
             description: escapeHtml(eventData.description.trim()),
-            date: eventData.date, 
+            date: new Date(createISOdate(eventData.time, eventData.date)).toISOString(), 
             location: location,
             host: escapeHtml(eventData.host.trim()),
             creator: eventData.creator,
             maxParticipants: eventData.maxParticipants,
             duration: eventData.duration,
             imageURL: imageUploadResult.url,
-            blurhash: eventData.blurhash
+            blurhash: eventData.blurhash,
+            tags: eventData.tags,
+            categories: eventData.categories
         });
 
         // Add type to database.
@@ -88,5 +90,13 @@ async function createEvent(eventData){
 
 // Escape sensitive characters using RegEx.
 const escapeHtml = input => input.replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';');
+
+// Combines date and military time.
+function createISOdate(time, date){
+    const hours = time.substring(0,2);
+    const minutes = time.substring(2,4);
+    const ISOdate =  date + "T" + hours + ":" + minutes + ":00Z";
+    return(ISOdate)
+}
 
 module.exports = {createEvent}

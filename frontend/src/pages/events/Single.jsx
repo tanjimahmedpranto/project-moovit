@@ -34,7 +34,7 @@ const SingeEventPage = () => {
   // Return component.
   return(
     <div>
-      <img src={eventData?.imageURL} loading="lazy" alt={"Image for " + eventData?.eventName + " event"}></img>
+      <img style={{maxWidth:"150px"}}src={eventData?.imageURL} loading="lazy" alt={"Image for " + eventData?.eventName + " event"}></img>
       <h1>{eventData?.eventName}</h1>
       <p>Host: {eventData?.host}</p>
       <p>{eventData?.enrolledPartipants}/{eventData?.maxParticipants}</p>

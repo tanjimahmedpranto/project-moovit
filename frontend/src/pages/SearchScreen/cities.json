@@ -1,0 +1,147 @@
+[
+    {
+      "city": "Helsinki",
+      "location": "24.9384, 60.1699"
+    },
+    {
+      "city": "Espoo",
+      "location": "24.6537, 60.2052"
+    },
+    {
+      "city": "Tampere",
+      "location": "23.7610, 61.4981"
+    },
+    {
+      "city": "Vantaa",
+      "location": "24.9099, 60.2941"
+    },
+    {
+      "city": "Oulu",
+      "location": "25.4651, 65.0121"
+    },
+    {
+      "city": "Turku",
+      "location": "22.2675, 60.4518"
+    },
+    {
+      "city": "Jyvaskyla",
+      "location": "25.7482, 62.2415"
+    },
+    {
+      "city": "Lahti",
+      "location": "25.6574, 60.9827"
+    },
+    {
+      "city": "Kuopio",
+      "location": "27.6969, 62.8924"
+    },
+    {
+      "city": "Joensuu",
+      "location": "29.7778, 62.6019"
+    },
+    {
+      "city": "Rovaniemi",
+      "location": "25.7249, 66.4970"
+    },
+    {
+      "city": "Tornio",
+      "location": "24.1463, 65.8481"
+    },
+    {
+      "city": "Gothenburg",
+      "location": "11.9746, 57.7089"
+    },
+    {
+      "city": "Malmo",
+      "location": "13.0038, 55.6040"
+    },
+    {
+      "city": "Bergen",
+      "location": "5.3250, 60.3946"
+    },
+    {
+      "city": "Trondheim",
+      "location": "10.3951, 63.4305"
+    },
+    {
+      "city": "Stavanger",
+      "location": "5.7333, 58.9650"
+    },
+    {
+      "city": "Lulea",
+      "location": "22.1567, 65.5848"
+    },
+    {
+      "city": "Umea",
+      "location": "20.2630, 63.8258"
+    },
+    {
+      "city": "Aarhus",
+      "location": "10.2039, 56.1629"
+    },
+    {
+      "city": "Copenhagen",
+      "location": "12.5683, 55.6761"
+    },
+    {
+      "city": "Stockholm",
+      "location": "18.0686, 59.3293"
+    },
+    {
+      "city": "Oslo",
+      "location": "10.7522, 59.9139"
+    },
+    {
+      "city": "Reykjavik",
+      "location": "-21.9426, 64.1466"
+    },
+    {
+      "city": "Tallinn",
+      "location": "24.7536, 59.4370"
+    },
+    {
+      "city": "Riga",
+      "location": "24.1052, 56.9496"
+    },
+    {
+      "city": "Vilnius",
+      "location": "25.2797, 54.6872"
+    },
+    {
+      "city": "Minsk",
+      "location": "27.5615, 53.9045"
+    },
+    {
+      "city": "Copenhagen",
+      "location": "12.5683, 55.6761"
+    },
+    {
+      "city": "Stockholm",
+      "location": "18.0686, 59.3293"
+    },
+    {
+      "city": "Oslo",
+      "location": "10.7522, 59.9139"
+    },
+    {
+      "city": "Reykjavik",
+      "location": "-21.9426, 64.1466"
+    },
+    {
+      "city": "Tallinn",
+      "location": "24.7536, 59.4370"
+    },
+    {
+      "city": "Riga",
+      "location": "24.1052, 56.9496"
+    },
+    {
+      "city": "Vilnius",
+      "location": "25.2797, 54.6872"
+    },
+    {
+      "city": "Minsk",
+      "location": "27.5615, 53.9045"
+    }
+  ]
+  

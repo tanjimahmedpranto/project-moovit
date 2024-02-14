@@ -1,22 +1,73 @@
 import React from "react";
 import Event from "../viewEvents/Event";
+import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import events from "../events";
-import { Container, Card, Row, Col, Button } from "react-bootstrap";
+import {
+    Container,
+    Card,
+    Row,
+    Col,
+    Button,
+    Form,
+    InputGroup,
+} from "react-bootstrap";
 import BackButton from "../components/BackButton";
 import { default as logo } from "../../assets/muuvitLogo.svg";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { EVENTSSERVICE } from "../../constants";
+import Filters from "./Filters";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import "./filter.css";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const HomeScreen = () => {
+const SearchScreen = () => {
+    const [filters, setFilters] = useState({
+        city: "",
+        categories: [],
+        date: "",
+        time: "",
+        tags: [],
+    });
+
+    const handleSearchSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(EVENTSSERVICE + "/getFiltedEvnets", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Add any additional headers if required
+                },
+                body: JSON.stringify(filters), // Send filters data in the request body
+            });
+            if (response.ok) {
+                const data = await response.json();
+                // Handle response data
+                console.log('Response Data:', data);
+            } else {
+                // Handle error response
+                console.error('Error:', response.statusText);
+            }
+        } catch (error) {
+            // Handle network error
+            console.error('Network Error:', error);
+        }
+    };
+
     const [randomEventData, setRandomEventData] = useState([]);
+    const [filtersVisible, setFiltersVisible] = useState(false);
+
+    const toggleFilters = () => {
+        setFiltersVisible(!filtersVisible);
+    };
 
     const getRandomEventData = async () => {
         const fetchURL = EVENTSSERVICE + "/getRandomEvents/" + 5; //it will fetch 5 random data
         try {
             const response = await fetch(fetchURL);
             const responseData = await response.json();
-            console.log(responseData);
             setRandomEventData(responseData);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -26,6 +77,12 @@ const HomeScreen = () => {
     useEffect(() => {
         getRandomEventData();
     }, []);
+
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
 
     return (
         <div
@@ -91,25 +148,62 @@ const HomeScreen = () => {
                                     flexDirection: "column",
                                 }}
                             >
-                                <Link to="/about">
+                                {/* new */}
+                                <div>
+                                    <Form onSubmit={handleSearchSubmit}>
+                                        <Row className="mb-3">
+                                            <Col>
+                                                <InputGroup>
+                                                    <Form.Control
+                                                        type="text"
+                                                        placeholder="Search for events"
+                                                        aria-label="Search for events"
+                                                        value={searchTerm}
+                                                        onChange={
+                                                            handleSearchChange
+                                                        }
+                                                        style={{
+                                                            height: "100%",
+                                                        }}
+                                                    />
+                                                    <Button
+                                                        variant="outline-secondary"
+                                                        type="submit"
+                                                    >
+                                                        <FontAwesomeIcon
+                                                            variant="outline-secondary"
+                                                            icon={faSearch}
+                                                        />
+                                                    </Button>
+                                                </InputGroup>
+                                            </Col>
+                                        </Row>
+                                    </Form>
+
                                     <Button
-                                        variant="primary"
+                                        onClick={toggleFilters}
+                                        className="filter-toggle-btn btn-lg"
+                                        type="button"
                                         style={{
-                                            color: "white",
-                                            backgroundColor: "#30306d",
-                                            borderRadius: "10px",
-                                            marginTop: "5px",
-                                            marginBottom: "5px",
-                                            width: "200px",
+                                            background: "#FF5252", // Replace with your gradient start color
+                                            color: "#ffffff",
                                             border: "none",
+                                            borderRadius: "20px", // Adjust as needed to match your design
+                                            padding: "10px 20px",
+                                            boxShadow:
+                                                "0 4px 8px 0 rgba(0, 0, 0, 0.2)", // Adjust for desired shadow effect
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
                                         }}
                                     >
-                                        <i className="bi bi-search">
-                                            {" "}
-                                            Search for events{" "}
-                                        </i>
+                                        <FontAwesomeIcon icon={faSlidersH} />
+                                        <span className="ms-2">Filters</span>
                                     </Button>
-                                </Link>
+                                    {filtersVisible && (
+                                        <Filters onFiltersChange={setFilters} />
+                                    )}
+                                </div>
                             </div>
 
                             <div
@@ -145,72 +239,7 @@ const HomeScreen = () => {
                                     alignItems: "center",
                                     border: "none",
                                 }}
-                            >
-                                <Link to="/about">
-                                    <Button
-                                        variant="primary"
-                                        style={{
-                                            color: "white",
-                                            backgroundColor: "#30306d",
-                                            borderRadius: "10px",
-                                            marginTop: "5px",
-                                            marginBottom: "5px",
-                                            width: "200px",
-                                            border: "none",
-                                        }}
-                                    >
-                                        About Muuvit
-                                    </Button>
-                                </Link>
-                                <Link to="/pp">
-                                    <Button
-                                        variant="primary"
-                                        style={{
-                                            color: "white",
-                                            backgroundColor: "#30306d",
-                                            borderRadius: "10px",
-                                            marginTop: "5px",
-                                            marginBottom: "5px",
-                                            width: "200px",
-                                            border: "none",
-                                        }}
-                                    >
-                                        Privacy Policy
-                                    </Button>
-                                </Link>
-                                <Link to="#">
-                                    <Button
-                                        variant="primary"
-                                        style={{
-                                            color: "white",
-                                            backgroundColor: "#30306d",
-                                            borderRadius: "10px",
-                                            marginTop: "5px",
-                                            marginBottom: "5px",
-                                            width: "200px",
-                                            border: "none",
-                                        }}
-                                    >
-                                        Help Center
-                                    </Button>
-                                </Link>
-                                <Link to="/tac">
-                                    <Button
-                                        variant="primary"
-                                        style={{
-                                            color: "white",
-                                            backgroundColor: "#30306d",
-                                            borderRadius: "10px",
-                                            marginTop: "5px",
-                                            marginBottom: "5px",
-                                            width: "200px",
-                                            border: "none",
-                                        }}
-                                    >
-                                        Terms & Conditions
-                                    </Button>
-                                </Link>
-                            </div>
+                            ></div>
                             {/* You can place additional divs here for other components that might align left or right */}
                         </Container>
                     </Card.Body>
@@ -220,4 +249,4 @@ const HomeScreen = () => {
     );
 };
 
-export default HomeScreen;
+export default SearchScreen;

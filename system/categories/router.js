@@ -5,6 +5,16 @@ const authorize = require("../middleware/authorize");
 const asyncErrorHandler = require("../utilities/asyncErrorHandler");
 
 // Create category.
+router.get(
+  "/getAll",
+  authorize,
+  asyncErrorHandler(async (req, res, next) => {
+    const categories = await categoryController.getCategories();
+    res.status(categories.httpStatus).send(categories.message);
+  })
+);
+
+// Create category.
 router.post(
   "/create",
   authorize,

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const createSchema = new mongoose.Schema({ 
+const eventSchema = new mongoose.Schema({ 
     eventName: {
         type: String,
         required: true,
@@ -55,9 +55,17 @@ const createSchema = new mongoose.Schema({
     duration: {
         type: Number,
         required: true
-    }
+    },
+    tags: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Tag'
+    }],
+    categories: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
+    }]
 }, { 
     timestamps: true,
 })
 
-module.exports = mongoose.model('Create', createSchema, "events")
+module.exports = mongoose.model('Create', eventSchema, "events")
