@@ -1,6 +1,8 @@
 import { useParams } from 'react-router';
 import { EVENTSSERVICE } from "../../constants";
 import { useState, useEffect } from 'react';
+import { Card, Container } from 'react-bootstrap';
+import BackButton from "../components/BackButton";
 
 const SingeEventPage = () => {
   const { id } = useParams();
@@ -32,13 +34,33 @@ const SingeEventPage = () => {
   }, [eventData]);
 
   // Return component.
-  return(
-    <div>
-      <img style={{maxWidth:"150px"}}src={eventData?.imageURL} loading="lazy" alt={"Image for " + eventData?.eventName + " event"}></img>
-      <h1>{eventData?.eventName}</h1>
-      <p>Host: {eventData?.host}</p>
-      <p>{eventData?.enrolledPartipants}/{eventData?.maxParticipants}</p>
-      <p>{displayDate}</p>
+  // return(
+  //   <div>
+  //     
+  //   </div>
+  return (
+    <div
+        style={{
+            marginTop: "30px",
+            marginBottom: "20px",
+            marginLeft: "10px",
+            marginRight: "10px",
+        }}
+    >
+        <Container>
+            <Card>
+                <Card.Body>
+                    <div>
+                      <BackButton navigateTo="/" /> <br />
+                      <img style={{maxWidth:"150px"}}src={eventData?.imageURL} loading="lazy" alt={"Image for " + eventData?.eventName + " event"}></img>
+                      <h1>{eventData?.eventName}</h1>
+                      <p>Host: {eventData?.host}</p>
+                      <p>{eventData?.enrolledPartipants}/{eventData?.maxParticipants}</p>
+                      <p>{displayDate}</p>
+                    </div>
+                </Card.Body>
+            </Card>
+        </Container>
     </div>
   )
 }
