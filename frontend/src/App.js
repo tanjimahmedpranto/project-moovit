@@ -5,6 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Login from "./pages/login/Login.jsx";
 import Signup from "./pages/signup/Signup.jsx";
 import CreateEventPage from "./pages/events/Create";
+import SingleEventPage from "./pages/events/Single";
 import About from "./pages/infoPages/about";
 import Tac from "./pages/infoPages/tac.jsx";
 import Privacypolicy from "./pages/infoPages/privacypolicy";
@@ -24,7 +25,10 @@ function App() {
                     path="/events/create"
                     element={<CreateEventPage />}
                 ></Route>
-                <Route path="/event/:id" element={<EventScreen />} />
+                <Route
+                    path="/event/:id"
+                    element={<SingleEventPage />}
+                ></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/tac" element={<Tac />}></Route>
                 <Route path="/pp" element={<Privacypolicy />}></Route>
