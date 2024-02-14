@@ -44,9 +44,6 @@ const HomeScreen = () => {
                         border: "none",
                     }}
                 >
-                    <div>
-                        <BackButton navigateTo="/login" /> <br />
-                    </div>
                     <div
                         className="logoAndSignIn"
                         style={{
