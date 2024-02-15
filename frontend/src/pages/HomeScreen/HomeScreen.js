@@ -31,10 +31,7 @@ const HomeScreen = () => {
     return (
         <div
             style={{
-                paddingTop: "30px",
-                paddingBottom: "20px",
-                paddingLeft: "10px",
-                paddingRight: "10px",
+                padding: "30px 20px 10px 10px",
                 background:
                             "linear-gradient(120deg, rgba(255,205,210,1) 0%, rgba(242,72,85,1) 100%)",
             }}

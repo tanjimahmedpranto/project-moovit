@@ -9,7 +9,7 @@ import About from "./pages/infoPages/about";
 import Tac from "./pages/infoPages/tac.jsx";
 import Privacypolicy from "./pages/infoPages/privacypolicy";
 import HomeScreen from "./pages/HomeScreen/HomeScreen.js";
-import SearchScreen from "./pages/SearchScreen/SearchScreen.js";
+import SearchScreen from "./pages/SearchScreen/SearchScreen";
 import SingleEvent from "./pages/events/Single.jsx";
 
 function App() {

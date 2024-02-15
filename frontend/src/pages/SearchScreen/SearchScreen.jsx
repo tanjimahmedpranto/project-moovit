@@ -90,20 +90,11 @@ const SearchScreen = () => {
     return (
         <div
             style={{
-                marginTop: "30px",
-                marginBottom: "20px",
-                marginLeft: "10px",
-                marginRight: "10px",
+                padding: "30px 20px 10px 10px",
+                background: "linear-gradient(120deg, rgba(255,205,210,1) 0%, rgba(242,72,85,1) 100%)",
             }}
         >
             <Container>
-                <Card
-                    style={{
-                        background:
-                            "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(242,72,85,1) 100%)",
-                        border: "none",
-                    }}
-                >
                     <div>
                         <BackButton navigateTo="/" /> <br />
                     </div>
@@ -142,7 +133,6 @@ const SearchScreen = () => {
                         </Link>
                     </div>
 
-                    <Card.Body>
                         <Container fluid>
                             <div
                                 className="d-flex searchEvent button"
@@ -244,8 +234,6 @@ const SearchScreen = () => {
                                 }}
                             ></div>
                         </Container>
-                    </Card.Body>
-                </Card>
             </Container>
         </div>
     );
