@@ -74,7 +74,7 @@ const HomeScreen = () => {
                             </Button>
                         </Link>
                     </div>
-
+                        <br/>
                         <Container fluid>
                             <div
                                 className="d-flex searchEvent button"
@@ -83,7 +83,8 @@ const HomeScreen = () => {
                                     flexDirection: "column",
                                 }}
                             >
-                                <Link to="/events/search">
+                                <Link to="/events/search"
+                                style={{width: "100%"}}>
                                     <Button
                                         variant="primary"
                                         style={{
@@ -92,14 +93,13 @@ const HomeScreen = () => {
                                             borderRadius: "10px",
                                             marginTop: "5px",
                                             marginBottom: "5px",
-                                            width: "200px",
+                                            width: "100%",
                                             border: "none",
+                                            padding: "10px",
                                         }}
                                     >
-                                        <i className="bi bi-search">
-                                            {" "}
-                                            Search for events{" "}
-                                        </i>
+                                        <i className="bi bi-search"></i>
+                                        <p style={{display: "inline-block", margin: "0 0 0 10px"}}>Search for events</p>
                                     </Button>
                                 </Link>
                             </div>
@@ -130,7 +130,8 @@ const HomeScreen = () => {
                                     border: "none",
                                 }}
                             >
-                                <Link to="/about">
+                                <Link to="/about"
+                                style={{width: "100%"}}>
                                     <Button
                                         variant="primary"
                                         style={{
@@ -139,14 +140,16 @@ const HomeScreen = () => {
                                             borderRadius: "10px",
                                             marginTop: "5px",
                                             marginBottom: "5px",
-                                            width: "200px",
+                                            width: "100%",
                                             border: "none",
+                                            padding: "10px",
                                         }}
                                     >
                                         About Muuvit
                                     </Button>
                                 </Link>
-                                <Link to="/pp">
+                                <Link to="/pp"
+                                style={{width: "100%"}}>
                                     <Button
                                         variant="primary"
                                         style={{
@@ -155,14 +158,16 @@ const HomeScreen = () => {
                                             borderRadius: "10px",
                                             marginTop: "5px",
                                             marginBottom: "5px",
-                                            width: "200px",
+                                            width: "100%",
                                             border: "none",
+                                            padding: "10px",
                                         }}
                                     >
                                         Privacy Policy
                                     </Button>
                                 </Link>
-                                <Link to="#">
+                                {/* <Link to="#"
+                                style={{width: "100%"}}>
                                     <Button
                                         variant="primary"
                                         style={{
@@ -177,8 +182,9 @@ const HomeScreen = () => {
                                     >
                                         Help Center
                                     </Button>
-                                </Link>
-                                <Link to="/tac">
+                                </Link> */}
+                                <Link to="/tac"
+                                style={{width: "100%"}}>
                                     <Button
                                         variant="primary"
                                         style={{
@@ -187,8 +193,9 @@ const HomeScreen = () => {
                                             borderRadius: "10px",
                                             marginTop: "5px",
                                             marginBottom: "5px",
-                                            width: "200px",
+                                            width: "100%",
                                             border: "none",
+                                            padding: "10px",
                                         }}
                                     >
                                         Terms & Conditions
