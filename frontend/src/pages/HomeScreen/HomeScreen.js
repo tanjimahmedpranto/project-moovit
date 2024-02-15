@@ -83,7 +83,7 @@ const HomeScreen = () => {
                                     flexDirection: "column",
                                 }}
                             >
-                                <Link to="/about">
+                                <Link to="/events/search">
                                     <Button
                                         variant="primary"
                                         style={{

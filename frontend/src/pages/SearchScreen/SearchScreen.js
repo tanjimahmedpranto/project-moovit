@@ -1,5 +1,5 @@
 import React from "react";
-import Event from "../viewEvents/Event";
+import EventCard from "../components/EventCard";
 import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import events from "../events";
@@ -105,7 +105,7 @@ const SearchScreen = () => {
                     }}
                 >
                     <div>
-                        <BackButton navigateTo="/login" /> <br />
+                        <BackButton navigateTo="/" /> <br />
                     </div>
                     <div
                         className="logoAndSignIn"
@@ -215,31 +215,17 @@ const SearchScreen = () => {
                             >
                                 {filtedEventData.length > 0 ? (
                                     filtedEventData.map((event) => (
-                                        <Row
-                                            key={event._id}
-                                            className="w-100 d-flex justify-content-center"
-                                        >
-                                            <Col
-                                                xs={12}
-                                                className="d-flex justify-content-center"
-                                            >
-                                                <Event event={event} />
-                                            </Col>
-                                        </Row>
+                                        
+                                        <Link to={"/event/"+event._id} style={{ textDecoration: 'none' }}>
+                                            <EventCard key={event._id} eventData={event}/>
+                                        </Link>
+                                    
                                     ))
                                 ) : randomEventData.length > 0 ? (
                                     randomEventData.map((event) => (
-                                        <Row
-                                            key={event._id}
-                                            className="w-100 d-flex justify-content-center"
-                                        >
-                                            <Col
-                                                xs={12}
-                                                className="d-flex justify-content-center"
-                                            >
-                                                <Event event={event} />
-                                            </Col>
-                                        </Row>
+                                        <Link to={"/event/"+event._id} style={{ textDecoration: 'none' }}>
+                                            <EventCard key={event._id} eventData={event}/>
+                                        </Link>
                                     ))
                                 ) : (
                                     <div className="w-100 d-flex justify-content-center">
