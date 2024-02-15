@@ -1,7 +1,8 @@
 const express = require('express');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const mongoose = require('mongoose')
-const cors = require('cors')
+const mongoose = require('mongoose');
+const cors = require('cors');
+const path = require('path');
 
 const usersRoute = require('./users/router.js');
 const tagsRoute = require('./tags/router.js');
@@ -19,6 +20,7 @@ const port = 8080;
 app.use(express.json())
 app.use(cors());    
 app.use(express.urlencoded({extended: true}))
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 // Database setup.
 mongoose.connect(dbURI)

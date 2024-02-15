@@ -1,3 +1,18 @@
+const {Status, SUCCESS, FAIL} = require('../../status');
+const Event = require('../models/eventSchema');
+
+// Get single.
+async function getSingleEvent(id){
+
+    try{
+        const event = await Event.findOne({_id: id});
+        console.log(event);
+        return(new Status(201, SUCCESS, event));
+    }catch(e){
+        console.error(e)
+        return(new Status(500, SUCCESS, {}));
+    }
+}
 const Event = require("../models/eventSchema");
 const { Status, SUCCESS, FAIL } = require("../../status");
 const mongoose = require("mongoose");
@@ -70,5 +85,7 @@ async function getFiltedEvents(filters) {
 
   return (new Status(200, SUCCESS, events));
 }
+
+module.exports = {getEvents, getRandomEvents, getFiltedEvents, getSingleEvent};
 
 module.exports = { getEvents, getRandomEvents, getFiltedEvents };
