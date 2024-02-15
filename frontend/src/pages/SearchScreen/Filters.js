@@ -13,8 +13,8 @@ const Filters = ({ onFiltersChange }) => {
     const [categoriesData, setCategoriesData] = useState([]); // State to store fetched categories
     const [tagsData, setTagsData] = useState([]); // State to store fetched tags
     const [date, setDate] = useState("");
-    const [fromTime, setFromTime] = useState("");
-    const [toTime, setToTime] = useState("");
+    const [fromTime, setFromTime] = useState("08:00");
+    const [toTime, setToTime] = useState("12:00");
     const [selectedTags, setSelectedTags] = useState([]); // State to store selected tags
     const [loading, setLoading] = useState(true); // State to track loading state
 
@@ -83,7 +83,7 @@ const Filters = ({ onFiltersChange }) => {
         };
         console.log(filters);
         onFiltersChange(filters);
-    }, [selectedCity, categoriesData, date, fromTime, toTime, selectedTags, onFiltersChange]);
+    }, [selectedCity, categoriesData, date, fromTime, toTime, selectedTags, onFiltersChange, category]);
 
     return (
         <Form>

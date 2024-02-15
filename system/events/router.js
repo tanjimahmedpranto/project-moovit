@@ -58,7 +58,7 @@ router.post("/create", authorize, upload.single("file"), async (req, res) => {
     creator,
     image,
     blurhash,
-    time,
+    //time,
     tags, 
     categories
   };
@@ -71,7 +71,7 @@ router.post(
   asyncErrorHandler(async (req, res, next) => {
     const getFiltedEvents = await eventController.getFiltedEvents(req.body);
 
-    console.log(getFiltedEvents);
+    res.status(getFiltedEvents.httpStatus).send(getFiltedEvents.message);
   })
 );
 

@@ -35,9 +35,9 @@ const SearchScreen = () => {
         e.preventDefault();
         try {
             const response = await fetch(EVENTSSERVICE + "/getFiltedEvnets", {
-                method: 'POST',
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                     // Add any additional headers if required
                 },
                 body: JSON.stringify(filters), // Send filters data in the request body
@@ -45,17 +45,20 @@ const SearchScreen = () => {
             if (response.ok) {
                 const data = await response.json();
                 // Handle response data
-                console.log('Response Data:', data);
+                console.log("Response Data:", data);
+                setFiltedEventData(data);
+                setRandomEventData([]);
             } else {
                 // Handle error response
-                console.error('Error:', response.statusText);
+                console.error("Error:", response.statusText);
             }
         } catch (error) {
             // Handle network error
-            console.error('Network Error:', error);
+            console.error("Network Error:", error);
         }
     };
 
+    const [filtedEventData, setFiltedEventData] = useState([]);
     const [randomEventData, setRandomEventData] = useState([]);
     const [filtersVisible, setFiltersVisible] = useState(false);
 
@@ -210,7 +213,21 @@ const SearchScreen = () => {
                                 className="eventList d-flex flex-column align-items-center"
                                 style={{ width: "100%" }}
                             >
-                                {randomEventData.length > 0 ? (
+                                {filtedEventData.length > 0 ? (
+                                    filtedEventData.map((event) => (
+                                        <Row
+                                            key={event._id}
+                                            className="w-100 d-flex justify-content-center"
+                                        >
+                                            <Col
+                                                xs={12}
+                                                className="d-flex justify-content-center"
+                                            >
+                                                <Event event={event} />
+                                            </Col>
+                                        </Row>
+                                    ))
+                                ) : randomEventData.length > 0 ? (
                                     randomEventData.map((event) => (
                                         <Row
                                             key={event._id}
@@ -240,7 +257,6 @@ const SearchScreen = () => {
                                     border: "none",
                                 }}
                             ></div>
-                            {/* You can place additional divs here for other components that might align left or right */}
                         </Container>
                     </Card.Body>
                 </Card>

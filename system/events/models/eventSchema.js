@@ -22,7 +22,8 @@ const eventSchema = new mongoose.Schema({
         },
         coordinates: {
             type: [Number],
-            required: true
+            required: true,
+            index: '2dsphere'
         }
     },
     locationName: {
@@ -67,5 +68,6 @@ const eventSchema = new mongoose.Schema({
 }, { 
     timestamps: true,
 })
+eventSchema.index({ "location.coordinates": "2dsphere" });
 
 module.exports = mongoose.model('Create', eventSchema, "events")
