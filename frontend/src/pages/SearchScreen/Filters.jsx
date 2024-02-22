@@ -93,10 +93,13 @@ const Filters = ({ onFiltersChange }) => {
                     <Select
                         value={selectedCity}
                         onChange={handleCityChange}
-                        options={citiesData.map((cityData) => ({
-                            value: cityData.location,
-                            label: cityData.city,
-                        }))}
+                        options={[
+                            { value: '', label: 'Select' }, 
+                            ...citiesData.map((cityData) => ({
+                                value: cityData.location,
+                                label: cityData.city,
+                            }))
+                        ]}
                         placeholder="Select City"
                         isSearchable
                     />
