@@ -36,9 +36,15 @@ async function getRandomEvents(eventQuantity) {
 }
 
 async function getFiltedEvents(filters) {
+  console.log(filters);
   // Construct the filter object based on the provided filters
   let filter = {};
 
+  // If eventName is provided, filter by eventName
+  if (filters.eventName) {
+    filter["eventName"] = { $regex: filters.eventName, $options: 'i' }; // Case-insensitive search for eventName
+  }
+  
   // If city is provided, filter by city
   if (filters.city) {
     filter["location.coordinates"] = {
