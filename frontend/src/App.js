@@ -11,6 +11,7 @@ import Privacypolicy from "./pages/infoPages/privacypolicy";
 import HomeScreen from "./pages/HomeScreen/HomeScreen.js";
 import SearchScreen from "./pages/SearchScreen/SearchScreen";
 import SingleEvent from "./pages/events/Single.jsx";
+import MenuBar from "./pages/components/MenuBar.jsx";
 
 function App() {
     return (
@@ -29,7 +30,10 @@ function App() {
                 <Route path="/tac" element={<Tac />}></Route>
                 <Route path="/pp" element={<Privacypolicy />}></Route>
             </Routes>
+        <div style={{"display":"block", "height": "60px"}}></div>
+        <MenuBar/>
         </BrowserRouter>
+
     );
 }
 
