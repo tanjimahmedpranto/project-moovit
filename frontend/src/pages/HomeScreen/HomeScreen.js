@@ -25,7 +25,9 @@ const HomeScreen = () => {
     };
 
     useEffect(() => {
-        getRandomEventData();
+        console.log(randomEventData.length)
+        if (randomEventData.length === 0)
+            getRandomEventData();
     }, []);
 
     return (
@@ -107,7 +109,7 @@ const HomeScreen = () => {
                             >
                                 {randomEventData.length > 0 ? (
                                     randomEventData.map((event) => (
-                                        <Link to={"/event/"+event._id} style={{ textDecoration: 'none' }}>
+                                        <Link to={"/event/"+event._id} style={{ textDecoration: 'none', width: '100%'}}>
                                             <EventCard key={event._id} eventData={event}/>
                                         </Link>
                                     ))
