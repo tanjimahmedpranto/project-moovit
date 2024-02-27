@@ -1,8 +1,5 @@
 import React from "react";
-import Event from "../viewEvents/Event";
-// import events from "../events";
-import { Container, Card, Row, Col, Button } from "react-bootstrap";
-import BackButton from "../components/BackButton";
+import { Container, Button } from "react-bootstrap";
 import { default as logo } from "../../assets/muuvitLogo.svg";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -129,6 +126,7 @@ const HomeScreen = () => {
                                     border: "none",
                                 }}
                             >
+<<<<<<< Updated upstream
                                 <Link to="/about"
                                 style={{width: "100%"}}>
                                     <Button
@@ -203,6 +201,49 @@ const HomeScreen = () => {
                             </div>
                             {/* You can place additional divs here for other components that might align left or right */}
                         </Container>
+=======
+                                About Muuvit
+                            </Button>
+                        </Link>
+                        <Link to="/pp" style={{ width: "50%" }}>
+                            <Button
+                                variant="primary"
+                                style={{
+                                    color: "white",
+                                    backgroundColor: "#30306d",
+                                    borderRadius: "10px",
+                                    marginTop: "5px",
+                                    marginBottom: "5px",
+                                    width: "100%",
+                                    border: "none",
+                                    padding: "10px",
+                                }}
+                            >
+                                Privacy Policy
+                            </Button>
+                        </Link>
+
+                        <Link to="/tac" style={{ width: "50%" }}>
+                            <Button
+                                variant="primary"
+                                style={{
+                                    color: "white",
+                                    backgroundColor: "#30306d",
+                                    borderRadius: "10px",
+                                    marginTop: "5px",
+                                    marginBottom: "5px",
+                                    width: "100%",
+                                    border: "none",
+                                    padding: "10px",
+                                }}
+                            >
+                                Terms & Conditions
+                            </Button>
+                        </Link>
+                    </div>
+                    {/* You can place additional divs here for other components that might align left or right */}
+                </Container>
+>>>>>>> Stashed changes
             </Container>
         </div>
     );
