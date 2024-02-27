@@ -210,7 +210,16 @@ export default function Signup() {
                                     ></Form.Group>
 
                                     <div className="d-grid">
-                                        <Button variant="primary" type="submit">
+                                        <Button
+                                            style={{
+                                                color: "white",
+                                                backgroundColor: "#30306d",
+                                                borderRadius: "10px",
+                                                border: "none",
+                                            }}
+                                            variant="primary"
+                                            type="submit"
+                                        >
                                             Create Account
                                         </Button>
                                     </div>
