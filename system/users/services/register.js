@@ -8,7 +8,7 @@ const USERNAME_MAX_LENGTH = 20;
 const USERNAME_MIN_LENGTH = 5;
 
 // Register user.
-async function registerUser(username, password) {
+async function registerUser(username, password, email) {
   // Check if both username and password value is given
   if (isNullOrUndefined(username, password)) {
     return new Status(400, FAIL, "username or password can not be null");
@@ -33,6 +33,7 @@ async function registerUser(username, password) {
   const registration = new Registration({
     username: username.trim(),
     password: hashedPassword,
+    email: email
   });
 
   // Attempt to save new user to database.

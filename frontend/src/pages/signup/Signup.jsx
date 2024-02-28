@@ -81,6 +81,7 @@ export default function Signup() {
             console.log("success");
         } else {
             console.log("error code: " + response.status);
+            console.log(response.message);
         }
     };
 

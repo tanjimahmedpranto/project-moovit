@@ -11,8 +11,9 @@ router.post(
   asyncErrorHandler(async (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
+    const email = req.body.email;
 
-    const statusObject = await userControlller.registerUser(username, password);
+    const statusObject = await userControlller.registerUser(username, password, email);
     res.status(statusObject.httpStatus).send({ message: statusObject.message });
   })
 );
