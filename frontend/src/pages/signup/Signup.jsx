@@ -98,7 +98,7 @@ export default function Signup() {
             <Container>
                 <Card>
                     <Card.Body>
-                        <div className="mb-3 mt-md-4">
+                        <div className="mb-3 mt-md-4 form-width-control">
                             <div>
                                 <BackButton navigateTo="/login" /> <br />
                             </div>
