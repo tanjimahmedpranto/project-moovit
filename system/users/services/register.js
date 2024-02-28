@@ -3,22 +3,32 @@ const Registration = require("../models/loginSchema");
 const { SUCCESS, FAIL, USER_EXISTS } = require("../../status");
 const { Status } = require("../../status");
 const { isNullOrUndefined } = require("../../utilities/validationUtils");
+const { isNullOrUndefined } = require("../../utilities/validationUtils");
 
 const USERNAME_MAX_LENGTH = 20;
 const USERNAME_MIN_LENGTH = 5;
+const EMAIL_MAX_LENGTH = 50;
+const EMAIL_MIN_LENGTH = 5;
 
 // Register user.
+async function registerUser(username, email, password) {
 async function registerUser(username, password, email) {
   // Check if both username and password value is given
-  if (isNullOrUndefined(username, password)) {
-    return new Status(400, FAIL, "username or password can not be null");
+  if (isNullOrUndefined(username, password, email)) {
+    return new Status(400, FAIL, "username, email or password can not be null");
   }
-
+  
   // Check that username is allowed.
   if (!isAllowedUsername(username)) {
     return new Status(400, FAIL, "username not allowed");
   }
-
+  
+  // Check that email is allowed.
+  if (!isAllowedEmail(email)) {
+    console.log("Failed here")
+    return new Status(400, FAIL, "email not allowed");
+  }
+  
   // Check if user already exists
   const existingUser = await Registration.findOne({ username: username });
   if (existingUser) {
@@ -32,6 +42,7 @@ async function registerUser(username, password, email) {
 
   const registration = new Registration({
     username: username.trim(),
+    email: email.trim(),
     password: hashedPassword,
     email: email
   });
@@ -51,6 +62,14 @@ function isAllowedUsername(username) {
     /^[_A-Za-z0-9\.]+$/.test(username) &&
     username.length < USERNAME_MAX_LENGTH &&
     username.length > USERNAME_MIN_LENGTH
+  );
+}
+
+function isAllowedEmail(email) {
+  return (
+    /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email) &&
+    (email.length < EMAIL_MAX_LENGTH) &&
+    (email.length > EMAIL_MIN_LENGTH)
   );
 }
 

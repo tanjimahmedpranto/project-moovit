@@ -4,12 +4,14 @@ const logoutLogic = require('./services/logout.js');
 const userInfoLogic = require('./services/userInfo.js');
 const editUserLogic = require('./services/editUser.js');
 
+function registerUser(username, email, password){
+    return registerLogic.registerUser(username, email, password);
 function registerUser(username, password, email){
     return registerLogic.registerUser(username, password, email);
 }
 
-async function login(username, password){
-    return await loginLogic.loginUser(username, password);
+async function login(email, password){
+    return await loginLogic.loginUser(email, password);
  
 }
 
