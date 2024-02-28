@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const Registration = require("../models/loginSchema");
 const { SUCCESS, FAIL, USER_EXISTS } = require("../../status");
 const { Status } = require("../../status");
+const { isNullOrUndefined } = require("../../utilities/validationUtils");
 
 const USERNAME_MAX_LENGTH = 20;
 const USERNAME_MIN_LENGTH = 5;
