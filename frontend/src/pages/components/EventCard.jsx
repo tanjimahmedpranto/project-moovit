@@ -1,9 +1,11 @@
 import React from "react";
 import "./EventCard.css";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 
 const EventCard = ({eventData}) => {
+    const linkDestination = "/event/" + eventData._id;
+
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [labels, setLabels] = useState("");
@@ -43,6 +45,7 @@ const EventCard = ({eventData}) => {
 
     return (
         <div className="card-background">
+            <Link to={linkDestination}>
             <div className="card-image" >
                 <img src={eventData.imageURL} alt=""/>
             </div>
@@ -52,6 +55,7 @@ const EventCard = ({eventData}) => {
                 <i className="bi bi-calendar-event"></i>
                 {date}
             </p>
+            </Link>
             <p className="event-time">
                 <i className="bi bi-clock"></i>
                 {time}

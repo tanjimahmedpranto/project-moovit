@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import "../../styles/FormBase.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { default as logo } from "../../assets/muuvitLogo.svg";
 import { Button, Container, Card, Form } from "react-bootstrap";
 import Cookies from "js-cookie";
 import BackButton from "../components/BackButton";
+import { USERSSERVICE } from "../../constants";
 
 export default function Login() {
+    const navigateTo = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [validated, setValidated] = useState(false);
 
     const validateEmail = (email) => {
-        const re =
-            /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+        const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         return re.test(String(email).toLowerCase());
     };
 
@@ -28,7 +30,7 @@ export default function Login() {
 
         if (validateEmail(email) && validatePassword(password)) {
             try {
-                const response = await fetch("YOUR_SERVER_ENDPOINT/api/login", {
+                const response = await fetch(USERSSERVICE + "/login", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -42,6 +44,7 @@ export default function Login() {
                     // Assuming the JWT is in data.token
                     Cookies.set("jwt", data.token); // Save the JWT in a cookie
                     console.log("Login successful");
+                    navigateTo("/");
                     // Redirect or perform other actions on successful login
                 } else {
                     console.error("Login failed:", data.message);

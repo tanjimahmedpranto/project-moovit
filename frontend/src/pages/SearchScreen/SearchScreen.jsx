@@ -97,17 +97,7 @@ const SearchScreen = () => {
             }}
         >
             <Container>
-                    <div>
-                        <BackButton navigateTo="/" /> <br />
-                    </div>
-                    <div
-                        className="logoAndSignIn"
-                        style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                        }}
-                    >
+                    <div className="logo-container">
                         <img
                             src={logo}
                             width={100}
@@ -115,27 +105,9 @@ const SearchScreen = () => {
                             className=""
                             alt="muuvitLogo"
                         />
-                        <Link to="/login">
-                            <Button
-                                variant="primary"
-                                style={{
-                                    color: "white",
-                                    backgroundColor: "#30306d",
-                                    borderRadius: "10px",
-                                    marginTop: "5px",
-                                    marginBottom: "5px",
-                                    marginLeft: "5px",
-                                    marginRight: "5px",
-                                    width: "100px",
-                                    border: "none",
-                                }}
-                            >
-                                Sign In
-                            </Button>
-                        </Link>
+                    
                     </div>
 
-                        <Container fluid>
                             <div
                                 className="d-flex searchEvent button"
                                 style={{
@@ -144,35 +116,36 @@ const SearchScreen = () => {
                                 }}
                             >
                                 {/* new */}
-                                <div>
+                                <div style={{width: "100%"}}>
                                     <Form onSubmit={handleSearchSubmit}>
-                                        <Row className="mb-3">
-                                            <Col>
-                                                <InputGroup>
-                                                    <Form.Control
-                                                        type="text"
-                                                        placeholder="Search for events"
-                                                        aria-label="Search for events"
-                                                        value={searchTerm}
-                                                        onChange={
-                                                            handleSearchChange
-                                                        }
-                                                        style={{
-                                                            height: "100%",
-                                                        }}
-                                                    />
-                                                    <Button
-                                                        variant="outline-secondary"
-                                                        type="submit"
-                                                    >
-                                                        <FontAwesomeIcon
-                                                            variant="outline-secondary"
-                                                            icon={faSearch}
-                                                        />
-                                                    </Button>
-                                                </InputGroup>
-                                            </Col>
-                                        </Row>
+                                        <InputGroup>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Search for events"
+                                                aria-label="Search for events"
+                                                value={searchTerm}
+                                                onChange={
+                                                    handleSearchChange
+                                                }
+                                                style={{
+                                                    height: "100%",
+                                                    boxShadow: "none",
+                                                }}
+                                            />
+                                            <Button
+                                                variant="outline-secondary"
+                                                type="submit"
+                                                style={{
+                                                    backgroundColor: "#fff",
+                                                    border: "none",
+                                                }}
+                                            >
+                                                <FontAwesomeIcon
+                                                    variant="outline-secondary"
+                                                    icon={faSearch}
+                                                />
+                                            </Button>
+                                        </InputGroup>
                                     </Form>
 
                                     <Button
@@ -180,14 +153,16 @@ const SearchScreen = () => {
                                         className="filter-toggle-btn btn-lg"
                                         type="button"
                                         style={{
+                                            marginTop: "20px",
                                             background: "#FF5252", // Replace with your gradient start color
                                             color: "#ffffff",
                                             border: "none",
                                             borderRadius: "20px", // Adjust as needed to match your design
                                             padding: "10px 20px",
-                                            boxShadow:
-                                                "0 4px 8px 0 rgba(0, 0, 0, 0.2)", // Adjust for desired shadow effect
-                                            display: "flex",
+                                            width: "100%",
+                                            // boxShadow:
+                                            //     "0 4px 8px 0 rgba(0, 0, 0, 0.2)", // Adjust for desired shadow effect
+                                                display: "flex",
                                             alignItems: "center",
                                             justifyContent: "center",
                                         }}
@@ -197,7 +172,7 @@ const SearchScreen = () => {
                                     </Button>
                                     {filtersVisible && (
                                         <Filters onFiltersChange={setFilters} />
-                                    )}
+                                        )}                         
                                 </div>
                             </div>
 
@@ -207,17 +182,11 @@ const SearchScreen = () => {
                             >
                                 {filtedEventData.length > 0 ? (
                                     filtedEventData.map((event) => (
-                                        
-                                        <Link to={"/event/"+event._id} style={{ textDecoration: 'none' }}>
-                                            <EventCard key={event._id} eventData={event}/>
-                                        </Link>
-                                    
+                                        <EventCard key={event._id} eventData={event}/>
                                     ))
                                 ) : randomEventData.length > 0 ? (
                                     randomEventData.map((event) => (
-                                        <Link to={"/event/"+event._id} style={{ textDecoration: 'none' }}>
-                                            <EventCard key={event._id} eventData={event}/>
-                                        </Link>
+                                        <EventCard key={event._id} eventData={event}/>
                                     ))
                                 ) : (
                                     <div className="w-100 d-flex justify-content-center">
@@ -235,7 +204,6 @@ const SearchScreen = () => {
                                     border: "none",
                                 }}
                             ></div>
-                        </Container>
             </Container>
         </div>
     );

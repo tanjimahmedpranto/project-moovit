@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Container, Card, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { default as logo } from "../../assets/muuvitLogo.svg";
 import "../../styles/FormBase.css";
 import { USERSSERVICE } from "../../constants";
@@ -15,18 +15,23 @@ const PASSWORD_MISMATCH_MSG = "Passwords do not match.";
 const USERNAME_EXISTS_MSG = "The username is already taken.";
 const USERNAME_TOO_LONG_MSG = "Username is too long";
 const USERNAME_TOO_SHORT_MSG = "Username is too short";
+const EMAIL_INVALID = "E-mail address is not valid"
 
 export default function Signup() {
+
+    const navigateTo = useNavigate();
     // Fredi's register code before return ()
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
     const [passwordReType, setPasswordReType] = useState("");
     const [passwordMatch, setPasswordMatch] = useState(true);
     const [usernameShort, setUsernameShort] = useState(false);
     const [usernameLong, setUsernameLong] = useState(false);
     const [usernameValid, setUsernameValid] = useState(true);
     const [usernameExists, setUsernameExists] = useState(false);
+    const [emailValid, setEmailValid] = useState(false);
 
     const handleRegistration = async (e) => {
         let errorsInFields = false;
@@ -37,10 +42,17 @@ export default function Signup() {
         setUsernameValid(true);
         setUsernameShort(false);
         setUsernameLong(false);
+        setEmailValid(false);
 
         // Check for illegal characters in username.
         if (!/^[._A-Za-z0-9]+$/.test(username)) {
             setUsernameValid(false);
+            errorsInFields = true;
+        }
+
+        // Check for invalid email.
+        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+            setEmailValid(false);
             errorsInFields = true;
         }
 
@@ -62,13 +74,14 @@ export default function Signup() {
 
         // Terminate if any errors.
         if (errorsInFields) {
+            console.log("errors in fields")
             return;
         }
         // Send the registration request
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username: username, password: password }),
+            body: JSON.stringify({ username, email, password }),
         };
         const fetchURL = USERSSERVICE + "/register";
         const response = await fetch(fetchURL, requestOptions);
@@ -77,7 +90,8 @@ export default function Signup() {
         if (response.status === 400) {
             if ((await response.json()).message) setUsernameExists(true);
         }
-        if (response.status === 200) {
+        if (response.status === 201) {
+            navigateTo("/login")
             console.log("success");
         } else {
             console.log("error code: " + response.status);
@@ -140,7 +154,7 @@ export default function Signup() {
                                         </p>
                                     </Form.Group>
 
-                                    {/* Email address logic begin */}
+                                    {/* Email address logic NOT LOGIC begin */}
                                     <Form.Group
                                         className="mb-3"
                                         controlId="formBasicEmail"
@@ -151,7 +165,15 @@ export default function Signup() {
                                         <Form.Control
                                             type="email"
                                             placeholder="Enter email"
+                                            onChange={(e) =>
+                                                setEmail(e.target.value)
+                                            }
                                         />
+                                        <p>
+                                            {emailValid
+                                                ? EMAIL_INVALID
+                                                : ""}
+                                        </p>
                                     </Form.Group>
 
                                     {/* Password logic begin */}

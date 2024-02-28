@@ -3,6 +3,11 @@
     border-radius: 10px;
     margin: 10px 0;
     padding: 20px;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
 }
 
 .card-background > *:last-child{
