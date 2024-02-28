@@ -11,18 +11,19 @@ router.post(
   asyncErrorHandler(async (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
+    const email = req.body.email;
 
-    const statusObject = await userControlller.registerUser(username, password);
+    const statusObject = await userControlller.registerUser(username, email, password);
     res.status(statusObject.httpStatus).send({ message: statusObject.message });
   })
 );
 
 // Login user.
 router.post("/login", async (req, res) => {
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
 
-  const statusObject = await userControlller.login(username, password);
+  const statusObject = await userControlller.login(email, password);
   res.status(statusObject.httpStatus).send({ message: statusObject.message });
 });
 
