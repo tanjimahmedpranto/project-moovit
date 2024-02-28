@@ -28,17 +28,16 @@ const db = mongoose.connection
 db.on('error', (error) => console.log(error))
 db.once('open', () => console.log('Connected to DB'))
 
-app.get('/', (req, res) => {    
-    res.send('Hello World!');
+app.use('/api/users', usersRoute);
+app.use('/api/events', eventsRoute);
+app.use('/api/tags', tagsRoute);
+app.use('/api/categories', categoriesRoute);
+
+app.get('*', (req, res) => {
+    const systemRoot = path.resolve(__dirname, '..')
+    res.sendFile(path.join(systemRoot, 'frontend/build', 'index.html'));
 });
-app.use('/users', usersRoute);
-app.use('/events', eventsRoute);
-app.use('/tags', tagsRoute);
-app.use('/categories', categoriesRoute);
-app.all('*', (req, res, next) => {
-    const err = new CustomError(`Can't find ${req.originalUrl} on the server!`, 404);
-    next(err);
-});
+
 app.use(globalErrorHandler);
 
 app.listen(port, () => {
