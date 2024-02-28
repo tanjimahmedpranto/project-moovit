@@ -2,7 +2,6 @@ import React from "react";
 import Event from "../viewEvents/Event";
 // import events from "../events";
 import { Container, Card, Row, Col, Button } from "react-bootstrap";
-import BackButton from "../components/BackButton";
 import { default as logo } from "../../assets/muuvitLogo.svg";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -39,14 +38,7 @@ const HomeScreen = () => {
             }}
         >
             <Container>
-                    <div
-                        className="logoAndSignIn"
-                        style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                        }}
-                    >
+                    <div className="logo-container">
                         <img
                             src={logo}
                             width={100}
@@ -54,26 +46,8 @@ const HomeScreen = () => {
                             className=""
                             alt="muuvitLogo"
                         />
-                        <Link to="/login">
-                            <Button
-                                variant="primary"
-                                style={{
-                                    color: "white",
-                                    backgroundColor: "#30306d",
-                                    borderRadius: "10px",
-                                    marginTop: "5px",
-                                    marginBottom: "5px",
-                                    marginLeft: "5px",
-                                    marginRight: "5px",
-                                    width: "100px",
-                                    border: "none",
-                                }}
-                            >
-                                Sign In
-                            </Button>
-                        </Link>
+
                     </div>
-                        <br/>
                             <div
                                 className="d-flex searchEvent button"
                                 style={{

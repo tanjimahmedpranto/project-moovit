@@ -97,17 +97,7 @@ const SearchScreen = () => {
             }}
         >
             <Container>
-                    <div>
-                        <BackButton navigateTo="/" /> <br />
-                    </div>
-                    <div
-                        className="logoAndSignIn"
-                        style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                        }}
-                    >
+                    <div className="logo-container">
                         <img
                             src={logo}
                             width={100}
@@ -115,24 +105,7 @@ const SearchScreen = () => {
                             className=""
                             alt="muuvitLogo"
                         />
-                        <Link to="/login">
-                            <Button
-                                variant="primary"
-                                style={{
-                                    color: "white",
-                                    backgroundColor: "#30306d",
-                                    borderRadius: "10px",
-                                    marginTop: "5px",
-                                    marginBottom: "5px",
-                                    marginLeft: "5px",
-                                    marginRight: "5px",
-                                    width: "100px",
-                                    border: "none",
-                                }}
-                            >
-                                Sign In
-                            </Button>
-                        </Link>
+                    
                     </div>
 
                             <div
