@@ -86,93 +86,71 @@ const Filters = ({ onFiltersChange }) => {
     }, [selectedCity, categoriesData, date, fromTime, toTime, selectedTags, onFiltersChange, category]);
 
     return (
-        <Form>
-            <Row className="mb-3">
-                <Col>
-                    <Form.Label>City</Form.Label>
-                    <Select
-                        value={selectedCity}
-                        onChange={handleCityChange}
-                        options={[
-                            { value: '', label: 'Select' }, 
-                            ...citiesData.map((cityData) => ({
-                                value: cityData.location,
-                                label: cityData.city,
-                            }))
-                        ]}
-                        placeholder="Select City"
-                        isSearchable
+            <Form>
+                <Form.Label>City</Form.Label>
+                <Select
+                    value={selectedCity}
+                    onChange={handleCityChange}
+                    options={[
+                        { value: '', label: 'Select' }, 
+                        ...citiesData.map((cityData) => ({
+                            value: cityData.location,
+                            label: cityData.city,
+                        }))
+                    ]}
+                    placeholder="Select City"
+                    isSearchable
                     />
-                </Col>
-            </Row>
-            <Row className="mb-3">
-                <Col>
-                    <Form.Label>Category</Form.Label>
-                    {!loading && (
-                        <Select
-                            isMulti
-                            options={categoriesData.map((category) => ({
-                                value: category._id,
-                                label: category.categoryName,
-                            }))}
-                            getOptionLabel={(option) => option.label}
-                            getOptionValue={(option) => option.value}
-                            onChange={handleCategoryChange}
-                        />
+                <Form.Label>Category</Form.Label>
+                {!loading && (
+                    <Select
+                    isMulti
+                    options={categoriesData.map((category) => ({
+                        value: category._id,
+                        label: category.categoryName,
+                    }))}
+                    getOptionLabel={(option) => option.label}
+                    getOptionValue={(option) => option.value}
+                    onChange={handleCategoryChange}
+                    />
                     )}
-                    {loading && <div>Loading...</div>}
-                </Col>
-            </Row>
-            <Row className="mb-3">
-                <Col>
-                    <Form.Label>Date</Form.Label>
-                    <Form.Control
-                        type="date"
-                        value={date}
-                        onChange={handleDateChange}
+                {loading && <div>Loading...</div>}
+                <Form.Label>Date</Form.Label>
+                <Form.Control
+                    type="date"
+                    value={date}
+                    onChange={handleDateChange}
                     />
-                </Col>
-            </Row>
-            <Row className="mb-3">
-                <Col>
-                    <Form.Label>From Time</Form.Label>
-                    <TimePicker
-                        className="form-control"
-                        onChange={handleFromTimeChange}
-                        value={fromTime}
-                        clearIcon={null}
-                        format="HH:mm"
-                        disableClock={false}
+                <Form.Label>From Time</Form.Label>
+                <TimePicker
+                    className="form-control"
+                    onChange={handleFromTimeChange}
+                    value={fromTime}
+                    clearIcon={null}
+                    format="HH:mm"
+                    disableClock={false}
                     />
-                </Col>
-                <Col>
-                    <Form.Label>To Time</Form.Label>
-                    <TimePicker
-                        className="form-control"
-                        onChange={handleToTimeChange}
-                        value={toTime}
-                        clearIcon={null}
-                        format="HH:mm"
-                        disableClock={false}
+                <Form.Label>To Time</Form.Label>
+                <TimePicker
+                    className="form-control"
+                    onChange={handleToTimeChange}
+                    value={toTime}
+                    clearIcon={null}
+                    format="HH:mm"
+                    disableClock={false}
                     />
-                </Col>
-            </Row>
-            <Row className="mb-3">
-                <Col>
-                    <Form.Label>Tags</Form.Label>
-                    <Select
-                        isMulti
-                        options={tagsData.map((tag) => ({
-                            value: tag._id,
-                            label: tag.tagName,
-                        }))}
-                        getOptionLabel={(option) => option.label}
-                        getOptionValue={(option) => option.value}
-                        onChange={handleTagsChange}
+                <Form.Label>Tags</Form.Label>
+                <Select
+                    isMulti
+                    options={tagsData.map((tag) => ({
+                        value: tag._id,
+                        label: tag.tagName,
+                    }))}
+                    getOptionLabel={(option) => option.label}
+                    getOptionValue={(option) => option.value}
+                    onChange={handleTagsChange}
                     />
-                </Col>
-            </Row>
-        </Form>
+            </Form>
     );
 };
 
