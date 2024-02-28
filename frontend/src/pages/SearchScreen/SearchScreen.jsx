@@ -135,7 +135,6 @@ const SearchScreen = () => {
                         </Link>
                     </div>
 
-                        <Container fluid>
                             <div
                                 className="d-flex searchEvent button"
                                 style={{
@@ -215,9 +214,7 @@ const SearchScreen = () => {
                                     ))
                                 ) : randomEventData.length > 0 ? (
                                     randomEventData.map((event) => (
-                                        <Link to={"/event/"+event._id} style={{ textDecoration: 'none' }}>
-                                            <EventCard key={event._id} eventData={event}/>
-                                        </Link>
+                                        <EventCard key={event._id} eventData={event}/>
                                     ))
                                 ) : (
                                     <div className="w-100 d-flex justify-content-center">
@@ -235,7 +232,6 @@ const SearchScreen = () => {
                                     border: "none",
                                 }}
                             ></div>
-                        </Container>
             </Container>
         </div>
     );
