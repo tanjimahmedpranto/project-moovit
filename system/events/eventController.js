@@ -32,6 +32,15 @@ function updateEvent() {
   return;
 }
 
+function getUserRole(eventId, userId){
+  return(getEventsLogic.getUserRole(eventId, userId));
+}
+
+function joinEvent(eventId, userId){
+  return(createEvent.joinEvent(eventId, userId));
+
+}
+
 module.exports = {
   getSingleEvent,
   getEvents,
@@ -39,5 +48,7 @@ module.exports = {
   updateEvent,
   deleteEvent,
   getRandomEvents,
-  getFiltedEvents
+  getFiltedEvents,
+  getUserRole,
+  joinEvent
 };

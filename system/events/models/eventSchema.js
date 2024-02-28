@@ -41,10 +41,10 @@ const eventSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    enrolledPartipants: {
-        type: Number,
-        default: 0
-    },
+    enrolledPartipants: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     imageURL: {
         type: String,
         required: true
@@ -69,5 +69,26 @@ const eventSchema = new mongoose.Schema({
     timestamps: true,
 })
 eventSchema.index({ "location.coordinates": "2dsphere" });
+
+// Define method to check if user is the creator
+eventSchema.methods.isUserCreator = function(userId) {
+    return this.creator.equals(userId);
+};
+
+// Define method to check if user is an enrolled participant
+eventSchema.methods.isUserParticipant = function(userId) {
+    return this.enrolledParticipants.some(participantId => participantId.equals(userId));
+};
+
+// Define method to enroll a user in an event
+eventSchema.methods.enrollUser = function(userId) {
+    // Check if user is already enrolled or is the creator
+    if (!this.enrolledParticipants.includes(userId) && !this.creator.equals(userId)) {
+        // User is neither enrolled nor the creator, so add the user to enrolledParticipants
+        this.enrolledParticipants.push(userId);
+        return true; // User successfully enrolled
+    }
+    return false; // User was not enrolled
+};
 
 module.exports = mongoose.model('Create', eventSchema, "events")

@@ -13,11 +13,22 @@ router.get("/", async (req, res) => {
   res.status(200).send("Yo");
 });
 
-router.get('/:id', async (req, res) => {
-    const requestedId = req.params?.id;
-    const singleResult = await eventController.getSingleEvent(requestedId);
-    res.status(singleResult.httpStatus).send(singleResult.message);
+router.get("/:id", async (req, res) => {
+  const requestedId = req.params?.id;
+  const singleResult = await eventController.getSingleEvent(requestedId);
+  res.status(singleResult.httpStatus).send(singleResult.message);
 });
+//get user role in the event
+router.get(
+  "getUserRole/:eventId/:userId",
+  asyncErrorHandler(async (req, res, next) => {
+    const eventId = req.params?.eventId;
+    const userId = req.params?.userId;
+    const singleResult = await eventController.getUserRole(eventId, userId);
+    
+    res.status(singleResult.httpStatus).send(singleResult.message);
+  })
+);
 
 router.get(
   "/getRandomEvents/:numOfEvents",
@@ -60,8 +71,8 @@ router.post("/create", authorize, upload.single("file"), async (req, res) => {
     image,
     blurhash,
     //time,
-    tags, 
-    categories
+    tags,
+    categories,
   };
   const createResult = await eventController.createEvent(eventData);
   res.status(createResult.httpStatus).send(createResult.message);
@@ -73,6 +84,17 @@ router.post(
     const getFiltedEvents = await eventController.getFiltedEvents(req.body);
 
     res.status(getFiltedEvents.httpStatus).send(getFiltedEvents.message);
+  })
+);
+
+//enrol for event 
+router.post(
+  "joinEvent/:eventId/:userId",
+  asyncErrorHandler(async (req, res, next) => {
+    const eventId = req.params?.eventId;
+    const userId = req.params?.userId;
+    const singleResult = await eventController.joinEvent(eventId, userId);
+    res.status(singleResult.httpStatus).send(singleResult.message);
   })
 );
 

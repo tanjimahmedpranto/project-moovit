@@ -1,5 +1,6 @@
 const Event = require("../models/eventSchema");
 const { Status, SUCCESS, FAIL } = require("../../status");
+const { UserTypeEnum } = require("../../utilities/enums");
 const mongoose = require("mongoose");
 
 // Get events.
@@ -44,17 +45,6 @@ async function getFiltedEvents(filters) {
     filter["eventName"] = { $regex: filters.eventName, $options: "i" }; // Case-insensitive search for eventName
   }
 
-  // // If city is provided, filter by city
-  // if (filters.city) {
-  //   filter["location.coordinates"] = {
-  //     $near: {
-  //       $geometry: {
-  //         type: "Point",
-  //         coordinates: filters.city.split(",").map(parseFloat), // Converts "24.9384,60.1699" to [24.9384, 60.1699]
-  //       },
-  //     },
-  //   };
-  // }
   // If city is provided, filter by city within 50km range
   if (filters.city) {
     const [longitude, latitude] = filters.city.split(",").map(parseFloat);
@@ -102,9 +92,34 @@ async function getFiltedEvents(filters) {
   return new Status(200, SUCCESS, events);
 }
 
+// Get user role in the event.
+async function getUserRole(eventId, userId) {
+  // Find event by ID
+  await Event.findById(eventId, (err, event) => {
+    if (err) {
+      // Handle error
+      return new Status(500, Error, err.message);
+    }
+
+    if (!event) {
+      // Event not found
+      return new Status(404, Error, err.message);
+    }
+
+    if (event.isUserCreator(userId)) {
+      return new Status(201, SUCCESS, UserTypeEnum.EventCreator);
+    } else if (event.isUserParticipant(userId)) {
+      return new Status(201, SUCCESS, UserTypeEnum.Participant);
+    } else {
+      return new Status(201, SUCCESS, UserTypeEnum.Enthusiast);
+    }
+  });
+}
+
 module.exports = {
   getEvents,
   getRandomEvents,
   getFiltedEvents,
   getSingleEvent,
+  getUserRole,
 };
