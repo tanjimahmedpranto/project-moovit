@@ -206,11 +206,7 @@ const SearchScreen = () => {
                             >
                                 {filtedEventData.length > 0 ? (
                                     filtedEventData.map((event) => (
-                                        
-                                        <Link to={"/event/"+event._id} style={{ textDecoration: 'none' }}>
-                                            <EventCard key={event._id} eventData={event}/>
-                                        </Link>
-                                    
+                                        <EventCard key={event._id} eventData={event}/>
                                     ))
                                 ) : randomEventData.length > 0 ? (
                                     randomEventData.map((event) => (
