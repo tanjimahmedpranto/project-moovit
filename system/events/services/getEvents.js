@@ -10,8 +10,16 @@ async function getEvents() {}
 async function getSingleEvent(id) {
   try {
     const event = await Event.findOne({ _id: id });
-    console.log(event);
-    return new Status(201, SUCCESS, event);
+    // Calculate the number of enrolled participants
+    const enrolledParticipantsCount = event.enrolledParticipants.length;
+
+    // Create a new object with the event data and enrolledParticipantsCount
+    const eventDataWithCount = {
+      ...event.toObject(),
+      enrolledParticipantsCount
+    };
+
+    return new Status(201, SUCCESS, eventDataWithCount); //quick fix
   } catch (e) {
     console.error(e);
     return new Status(500, SUCCESS, {});

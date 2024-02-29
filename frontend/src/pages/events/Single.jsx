@@ -98,6 +98,7 @@ const SingeEventPage = () => {
         try {
             const response = await fetch(fetchURL);
             const responseData = await response.json();
+            console.log(responseData);
             setEventData(responseData);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -171,7 +172,7 @@ const SingeEventPage = () => {
                         </p>
                         <p>
                             <i class="bi bi-people-fill"></i>&nbsp;
-                            {eventData?.enrolledPartipants}/
+                            {eventData?.enrolledParticipantsCount}/
                             {eventData?.maxParticipants}
                         </p>
                         <p>
