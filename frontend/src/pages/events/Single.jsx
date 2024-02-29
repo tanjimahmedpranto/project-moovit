@@ -193,7 +193,7 @@ const SingeEventPage = () => {
                         </Button>
                     )}
                     {userRole === 1 && <p></p>}
-                    {userRole !== 1 && isJoined && (
+                    {userRole !== 1 && userRole !== null && isJoined && (
                         <Button
                             onClick={disjoinEvent}
                             style={{
@@ -206,7 +206,7 @@ const SingeEventPage = () => {
                             Disjoin
                         </Button>
                     )}
-                    {userRole !== 1 && !isJoined && (
+                    {userRole !== 1 && userRole !== null && !isJoined && (
                         <Button
                             onClick={joinEvent}
                             style={{

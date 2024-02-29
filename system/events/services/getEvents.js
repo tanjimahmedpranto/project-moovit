@@ -16,7 +16,7 @@ async function getSingleEvent(id) {
     // Create a new object with the event data and enrolledParticipantsCount
     const eventDataWithCount = {
       ...event.toObject(),
-      enrolledParticipantsCount
+      enrolledParticipantsCount,
     };
 
     return new Status(201, SUCCESS, eventDataWithCount); //quick fix
@@ -76,20 +76,53 @@ async function getFiltedEvents(filters) {
       $in: filters.tags.map((id) => new mongoose.Types.ObjectId(id)),
     };
   }
-  //If date is provided, filter by date
   if (filters.date) {
-    console.log(filters.date)
-    filter["date"] = new Date(filters.date);
+    // Construct the start and end of the day for the provided date
+    const startDate = new Date(filters.date); // Convert the provided date string to a Date object
+    startDate.setHours(0, 0, 0, 0); // Set the time component to the start of the day (midnight) in local time
+    const endDate = new Date(startDate); // Copy the start date object
+    endDate.setDate(startDate.getDate() + 1); // Set the next day
+    endDate.setHours(0, 0, 0, 0); // Set the time to the start of the next day (midnight) in local time
+
+    // Set the filter to find events within the exact date range
+    filter["date"] = {
+      $gte: startDate, // Greater than or equal to the start of the day
+      $lt: endDate, // Less than the start of the next day
+    };
   }
 
-  //   If fromTime and toTime are provided, filter by time
+  // If fromTime and toTime are provided, filter by time
   if (filters.fromTime && filters.toTime) {
+    const fromHours = parseInt(filters.fromTime.split(":")[0]);
+    const toHours = parseInt(filters.toTime.split(":")[0]);
+
+    // Get the local time offset dynamically based on the provided fromTime
+    const localTimeOffset = new Date().getTimezoneOffset() / 60; // in hours
+    const fromHoursUTC = fromHours + localTimeOffset; // Subtract localTimeOffset hours to convert from local time to UTC
+    const toHoursUTC = toHours + localTimeOffset; // Subtract localTimeOffset hours to convert from local time to UTC
+
     filter["$expr"] = {
       $and: [
         {
-          $gte: [{ $hour: "$date" }, parseInt(filters.fromTime.split(":")[0])],
+          $gte: [
+            {
+              $hour: {
+                $add: ["$date", { $multiply: [1000 * 60 * 60, fromHoursUTC] }],
+              },
+            },
+            fromHoursUTC,
+          ],
         },
-        { $lte: [{ $hour: "$date" }, parseInt(filters.toTime.split(":")[0])] },
+        {
+          $lte: [
+            {
+              $hour: {
+                $add: ["$date", { $multiply: [1000 * 60 * 60, toHoursUTC] }],
+              },
+            },
+            toHoursUTC,
+          ],
+        },
       ],
     };
   }
@@ -107,20 +140,20 @@ async function getUserRole(eventId, userId) {
 
     if (!event) {
       // Event not found
-      return new Status(404, 'Error', 'Event not found');
+      return new Status(404, "Error", "Event not found");
     }
 
     if (event.isUserCreator(userId)) {
-      return new Status(200, 'Success', UserTypeEnum.EventCreator);
+      return new Status(200, "Success", UserTypeEnum.EventCreator);
     } else if (event.isUserParticipant(userId)) {
-      return new Status(200, 'Success', UserTypeEnum.Participant);
+      return new Status(200, "Success", UserTypeEnum.Participant);
     } else {
-      return new Status(200, 'Success', UserTypeEnum.Enthusiast);
+      return new Status(200, "Success", UserTypeEnum.Enthusiast);
     }
   } catch (err) {
     // Handle error
     console.error(err);
-    return new Status(500, 'Error', err.message);
+    return new Status(500, "Error", err.message);
   }
 }
 

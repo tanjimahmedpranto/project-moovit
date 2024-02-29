@@ -127,7 +127,7 @@ const Filters = ({ onFiltersChange }) => {
             <Form.Label>Date</Form.Label>
             <Form.Control
                 type="date"
-                value={date}
+                value={formatDate(date)}
                 onChange={handleDateChange}
             />
             <Form.Label>From Time</Form.Label>
@@ -164,3 +164,14 @@ const Filters = ({ onFiltersChange }) => {
 };
 
 export default Filters;
+
+// Function to format date
+const formatDate = (dateString) => {
+    if (!dateString) return ""; // Handle case when dateString is empty or undefined
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-based
+    const year = date.getFullYear();
+
+    return `${year}-${month}-${day}`;
+};
