@@ -35,8 +35,9 @@ const SingeEventPage = () => {
         try {
             const response = await fetch(fetchURL);
             const responseData = await response.json();
-            console.log(responseData);
-            setUserRole(responseData); 
+            if (responseData === 2) setIsJoined(true);
+            if (responseData === 3) setIsJoined(false);
+            setUserRole(responseData);
         } catch (error) {
             console.error("Error fetching user role:", error);
         }
@@ -179,8 +180,15 @@ const SingeEventPage = () => {
                         </p>
                     </div>
                     <br />
+                    {userRole === null && (
+                        <Button
+                            onClick={() => (window.location.href = "/login")}
+                        >
+                            Sign in to join
+                        </Button>
+                    )}
                     {userRole === 1 && <p></p>}
-                    {(userRole === 2 || isJoined) && (
+                    {isJoined && (
                         <Button
                             onClick={disjoinEvent}
                             style={{
@@ -193,7 +201,7 @@ const SingeEventPage = () => {
                             Disjoin
                         </Button>
                     )}
-                    {userRole === 3 && !isJoined && (
+                    {!isJoined && (
                         <Button
                             onClick={joinEvent}
                             style={{

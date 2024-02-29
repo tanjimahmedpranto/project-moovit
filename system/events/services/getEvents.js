@@ -101,7 +101,6 @@ async function getUserRole(eventId, userId) {
       return new Status(404, 'Error', 'Event not found');
     }
 
-    console.log("getUserRole service");
     if (event.isUserCreator(userId)) {
       return new Status(200, 'Success', UserTypeEnum.EventCreator);
     } else if (event.isUserParticipant(userId)) {

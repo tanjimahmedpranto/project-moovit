@@ -52,7 +52,7 @@ const eventSchema = new mongoose.Schema(
     },
     imageURL: {
       type: String,
-      required: true,
+      required: false, //fix later
     },
     blurhash: {
       type: String,
