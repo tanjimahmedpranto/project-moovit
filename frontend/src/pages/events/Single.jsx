@@ -13,6 +13,7 @@ const SingeEventPage = () => {
     const [userRole, setUserRole] = useState(null);
     const [isJoined, setIsJoined] = useState(false);
     const [userId, setUserId] = useState(null);
+    const [enrolledParticipantsCount, setenrolledParticipantsCount] = useState(0);
 
     function getUserFromJWT() {
         const token = Cookies.get("jwt"); // Retrieve the JWT from a cookie
@@ -60,6 +61,7 @@ const SingeEventPage = () => {
 
         if (response.ok) {
             setIsJoined(true);
+            setenrolledParticipantsCount(enrolledParticipantsCount + 1);
             console.log("Event joined successfully");
         } else {
             console.error("Failed to join event");
@@ -83,6 +85,7 @@ const SingeEventPage = () => {
 
             if (response.ok) {
                 setIsJoined(false);
+                setenrolledParticipantsCount(enrolledParticipantsCount - 1);
                 console.log("Event disjoined successfully");
             } else {
                 console.error("Failed to disjoin event");
@@ -100,6 +103,7 @@ const SingeEventPage = () => {
             const responseData = await response.json();
             console.log(responseData);
             setEventData(responseData);
+            setenrolledParticipantsCount(responseData.enrolledParticipantsCount);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -172,7 +176,7 @@ const SingeEventPage = () => {
                         </p>
                         <p>
                             <i class="bi bi-people-fill"></i>&nbsp;
-                            {eventData?.enrolledParticipantsCount}/
+                            {enrolledParticipantsCount}/
                             {eventData?.maxParticipants}
                         </p>
                         <p>
@@ -189,7 +193,7 @@ const SingeEventPage = () => {
                         </Button>
                     )}
                     {userRole === 1 && <p></p>}
-                    {isJoined && (
+                    {userRole !== 1 && isJoined && (
                         <Button
                             onClick={disjoinEvent}
                             style={{
@@ -202,7 +206,7 @@ const SingeEventPage = () => {
                             Disjoin
                         </Button>
                     )}
-                    {!isJoined && (
+                    {userRole !== 1 && !isJoined && (
                         <Button
                             onClick={joinEvent}
                             style={{

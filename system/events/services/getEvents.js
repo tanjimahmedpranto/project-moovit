@@ -78,6 +78,7 @@ async function getFiltedEvents(filters) {
   }
   //If date is provided, filter by date
   if (filters.date) {
+    console.log(filters.date)
     filter["date"] = new Date(filters.date);
   }
 
