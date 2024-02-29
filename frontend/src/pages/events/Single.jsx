@@ -11,6 +11,8 @@ const SingeEventPage = () => {
     const [eventData, setEventData] = useState([]);
     const [displayDate, setDisplayDate] = useState("");
     const [userRole, setUserRole] = useState(null);
+    const [isJoined, setIsJoined] = useState(false);
+    const [userId, setUserId] = useState(null);
 
     function getUserFromJWT() {
         const token = Cookies.get("jwt"); // Retrieve the JWT from a cookie
@@ -20,6 +22,7 @@ const SingeEventPage = () => {
 
         try {
             const user = jwtDecode(token); // Decode the JWT payload
+            setUserId(user.subject);
             return user; // This will contain user details from the payload
         } catch (error) {
             console.error("Failed to decode JWT", error);
@@ -32,9 +35,59 @@ const SingeEventPage = () => {
         try {
             const response = await fetch(fetchURL);
             const responseData = await response.json();
-            setUserRole(responseData.userRole); // Assuming the API returns { userRole: X }
+            console.log(responseData);
+            setUserRole(responseData); 
         } catch (error) {
             console.error("Error fetching user role:", error);
+        }
+    };
+
+    const joinEvent = async () => {
+        const requestBody = JSON.stringify({
+            eventId: id,
+            userId: userId,
+        });
+        console.log(requestBody);
+
+        const response = await fetch(`${EVENTSSERVICE}/joinEvent`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: requestBody,
+        });
+
+        if (response.ok) {
+            setIsJoined(true);
+            console.log("Event joined successfully");
+        } else {
+            console.error("Failed to join event");
+        }
+    };
+
+    const disjoinEvent = async () => {
+        const requestBody = JSON.stringify({
+            eventId: id,
+            userId: userId,
+        });
+
+        try {
+            const response = await fetch(`${EVENTSSERVICE}/disjoinEvent`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: requestBody,
+            });
+
+            if (response.ok) {
+                setIsJoined(false);
+                console.log("Event disjoined successfully");
+            } else {
+                console.error("Failed to disjoin event");
+            }
+        } catch (error) {
+            console.error("Error disjoining event:", error);
         }
     };
 
@@ -55,7 +108,7 @@ const SingeEventPage = () => {
         const user = getUserFromJWT();
         if (user) {
             // Assuming the user's ID is stored in the decoded JWT as `userId`
-            checkUserRole(user.userId);
+            checkUserRole(user.subject);
         }
     }, []);
 
@@ -126,20 +179,10 @@ const SingeEventPage = () => {
                         </p>
                     </div>
                     <br />
-                    {userRole === null && (
+                    {userRole === 1 && <p></p>}
+                    {(userRole === 2 || isJoined) && (
                         <Button
-                            style={{
-                                background: "#30306d",
-                                color: "#ffffff",
-                                border: "none",
-                                borderRadius: "20px",
-                            }}
-                        >
-                            Sign in to join
-                        </Button>
-                    )}
-                    {userRole === 2 && (
-                        <Button
+                            onClick={disjoinEvent}
                             style={{
                                 background: "#d9534f",
                                 color: "#ffffff",
@@ -150,8 +193,9 @@ const SingeEventPage = () => {
                             Disjoin
                         </Button>
                     )}
-                    {userRole === 3 && (
+                    {userRole === 3 && !isJoined && (
                         <Button
+                            onClick={joinEvent}
                             style={{
                                 background: "#5cb85c",
                                 color: "#ffffff",

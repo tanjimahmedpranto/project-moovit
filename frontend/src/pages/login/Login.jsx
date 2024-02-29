@@ -39,7 +39,7 @@ export default function Login() {
                 });
 
                 const data = await response.json();
-
+                console.log(data);
                 if (response.ok) {
                     // Assuming the JWT is in data.token
                     Cookies.set("jwt", data.token); // Save the JWT in a cookie

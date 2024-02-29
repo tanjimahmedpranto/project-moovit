@@ -6,8 +6,6 @@ const editUserLogic = require('./services/editUser.js');
 
 function registerUser(username, email, password){
     return registerLogic.registerUser(username, email, password);
-function registerUser(username, password, email){
-    return registerLogic.registerUser(username, password, email);
 }
 
 async function login(email, password){

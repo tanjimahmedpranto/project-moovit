@@ -3,8 +3,6 @@ const Registration = require("../models/loginSchema");
 const { SUCCESS, FAIL, USER_EXISTS } = require("../../status");
 const { Status } = require("../../status");
 const { isNullOrUndefined } = require("../../utilities/validationUtils");
-const { isNullOrUndefined } = require("../../utilities/validationUtils");
-
 const USERNAME_MAX_LENGTH = 20;
 const USERNAME_MIN_LENGTH = 5;
 const EMAIL_MAX_LENGTH = 50;
@@ -12,7 +10,6 @@ const EMAIL_MIN_LENGTH = 5;
 
 // Register user.
 async function registerUser(username, email, password) {
-async function registerUser(username, password, email) {
   // Check if both username and password value is given
   if (isNullOrUndefined(username, password, email)) {
     return new Status(400, FAIL, "username, email or password can not be null");
@@ -43,8 +40,7 @@ async function registerUser(username, password, email) {
   const registration = new Registration({
     username: username.trim(),
     email: email.trim(),
-    password: hashedPassword,
-    email: email
+    password: hashedPassword
   });
 
   // Attempt to save new user to database.

@@ -36,7 +36,6 @@ async function getRandomEvents(eventQuantity) {
 }
 
 async function getFiltedEvents(filters) {
-  console.log(filters);
   // Construct the filter object based on the provided filters
   let filter = {};
 
@@ -94,26 +93,27 @@ async function getFiltedEvents(filters) {
 
 // Get user role in the event.
 async function getUserRole(eventId, userId) {
-  // Find event by ID
-  await Event.findById(eventId, (err, event) => {
-    if (err) {
-      // Handle error
-      return new Status(500, Error, err.message);
-    }
+  try {
+    const event = await Event.findById(eventId); // Use await to get the result
 
     if (!event) {
       // Event not found
-      return new Status(404, Error, err.message);
+      return new Status(404, 'Error', 'Event not found');
     }
 
+    console.log("getUserRole service");
     if (event.isUserCreator(userId)) {
-      return new Status(201, SUCCESS, UserTypeEnum.EventCreator);
+      return new Status(200, 'Success', UserTypeEnum.EventCreator);
     } else if (event.isUserParticipant(userId)) {
-      return new Status(201, SUCCESS, UserTypeEnum.Participant);
+      return new Status(200, 'Success', UserTypeEnum.Participant);
     } else {
-      return new Status(201, SUCCESS, UserTypeEnum.Enthusiast);
+      return new Status(200, 'Success', UserTypeEnum.Enthusiast);
     }
-  });
+  } catch (err) {
+    // Handle error
+    console.error(err);
+    return new Status(500, 'Error', err.message);
+  }
 }
 
 module.exports = {

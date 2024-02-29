@@ -101,41 +101,38 @@ function createISOdate(time, date) {
 }
 
 // Get user role in the event.
-async function joinEvent(eventId, userId) {
+async function joinEvent(data) {
   // Find event by ID
-  await Event.findById(eventId, (err, event) => {
-    if (err) {
-      // Handle error
-      return new Status(500, FAIL, err.message);
-    }
-
-    if (!event) {
-      // Event not found
-      return new Status(500, FAIL, "Event not found!!");
-    }
-
-    // Enroll user in the event
-    const userEnrolled = event.enrollUser(userId);
-    if (userEnrolled) {
-      // Save the updated event
-      event.save((err) => {
-        if (err) {
-          return new Status(
-            500,
-            FAIL,
-            err.message
-          );
-        }
-        return new Status(201, SUCCESS, "Joined the event successfully!!");
-      });
-    } else {
-      return new Status(
-        500,
-        FAIL,
-        "User is already enrolled or is the creator of the event"
-      );
-    }
-  });
+  const event = await Event.findById(data.eventId);
+  if (!event) {
+    // Event not found
+    return new Status(500, FAIL, "Event not found!!");
+  }
+  // Check if the maximum participants limit has been reached
+  if (
+    event.maxParticipants !== undefined &&
+    event.enrolledParticipants.length >= event.maxParticipants
+  ) {
+    return new Status(
+      500,
+      FAIL,
+      "Maximum participants limit reached for this event!!"
+    );
+  }
+  // Enroll user in the event
+  const userEnrolled = event.enrollUser(data.userId);
+  if (userEnrolled) {
+    // Save the updated event
+    console.log("Save the updated event");
+    await event.save();
+    return new Status(201, SUCCESS, "Joined the event successfully!!");
+  } else {
+    return new Status(
+      500,
+      FAIL,
+      "User is already enrolled or is the creator of the event"
+    );
+  }
 }
 
 module.exports = { createEvent, joinEvent };

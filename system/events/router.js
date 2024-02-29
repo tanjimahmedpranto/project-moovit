@@ -20,13 +20,22 @@ router.get("/:id", async (req, res) => {
 });
 //get user role in the event
 router.get(
-  "getUserRole/:eventId/:userId",
+  "/getUserRole/:eventId/:userId",
   asyncErrorHandler(async (req, res, next) => {
     const eventId = req.params?.eventId;
     const userId = req.params?.userId;
     const singleResult = await eventController.getUserRole(eventId, userId);
     
-    res.status(singleResult.httpStatus).send(singleResult.message);
+    // Assuming singleResult.httpStatus is a valid HTTP status code
+    // and singleResult.message is the payload you want to send back
+    // Ensure the payload is an object for res.json()
+    if (typeof singleResult.message === 'string') {
+      // If the message is a string, you might want to wrap it in an object
+      res.status(singleResult.httpStatus).json({ message: singleResult.message });
+    } else {
+      // If singleResult.message is already an object
+      res.status(singleResult.httpStatus).json(singleResult.message);
+    }
   })
 );
 
@@ -89,11 +98,20 @@ router.post(
 
 //enrol for event 
 router.post(
-  "joinEvent/:eventId/:userId",
+  "/joinEvent",
   asyncErrorHandler(async (req, res, next) => {
-    const eventId = req.params?.eventId;
-    const userId = req.params?.userId;
-    const singleResult = await eventController.joinEvent(eventId, userId);
+    const singleResult = await eventController.joinEvent(req.body);
+    
+    res.status(singleResult.httpStatus).send(singleResult.message);
+  })
+);
+
+//enrol for event 
+router.post(
+  "/disjoinEvent",
+  asyncErrorHandler(async (req, res, next) => {
+    const singleResult = await eventController.disjoinEvent(req.body);
+    
     res.status(singleResult.httpStatus).send(singleResult.message);
   })
 );
