@@ -127,9 +127,10 @@ const Filters = ({ onFiltersChange }) => {
             <Form.Label>Date</Form.Label>
             <Form.Control
                 type="date"
-                value={formatDate(date)}
+                value={date}
                 onChange={handleDateChange}
             />
+            <date-input date="{{date}}" timezone="[[timezone]]"></date-input>
             <Form.Label>From Time</Form.Label>
             <TimePicker
                 className="form-control"
@@ -164,14 +165,3 @@ const Filters = ({ onFiltersChange }) => {
 };
 
 export default Filters;
-
-// Function to format date
-const formatDate = (dateString) => {
-    if (!dateString) return ""; // Handle case when dateString is empty or undefined
-    const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-based
-    const year = date.getFullYear();
-
-    return `${year}-${month}-${day}`;
-};
