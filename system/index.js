@@ -20,7 +20,7 @@ const port = 8080;
 app.use(express.json())
 app.use(cors());    
 app.use(express.urlencoded({extended: true}))
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.use(express.static(path.join(__dirname, './build')));
 
 // Database setup.
 mongoose.connect(dbURI)
