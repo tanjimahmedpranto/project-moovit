@@ -13,7 +13,11 @@ router.post(
     const password = req.body.password;
     const email = req.body.email;
 
-    const statusObject = await userControlller.registerUser(username, email, password);
+    const statusObject = await userControlller.registerUser(
+      username,
+      email,
+      password
+    );
     res.status(statusObject.httpStatus).send({ message: statusObject.message });
   })
 );
@@ -24,7 +28,7 @@ router.post("/login", async (req, res) => {
   const password = req.body.password;
 
   const statusObject = await userControlller.login(email, password);
-  res.status(statusObject.httpStatus).send({ message: statusObject.message });
+  res.status(statusObject.httpStatus).send({ token: statusObject.message });
 });
 
 // Logout user.

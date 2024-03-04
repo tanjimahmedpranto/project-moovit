@@ -39,7 +39,7 @@ export default function Login() {
                 });
 
                 const data = await response.json();
-
+                console.log(data);
                 if (response.ok) {
                     // Assuming the JWT is in data.token
                     Cookies.set("jwt", data.token); // Save the JWT in a cookie
@@ -69,7 +69,7 @@ export default function Login() {
             <Container>
                 <Card>
                     <Card.Body>
-                        <div className="mb-3 mt-md-4">
+                        <div className="mb-3 mt-md-4 form-width-control">
                             <div>
                                 <BackButton navigateTo="/" /> <br />
                             </div>
@@ -145,7 +145,16 @@ export default function Login() {
                                     ></Form.Group>
 
                                     <div className="d-grid">
-                                        <Button variant="primary" type="submit">
+                                        <Button
+                                            style={{
+                                                color: "white",
+                                                backgroundColor: "#30306d",
+                                                borderRadius: "10px",
+                                                border: "none",
+                                            }}
+                                            variant="primary"
+                                            type="submit"
+                                        >
                                             Sign in
                                         </Button>
                                     </div>

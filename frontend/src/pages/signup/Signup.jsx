@@ -95,6 +95,7 @@ export default function Signup() {
             console.log("success");
         } else {
             console.log("error code: " + response.status);
+            console.log(response.message);
         }
     };
 
@@ -112,7 +113,7 @@ export default function Signup() {
             <Container>
                 <Card>
                     <Card.Body>
-                        <div className="mb-3 mt-md-4">
+                        <div className="mb-3 mt-md-4 form-width-control">
                             <div>
                                 <BackButton navigateTo="/login" /> <br />
                             </div>
@@ -232,7 +233,16 @@ export default function Signup() {
                                     ></Form.Group>
 
                                     <div className="d-grid">
-                                        <Button variant="primary" type="submit">
+                                        <Button
+                                            style={{
+                                                color: "white",
+                                                backgroundColor: "#30306d",
+                                                borderRadius: "10px",
+                                                border: "none",
+                                            }}
+                                            variant="primary"
+                                            type="submit"
+                                        >
                                             Create Account
                                         </Button>
                                     </div>

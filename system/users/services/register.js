@@ -3,7 +3,6 @@ const Registration = require("../models/loginSchema");
 const { SUCCESS, FAIL, USER_EXISTS } = require("../../status");
 const { Status } = require("../../status");
 const { isNullOrUndefined } = require("../../utilities/validationUtils");
-
 const USERNAME_MAX_LENGTH = 20;
 const USERNAME_MIN_LENGTH = 5;
 const EMAIL_MAX_LENGTH = 50;
@@ -41,7 +40,7 @@ async function registerUser(username, email, password) {
   const registration = new Registration({
     username: username.trim(),
     email: email.trim(),
-    password: hashedPassword,
+    password: hashedPassword
   });
 
   // Attempt to save new user to database.
