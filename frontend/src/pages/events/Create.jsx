@@ -80,7 +80,7 @@ const createEvent = async (e, data) => {
     }
     if (response.status === 201) {
         // Navigate home if successful.
-        //window.location.href = "/";
+        window.location.href = "/";
     } else {
         console.log("error code: " + response.status);
     }
@@ -240,7 +240,7 @@ const CreateEventPage = () => {
                     <Select
                         isMulti
                         options={categoriesData.map((category) => ({
-                            value: category._id,
+                            value: category.categoryName,
                             label: category.categoryName,
                         }))}
                         getOptionLabel={(option) => option.label}
@@ -260,7 +260,7 @@ const CreateEventPage = () => {
                     <Select
                         isMulti
                         options={tagsData.map((tag) => ({
-                            value: tag._id,
+                            value: tag.tagName,
                             label: tag.tagName,
                         }))}
                         getOptionLabel={(option) => option.label}

@@ -54,13 +54,14 @@ router.post("/create", authorize, upload.single("file"), async (req, res) => {
   const {
     eventName,
     description,
+    host,
     date,
     maxParticipants,
     location,
     locationName,
-    host,
     duration,
     blurhash,
+    time,
   } = req.body;
   const creator = res.locals.user;
   const image = req.file;
@@ -79,7 +80,7 @@ router.post("/create", authorize, upload.single("file"), async (req, res) => {
     creator,
     image,
     blurhash,
-    //time,
+    time,
     tags,
     categories,
   };

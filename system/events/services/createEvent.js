@@ -94,6 +94,7 @@ const escapeHtml = (input) =>
 
 // Combines date and military time.
 function createISOdate(time, date) {
+  console.log(time)
   const hours = time.substring(0, 2);
   const minutes = time.substring(2, 4);
   const ISOdate = date + "T" + hours + ":" + minutes + ":00Z";

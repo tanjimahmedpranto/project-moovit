@@ -27,6 +27,7 @@ async function createTag(tagName, creator) {
   }
 
   // If no error, return success status.
+  console.log("Tag created:", tagName);
   return new Status(201, SUCCESS, "new tag created");
 }
 

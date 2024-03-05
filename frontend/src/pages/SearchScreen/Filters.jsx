@@ -115,7 +115,7 @@ const Filters = ({ onFiltersChange }) => {
                 <Select
                     isMulti
                     options={categoriesData.map((category) => ({
-                        value: category._id,
+                        value: category.categoryName,
                         label: category.categoryName,
                     }))}
                     getOptionLabel={(option) => option.label}
@@ -153,7 +153,7 @@ const Filters = ({ onFiltersChange }) => {
             <Select
                 isMulti
                 options={tagsData.map((tag) => ({
-                    value: tag._id,
+                    value: tag.tagName,
                     label: tag.tagName,
                 }))}
                 getOptionLabel={(option) => option.label}

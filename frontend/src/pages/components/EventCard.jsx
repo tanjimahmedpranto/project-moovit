@@ -30,11 +30,11 @@ const EventCard = ({eventData}) => {
     // Get tags and categories.
     if ( labels === "" )  {
         const tagsElements = eventData.tags?.map(
-            (tag) => <li className="event-tag" key={tag}>{tag.substring(0, (Math.floor(Math.random() * 5) + 5))}</li>
+            (tag) => <li className="event-tag" key={tag}>{tag}</li>
         
         )
-        const categoriesElements = eventData.tags?.map(
-            (category) => <li className="event-category" key={category}>{category.substring(0, 6)}</li>
+        const categoriesElements = eventData.categories?.map(
+            (category) => <li className="event-category" key={category}>{category}</li>
         )
         const labelsElements = [...(categoriesElements ?? []), ...(tagsElements ?? [])];
         if ( labelsElements.length > 0 ) {

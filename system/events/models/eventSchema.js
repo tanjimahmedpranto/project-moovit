@@ -64,13 +64,13 @@ const eventSchema = new mongoose.Schema(
     },
     tags: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: "Tag",
       },
     ],
     categories: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: "Category",
       },
     ],
