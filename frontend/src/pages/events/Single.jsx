@@ -138,12 +138,10 @@ const SingeEventPage = () => {
             style={{
                 marginTop: "30px",
                 marginBottom: "20px",
-                marginLeft: "10px",
-                marginRight: "10px",
+                marginLeft: "25px",
+                marginRight: "25px",
             }}
         >
-            <Card>
-                <Card.Body>
                     <div>
                         <BackButton navigateTo="/" /> <br />
                         <div
@@ -219,8 +217,6 @@ const SingeEventPage = () => {
                             Join Event
                         </Button>
                     )}
-                </Card.Body>
-            </Card>
         </div>
     );
 };

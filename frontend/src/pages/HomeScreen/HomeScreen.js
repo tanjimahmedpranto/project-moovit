@@ -70,7 +70,6 @@ const HomeScreen = () => {
                     </Link>
                 </div>
                 <br />
-                <Container fluid>
                     <div
                         className="d-flex searchEvent button"
                         style={{
@@ -211,7 +210,6 @@ const HomeScreen = () => {
                     </div>
                     {/* You can place additional divs here for other components that might align left or right */}
                 </Container>
-            </Container>
         </div>
     );
 };
