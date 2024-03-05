@@ -68,12 +68,12 @@ async function getFiltedEvents(filters) {
 
   if (filters.categories && filters.categories.length > 0) {
     filter["categories"] = {
-      $in: filters.categories.map((id) => new mongoose.Types.ObjectId(id)),
+      $in: filters.categories // filters.categories is an array of category names
     };
   }
   if (filters.tags && filters.tags.length > 0) {
     filter["tags"] = {
-      $in: filters.tags.map((id) => new mongoose.Types.ObjectId(id)),
+      $in: filters.tags // filters.tags is an array of category names
     };
   }
   if (filters.date) {
