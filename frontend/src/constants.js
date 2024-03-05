@@ -1,4 +1,7 @@
-export const USERSSERVICE = "http://localhost:8080/api/users";
-export const EVENTSSERVICE = "http://localhost:8080/api/events";
-export const CATEGORIESSERVICE = "http://localhost:8080/api/categories";
-export const TAGSSERVICE = "http://localhost:8080/api/tags";
+const baseURL = "http://localhost"
+const port = "8080"
+
+export const USERSSERVICE =      baseURL+":"+port+"/api/users";
+export const EVENTSSERVICE =     baseURL+":"+port+"/api/events";
+export const CATEGORIESSERVICE = baseURL+":"+port+"/api/categories";
+export const TAGSSERVICE =       baseURL+":"+port+"/api/tags";
