@@ -6,6 +6,11 @@ import { useResolvedPath } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 export default function Profile() {
+    const token = Cookies.get("jwt");
+    if (!token) {
+        window.location = "/login";
+    }
+    
     const [user, setUser] = useState({
         username: "",
         email: "",
@@ -13,6 +18,7 @@ export default function Profile() {
     });
     const [isLoggedIn, setIsLoggedIn] = useState(true);
 
+    
     useEffect(() => {
         const token = Cookies.get("jwt");
 

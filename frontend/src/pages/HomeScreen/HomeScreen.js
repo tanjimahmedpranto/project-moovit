@@ -10,18 +10,6 @@ import { jwtDecode } from "jwt-decode";
 
 const HomeScreen = () => {
     const [randomEventData, setRandomEventData] = useState([]);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    function checkUserAuthentication() {
-        const token = Cookies.get("jwt");
-        if (token) {
-            // Decode JWT token to check if user is logged in
-            const user = jwtDecode(token);
-            if (user) {
-                setIsLoggedIn(true);
-            }
-        }
-    }
 
     const getRandomEventData = async () => {
         const fetchURL = EVENTSSERVICE + "/getRandomEvents/" + 5; //it will fetch 5 random data
@@ -39,30 +27,15 @@ const HomeScreen = () => {
         // Clear JWT token from cookie
         Cookies.remove("jwt");
         // Update state to reflect user is logged out
-        setIsLoggedIn(false);
-        // Perform any other logout related operations, like redirecting to the login page or calling the logout API
-        // You can call the logout API here by adding code to send the token in the header for authorization purpose
-        // Example code to call logout API:
-        /*
-        fetch("/api/users/logout", {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-        .then(response => {
-            // Handle response
-        })
-        .catch(error => {
-            console.error("Error logging out:", error);
-        });
-        */
+        
     };
 
     useEffect(() => {
         console.log(randomEventData.length);
-        if (randomEventData.length === 0) getRandomEventData();
-        checkUserAuthentication();
+        if (randomEventData.length === 0) 
+            getRandomEventData();
+
+        
     }, []);
 
     return (
@@ -74,81 +47,16 @@ const HomeScreen = () => {
             }}
         >
             <Container>
-                <div
-                    className="logoAndSignIn"
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                    }}
-                >
-                    <img
-                        src={logo}
-                        width={100}
-                        height={100}
-                        className=""
-                        alt="muuvitLogo"
-                    />
-                    {/* <Link to="/login">
-                        <Button
-                            variant="primary"
-                            style={{
-                                color: "white",
-                                backgroundColor: "#30306d",
-                                borderRadius: "10px",
-                                marginTop: "5px",
-                                marginBottom: "5px",
-                                marginLeft: "5px",
-                                marginRight: "5px",
-                                width: "100px",
-                                border: "none",
-                            }}
-                        >
-                            Sign In
-                        </Button>
-                    </Link> */}
-
-                    {isLoggedIn ? (
-                        <Link to="/profile">
-                            <Button
-                                variant="primary"
-                                style={{
-                                    color: "white",
-                                    backgroundColor: "#30306d",
-                                    borderRadius: "10px",
-                                    marginTop: "5px",
-                                    marginBottom: "5px",
-                                    marginLeft: "5px",
-                                    marginRight: "5px",
-                                    width: "100px",
-                                    border: "none",
-                                }}
-                            >
-                                Profile
-                            </Button>
-                        </Link>
-                    ) : (
-                        <Link to="/login">
-                            <Button
-                                variant="primary"
-                                style={{
-                                    color: "white",
-                                    backgroundColor: "#30306d",
-                                    borderRadius: "10px",
-                                    marginTop: "5px",
-                                    marginBottom: "5px",
-                                    marginLeft: "5px",
-                                    marginRight: "5px",
-                                    width: "100px",
-                                    border: "none",
-                                }}
-                            >
-                                Sign In
-                            </Button>
-                        </Link>
-                    )}
+            <div className="logo-container">
+                        <img
+                            src={logo}
+                            width={100}
+                            height={100}
+                            className=""
+                            alt="muuvitLogo"
+                        />
+                    
                 </div>
-                <br />
                 <div
                     className="d-flex searchEvent button"
                     style={{
