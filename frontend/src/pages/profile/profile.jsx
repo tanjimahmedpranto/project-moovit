@@ -68,9 +68,22 @@ export default function Profile() {
                 <h1>Name: {user.username}</h1>
                 <h2>Email Address: {user.email}</h2>
                 <h3>Join Date: {user.createdAt}</h3>
-                <button onClick={handleLogout}>Logout</button>
+                <button
+                    style={{
+                        color: "white",
+                        backgroundColor: "#30306d",
+                        borderRadius: "10px",
+                        marginTop: "5px",
+                        marginBottom: "5px",
+                        width: "50%",
+                        border: "none",
+                        padding: "10px",
+                    }}
+                    onClick={handleLogout}
+                >
+                    Logout
+                </button>
             </div>
-            
         </div>
     );
 }
