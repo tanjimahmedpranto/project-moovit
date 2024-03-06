@@ -109,23 +109,24 @@ const HomeScreen = () => {
                     </Link> */}
 
                     {isLoggedIn ? (
-                        <Button
-                            variant="primary"
-                            style={{
-                                color: "white",
-                                backgroundColor: "#30306d",
-                                borderRadius: "10px",
-                                marginTop: "5px",
-                                marginBottom: "5px",
-                                marginLeft: "5px",
-                                marginRight: "5px",
-                                width: "100px",
-                                border: "none",
-                            }}
-                            onClick={handleLogout}
-                        >
-                            Logout
-                        </Button>
+                        <Link to="/profile">
+                            <Button
+                                variant="primary"
+                                style={{
+                                    color: "white",
+                                    backgroundColor: "#30306d",
+                                    borderRadius: "10px",
+                                    marginTop: "5px",
+                                    marginBottom: "5px",
+                                    marginLeft: "5px",
+                                    marginRight: "5px",
+                                    width: "100px",
+                                    border: "none",
+                                }}
+                            >
+                                Profile
+                            </Button>
+                        </Link>
                     ) : (
                         <Link to="/login">
                             <Button
