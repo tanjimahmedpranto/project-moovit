@@ -5,9 +5,23 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { EVENTSSERVICE } from "../../constants";
 import EventCard from "../components/EventCard";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 const HomeScreen = () => {
     const [randomEventData, setRandomEventData] = useState([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    function checkUserAuthentication() {
+        const token = Cookies.get("jwt");
+        if (token) {
+            // Decode JWT token to check if user is logged in
+            const user = jwtDecode(token);
+            if (user) {
+                setIsLoggedIn(true);
+            }
+        }
+    }
 
     const getRandomEventData = async () => {
         const fetchURL = EVENTSSERVICE + "/getRandomEvents/" + 5; //it will fetch 5 random data
@@ -21,9 +35,34 @@ const HomeScreen = () => {
         }
     };
 
+    const handleLogout = () => {
+        // Clear JWT token from cookie
+        Cookies.remove("jwt");
+        // Update state to reflect user is logged out
+        setIsLoggedIn(false);
+        // Perform any other logout related operations, like redirecting to the login page or calling the logout API
+        // You can call the logout API here by adding code to send the token in the header for authorization purpose
+        // Example code to call logout API:
+        /*
+        fetch("/api/users/logout", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            // Handle response
+        })
+        .catch(error => {
+            console.error("Error logging out:", error);
+        });
+        */
+    };
+
     useEffect(() => {
         console.log(randomEventData.length);
         if (randomEventData.length === 0) getRandomEventData();
+        checkUserAuthentication();
     }, []);
 
     return (
@@ -50,7 +89,7 @@ const HomeScreen = () => {
                         className=""
                         alt="muuvitLogo"
                     />
-                    <Link to="/login">
+                    {/* <Link to="/login">
                         <Button
                             variant="primary"
                             style={{
@@ -67,113 +106,149 @@ const HomeScreen = () => {
                         >
                             Sign In
                         </Button>
-                    </Link>
+                    </Link> */}
+
+                    {isLoggedIn ? (
+                        <Button
+                            variant="primary"
+                            style={{
+                                color: "white",
+                                backgroundColor: "#30306d",
+                                borderRadius: "10px",
+                                marginTop: "5px",
+                                marginBottom: "5px",
+                                marginLeft: "5px",
+                                marginRight: "5px",
+                                width: "100px",
+                                border: "none",
+                            }}
+                            onClick={handleLogout}
+                        >
+                            Logout
+                        </Button>
+                    ) : (
+                        <Link to="/login">
+                            <Button
+                                variant="primary"
+                                style={{
+                                    color: "white",
+                                    backgroundColor: "#30306d",
+                                    borderRadius: "10px",
+                                    marginTop: "5px",
+                                    marginBottom: "5px",
+                                    marginLeft: "5px",
+                                    marginRight: "5px",
+                                    width: "100px",
+                                    border: "none",
+                                }}
+                            >
+                                Sign In
+                            </Button>
+                        </Link>
+                    )}
                 </div>
                 <br />
-                    <div
-                        className="d-flex searchEvent button"
-                        style={{
-                            alignItems: "center",
-                            flexDirection: "column",
-                        }}
-                    >
-                        <Link to="/events/search" style={{ width: "100%" }}>
-                            <Button
-                                variant="primary"
+                <div
+                    className="d-flex searchEvent button"
+                    style={{
+                        alignItems: "center",
+                        flexDirection: "column",
+                    }}
+                >
+                    <Link to="/events/search" style={{ width: "100%" }}>
+                        <Button
+                            variant="primary"
+                            style={{
+                                color: "white",
+                                backgroundColor: "#30306d",
+                                borderRadius: "10px",
+                                marginTop: "5px",
+                                marginBottom: "5px",
+                                width: "100%",
+                                border: "none",
+                                padding: "10px",
+                            }}
+                        >
+                            <i className="bi bi-search"></i>
+                            <p
                                 style={{
-                                    color: "white",
-                                    backgroundColor: "#30306d",
-                                    borderRadius: "10px",
-                                    marginTop: "5px",
-                                    marginBottom: "5px",
-                                    width: "100%",
-                                    border: "none",
-                                    padding: "10px",
+                                    display: "inline-block",
+                                    margin: "0 0 0 10px",
                                 }}
                             >
-                                <i className="bi bi-search"></i>
-                                <p
-                                    style={{
-                                        display: "inline-block",
-                                        margin: "0 0 0 10px",
-                                    }}
-                                >
-                                    Search for events
-                                </p>
-                            </Button>
-                        </Link>
-                    </div>
+                                Search for events
+                            </p>
+                        </Button>
+                    </Link>
+                </div>
 
-                    <div
-                        className="eventList d-flex flex-column align-items-center"
-                        style={{ width: "100%" }}
-                    >
-                        {randomEventData.length > 0 ? (
-                            randomEventData.map((event) => (
-                                <Link
-                                    to={"/event/" + event._id}
-                                    style={{
-                                        textDecoration: "none",
-                                        width: "100%",
-                                    }}
-                                >
-                                    <EventCard
-                                        key={event._id}
-                                        eventData={event}
-                                    />
-                                </Link>
-                            ))
-                        ) : (
-                            <div className="w-100 d-flex justify-content-center">
-                                <p>Currently no event created.</p>
-                            </div>
-                        )}
-                    </div>
-                    <div
-                        className="d-flex buttons justify-content-center"
-                        style={{
-                            marginTop: "20px",
-                            marginBottom: "20px",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            border: "none",
-                        }}
-                    >
-                        <Link to="/about" style={{ width: "100%" }}>
-                            <Button
-                                variant="primary"
+                <div
+                    className="eventList d-flex flex-column align-items-center"
+                    style={{ width: "100%" }}
+                >
+                    {randomEventData.length > 0 ? (
+                        randomEventData.map((event) => (
+                            <Link
+                                to={"/event/" + event._id}
                                 style={{
-                                    color: "white",
-                                    backgroundColor: "#30306d",
-                                    borderRadius: "10px",
-                                    marginTop: "5px",
-                                    marginBottom: "5px",
+                                    textDecoration: "none",
                                     width: "100%",
-                                    border: "none",
-                                    padding: "10px",
                                 }}
                             >
-                                About Muuvit
-                            </Button>
-                        </Link>
-                        <Link to="/pp" style={{ width: "100%" }}>
-                            <Button
-                                variant="primary"
-                                style={{
-                                    color: "white",
-                                    backgroundColor: "#30306d",
-                                    borderRadius: "10px",
-                                    marginTop: "5px",
-                                    marginBottom: "5px",
-                                    width: "100%",
-                                    border: "none",
-                                    padding: "10px",
-                                }}
-                            >
-                                Privacy Policy
-                            </Button>
-                        </Link>
-                        {/* <Link to="#"
+                                <EventCard key={event._id} eventData={event} />
+                            </Link>
+                        ))
+                    ) : (
+                        <div className="w-100 d-flex justify-content-center">
+                            <p>Currently no event created.</p>
+                        </div>
+                    )}
+                </div>
+                <div
+                    className="d-flex buttons justify-content-center"
+                    style={{
+                        marginTop: "20px",
+                        marginBottom: "20px",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        border: "none",
+                    }}
+                >
+                    <Link to="/about" style={{ width: "100%" }}>
+                        <Button
+                            variant="primary"
+                            style={{
+                                color: "white",
+                                backgroundColor: "#30306d",
+                                borderRadius: "10px",
+                                marginTop: "5px",
+                                marginBottom: "5px",
+                                width: "100%",
+                                border: "none",
+                                padding: "10px",
+                            }}
+                        >
+                            About Muuvit
+                        </Button>
+                    </Link>
+                    <Link to="/pp" style={{ width: "100%" }}>
+                        <Button
+                            variant="primary"
+                            style={{
+                                color: "white",
+                                backgroundColor: "#30306d",
+                                borderRadius: "10px",
+                                marginTop: "5px",
+                                marginBottom: "5px",
+                                width: "100%",
+                                border: "none",
+                                padding: "10px",
+                            }}
+                        >
+                            Privacy Policy
+                        </Button>
+                    </Link>
+                    {/* <Link to="#"
                                 style={{width: "100%"}}>
                                     <Button
                                         variant="primary"
@@ -190,26 +265,26 @@ const HomeScreen = () => {
                                         Help Center
                                     </Button>
                                 </Link> */}
-                        <Link to="/tac" style={{ width: "100%" }}>
-                            <Button
-                                variant="primary"
-                                style={{
-                                    color: "white",
-                                    backgroundColor: "#30306d",
-                                    borderRadius: "10px",
-                                    marginTop: "5px",
-                                    marginBottom: "5px",
-                                    width: "100%",
-                                    border: "none",
-                                    padding: "10px",
-                                }}
-                            >
-                                Terms & Conditions
-                            </Button>
-                        </Link>
-                    </div>
-                    {/* You can place additional divs here for other components that might align left or right */}
-                </Container>
+                    <Link to="/tac" style={{ width: "100%" }}>
+                        <Button
+                            variant="primary"
+                            style={{
+                                color: "white",
+                                backgroundColor: "#30306d",
+                                borderRadius: "10px",
+                                marginTop: "5px",
+                                marginBottom: "5px",
+                                width: "100%",
+                                border: "none",
+                                padding: "10px",
+                            }}
+                        >
+                            Terms & Conditions
+                        </Button>
+                    </Link>
+                </div>
+                {/* You can place additional divs here for other components that might align left or right */}
+            </Container>
         </div>
     );
 };
