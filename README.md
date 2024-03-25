@@ -3,6 +3,8 @@ project-moovit created by GitHub Classroom. The source code for Muuvit, an appli
 
 I was the project's front-end developer and designer.
 
+Muuvit is a social platform (on the web) where members can create and participate in small scale outdoor sport/exercise events (eg. skiing, yoga in the park, functional training at the outdoor gym). When one hosts events the event gets an own page where one can add information about the event. The events are open so everybody can participate. The events may have an upper limit of participants
+
 ## Team
 - Project Manager: Blessed
 - Product Owner: Louise
